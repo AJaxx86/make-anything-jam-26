@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Make Anything Jam 26"
 
+[global_group]
+
+Interactable=""
+
 [input]
 
 forward={

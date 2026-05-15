@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c1sbx0ul7pd6q"]
 
+[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactable.gd" id="1_f3sb7"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -13,7 +15,24 @@ sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_gv5m4"]
+size = Vector3(1, 2, 0.59)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
+albedo_color = Color(0.52451086, 0.24944893, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(1, 2, 0.593)
+
 [node name="World" type="Node3D" unique_id=921156161]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=733494147]
+
+[node name="FactBuilder" type="Control" parent="CanvasLayer" unique_id=192788006]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1730665767]
 environment = SubResource("Environment_tlwt5")
@@ -22,7 +41,23 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 8.961844, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1943864651]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1943864651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999905, 0)
 use_collision = true
 size = Vector3(50, 0.1, 50)
+
+[node name="PlayerCam" type="Camera3D" parent="." unique_id=2003679145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.974138, 0)
+
+[node name="Bookshelf" type="Area3D" parent="." unique_id=1064800319 groups=["Interactable"]]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.0408654, 0.36816454, -5.8778586)
+script = ExtResource("1_f3sb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bookshelf" unique_id=1664852681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59428245, 0)
+mesh = SubResource("BoxMesh_gv5m4")
+surface_material_override/0 = SubResource("StandardMaterial3D_f3sb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bookshelf" unique_id=1028765943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59027106, 0)
+shape = SubResource("BoxShape3D_gv5m4")
