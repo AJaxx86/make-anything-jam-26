@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://c1sbx0ul7pd6q"]
 
-[ext_resource type="PackedScene" uid="uid://my0u3jxolq6e" path="res://player/player.tscn" id="1_f3sb7"]
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,7 +26,3 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 use_collision = true
 size = Vector3(50, 0.1, 50)
-
-[node name="CharacterBody3D" parent="." unique_id=1240030463 instance=ExtResource("1_f3sb7")]
-speed = 5.0
-mouse_sensitivity = 0.002
