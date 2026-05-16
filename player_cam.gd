@@ -25,9 +25,17 @@ signal Show_UI(ui_node: Control, show: bool)
 
 @export var pause_menu: Control = null
 
+## How long the pause action must be held before it opens the pause menu.
+## Releasing before this threshold performs the contextual back/cancel action instead.
+@export var escape_hold_threshold: float = 0.45
+
 var paused: bool = false
 
 var _position_history: Array[Dictionary] = []
+var _open_ui: Control = null
+var _escape_is_down: bool = false
+var _escape_hold_time: float = 0.0
+var _escape_hold_triggered: bool = false
 var _center_basis: Basis
 var _target_center_basis: Basis
 var _target_global_position: Vector3
@@ -39,21 +47,33 @@ func _ready() -> void:
 	_target_center_basis = _center_basis
 	_target_global_position = global_position
 	_target_fov = fov
+	_position_history.clear()
+	_position_history.append(get_current_target_camera_state())
+
+	if pause_menu != null:
+		set_ui_visibility(pause_menu, false)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause") and not _escape_is_down:
+		_escape_is_down = true
+		_escape_hold_time = 0.0
+		_escape_hold_triggered = false
+		get_viewport().set_input_as_handled()
+	elif event.is_action_released("pause"):
+		if _escape_is_down and not _escape_hold_triggered:
+			handle_escape_tap()
+		reset_escape_hold_state()
+		get_viewport().set_input_as_handled()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		paused = not paused
-		if paused:
-			emit_signal("Show_UI", pause_menu, true)
-		else:
-			emit_signal("Show_UI", pause_menu, false)
-
 	if event.is_action_pressed("interact"):
 		pass
 
 
 func _process(delta: float) -> void:
+	handle_escape_hold(delta)
 	if paused:
 		return
 	update_camera_target(delta)
@@ -62,18 +82,122 @@ func _process(delta: float) -> void:
 
 ## Intended to be connected directly to Interactable.Activate.
 ## Moves this camera to the marker's global position/orientation and eases to camera_fov.
-## _open_ui is accepted so the Interactable.Activate signal can call this function directly.
+## open_ui is accepted so the Interactable.Activate signal can call this function directly.
 func set_camera_view(camera_marker: Marker3D, camera_fov: float, open_ui: Control = null) -> void:
-	if open_ui != null:
-		emit_signal("Show_UI", open_ui, true)
-
 	if camera_marker == null:
 		push_warning("set_camera_view was called without a camera marker.")
 		return
 
-	_target_global_position = camera_marker.global_position
-	_target_center_basis = camera_marker.global_transform.basis.orthonormalized()
-	_target_fov = clamp(camera_fov, 1.0, 179.0)
+	var camera_state := {
+		"position": camera_marker.global_position,
+		"basis": camera_marker.global_transform.basis.orthonormalized(),
+		"fov": clamp(camera_fov, 1.0, 179.0),
+		"ui": open_ui,
+	}
+
+	_position_history.append(camera_state)
+	apply_camera_state(camera_state)
+
+
+func handle_escape_hold(delta: float) -> void:
+	if not _escape_is_down or _escape_hold_triggered:
+		return
+
+	_escape_hold_time += delta
+	if _escape_hold_time < escape_hold_threshold:
+		return
+
+	_escape_hold_triggered = true
+	if not paused:
+		open_pause_menu()
+
+
+func handle_escape_tap() -> void:
+	if paused:
+		close_pause_menu()
+		return
+
+	if _open_ui != null:
+		close_current_ui(true)
+		return
+
+	go_back_camera_state()
+
+
+func reset_escape_hold_state() -> void:
+	_escape_is_down = false
+	_escape_hold_time = 0.0
+	_escape_hold_triggered = false
+
+
+func open_pause_menu() -> void:
+	if paused:
+		return
+
+	paused = true
+	if pause_menu != null:
+		set_ui_visibility(pause_menu, true)
+
+
+func close_pause_menu() -> void:
+	if not paused:
+		return
+
+	paused = false
+	if pause_menu != null:
+		set_ui_visibility(pause_menu, false)
+
+
+func close_current_ui(update_current_state: bool = false) -> void:
+	if _open_ui == null:
+		return
+
+	set_ui_visibility(_open_ui, false)
+	_open_ui = null
+
+	if update_current_state and _position_history.size() > 0:
+		var current_state_index := _position_history.size() - 1
+		var current_state := _position_history[current_state_index]
+		current_state["ui"] = null
+		_position_history[current_state_index] = current_state
+
+
+func get_current_target_camera_state(ui: Control = null) -> Dictionary:
+	return {
+		"position": _target_global_position,
+		"basis": _target_center_basis,
+		"fov": _target_fov,
+		"ui": ui,
+	}
+
+
+func apply_camera_state(camera_state: Dictionary) -> void:
+	close_current_ui(false)
+
+	_target_global_position = camera_state["position"]
+	_target_center_basis = camera_state["basis"]
+	_target_fov = camera_state["fov"]
+
+	var state_ui := camera_state.get("ui", null) as Control
+	if state_ui != null:
+		_open_ui = state_ui
+		set_ui_visibility(_open_ui, true)
+
+
+func set_ui_visibility(ui_node: Control, should_be_visible: bool) -> void:
+	if ui_node == null:
+		return
+
+	ui_node.visible = should_be_visible
+	emit_signal("Show_UI", ui_node, should_be_visible)
+
+
+func go_back_camera_state() -> void:
+	if _position_history.size() <= 1:
+		return
+
+	_position_history.pop_back()
+	apply_camera_state(_position_history[_position_history.size() - 1])
 
 
 func update_camera_target(delta: float) -> void:

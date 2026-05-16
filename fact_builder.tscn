@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://bgh6l2fm2tnvh"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_x1631"]
+font_size = 40
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="FactBuilder" type="Control" unique_id=1788143439]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=364557005]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 245.0
+offset_right = 758.0
+offset_bottom = 300.0
+text = "BUILD FACTS HERE"
+label_settings = SubResource("LabelSettings_x1631")

@@ -12,8 +12,15 @@ func _ready() -> void:
 	connect("input_event", self._on_input_event)
 
 
-func _on_input_event(camera: Node, _event: InputEvent, _event_postion: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if Input.is_action_just_pressed(&"interact"):
-		emit_signal(&"Activate", camera_marker, camera_fov, open_ui)
-		camera.set_camera_view(camera_marker, camera_fov, open_ui)
-		print_debug("Clicked on " + self.name + " from " + camera.name)
+func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if not event.is_action_pressed(&"interact"):
+		return
+
+	var player_camera := camera as PlayerCam
+	if player_camera == null:
+		push_warning("Interactable " + name + " was clicked by a camera that is not a PlayerCam: " + camera.name)
+		return
+
+	emit_signal(&"Activate", camera_marker, camera_fov, open_ui)
+	player_camera.set_camera_view(camera_marker, camera_fov, open_ui)
+	print_debug("Clicked on " + name + " from " + player_camera.name)
