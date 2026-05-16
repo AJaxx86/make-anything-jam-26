@@ -64,12 +64,12 @@ func _process(delta: float) -> void:
 ## Moves this camera to the marker's global position/orientation and eases to camera_fov.
 ## _open_ui is accepted so the Interactable.Activate signal can call this function directly.
 func set_camera_view(camera_marker: Marker3D, camera_fov: float, open_ui: Control = null) -> void:
+	if open_ui != null:
+		emit_signal("Show_UI", open_ui, true)
+
 	if camera_marker == null:
 		push_warning("set_camera_view was called without a camera marker.")
 		return
-
-	if open_ui != null:
-		emit_signal("Show_UI", open_ui, true)
 
 	_target_global_position = camera_marker.global_position
 	_target_center_basis = camera_marker.global_transform.basis.orthonormalized()
