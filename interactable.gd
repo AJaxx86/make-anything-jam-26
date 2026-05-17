@@ -1,8 +1,8 @@
 class_name Interactable extends Area3D
 
-## If camera_marker is null, make sure to check that camera_pos isn't Vector3.ZERO before moving the camera
 signal Activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float, open_ui: Control)
 
+## Prevents this interactable from being selected unless it's parent is selected first.
 @export var required_parent: Interactable = null
 @export var camera_marker: Marker3D = null
 @export_range(10.0, 100.0, 01.0) var camera_fov: float = 75.0

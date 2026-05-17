@@ -89,7 +89,6 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 		state_position = camera_marker.global_position
 		state_basis = camera_marker.global_transform.basis.orthonormalized()
 
-	# If we are going back to the immediately previous interactable, just pop instead of pushing a duplicate.
 	if _position_history.size() >= 2:
 		var previous_state := _position_history[_position_history.size() - 2]
 		var previous_interactable := previous_state.get("interactable", null) as Interactable
