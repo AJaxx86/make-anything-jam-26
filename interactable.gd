@@ -1,8 +1,9 @@
 class_name Interactable extends Area3D
 
 ## If camera_marker is null, make sure to check that camera_pos isn't Vector3.ZERO before moving the camera
-signal Activate(camera_marker: Marker3D, camera_fov: float, open_ui: Control)
+signal Activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float, open_ui: Control)
 
+@export var required_parent: Interactable = null
 @export var camera_marker: Marker3D = null
 @export_range(10.0, 100.0, 01.0) var camera_fov: float = 75.0
 @export var open_ui: Control = null
@@ -21,6 +22,10 @@ func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, 
 		push_warning("Interactable " + name + " was clicked by a camera that is not a PlayerCam: " + camera.name)
 		return
 
-	emit_signal(&"Activate", camera_marker, camera_fov, open_ui)
-	player_camera.set_camera_view(camera_marker, camera_fov, open_ui)
-	print_debug("Clicked on " + name + " from " + player_camera.name)
+	if required_parent != null and player_camera.get_current_interactable() != required_parent:
+		print_debug(self.name + " requires " + required_parent.name + " to be active first")
+		return
+
+	emit_signal(&"Activate", self, camera_marker, camera_fov, open_ui)
+	player_camera.set_camera_view(self, camera_marker, camera_fov, open_ui)
+	print_debug("Clicked on " + name)

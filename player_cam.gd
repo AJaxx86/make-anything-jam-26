@@ -80,23 +80,33 @@ func _process(delta: float) -> void:
 	handle_cam_movement(delta)
 
 
-## Intended to be connected directly to Interactable.Activate.
-## Moves this camera to the marker's global position/orientation and eases to camera_fov.
-## open_ui is accepted so the Interactable.Activate signal can call this function directly.
-func set_camera_view(camera_marker: Marker3D, camera_fov: float, open_ui: Control = null) -> void:
-	if camera_marker == null:
-		push_warning("set_camera_view was called without a camera marker.")
-		return
+func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui: Control = null) -> void:
+	var state_position: Vector3 = _target_global_position
+	var state_basis: Basis = _target_center_basis
+	var state_fov: float = clamp(camera_fov, 1.0, 179.0)
+
+	if camera_marker != null:
+		state_position = camera_marker.global_position
+		state_basis = camera_marker.global_transform.basis.orthonormalized()
+
+	# If we are going back to the immediately previous interactable, just pop instead of pushing a duplicate.
+	if _position_history.size() >= 2:
+		var previous_state := _position_history[_position_history.size() - 2]
+		var previous_interactable := previous_state.get("interactable", null) as Interactable
+		if previous_interactable == caller:
+			go_back_camera_state()
+			return
 
 	var camera_state := {
+		"interactable": caller,
 		"marker": camera_marker,
-		"position": camera_marker.global_position,
-		"basis": camera_marker.global_transform.basis.orthonormalized(),
-		"fov": clamp(camera_fov, 1.0, 179.0),
+		"position": state_position,
+		"basis": state_basis,
+		"fov": state_fov,
 		"ui": open_ui,
 	}
 
-	if is_current_camera_state(camera_marker):
+	if is_current_camera_state(camera_marker, caller):
 		_position_history[_position_history.size() - 1] = camera_state
 	else:
 		_position_history.append(camera_state)
@@ -177,12 +187,24 @@ func get_current_target_camera_state(ui: Control = null) -> Dictionary:
 	}
 
 
-func is_current_camera_state(camera_marker: Marker3D) -> bool:
+func get_current_interactable() -> Interactable:
+	if _position_history.is_empty():
+		return null
+	return _position_history[_position_history.size() - 1].get("interactable", null) as Interactable
+
+
+func is_current_camera_state(camera_marker: Marker3D, caller: Interactable) -> bool:
 	if _position_history.is_empty():
 		return false
 
 	var current_state := _position_history[_position_history.size() - 1]
-	return current_state.get("marker", null) == camera_marker
+	var current_marker := current_state.get("marker", null) as Marker3D
+
+	if camera_marker != null:
+		return current_marker == camera_marker
+
+	var current_interactable := current_state.get("interactable", null) as Interactable
+	return current_interactable == caller
 
 
 func apply_camera_state(camera_state: Dictionary) -> void:

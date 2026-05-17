@@ -3,3 +3,7 @@
 [ ] Add fact constructing UI
 [ ] Add editable labels, drawable preferably otherwise text (godot 4.7 DrawableTexture node?)
 [ ] Add bookshelf logic for placing books
+
+# CONTROLS
+ESC - Tap to go back, hold to pause
+LEFT CLICK - Interact

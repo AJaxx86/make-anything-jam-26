@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://bpsfi1tskpjla"]
+
+[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactable.gd" id="1_bhfym"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(1, 2, 0.5840976)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhfym"]
+albedo_color = Color(0.38223523, 0.12471258, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhfym"]
+material = SubResource("StandardMaterial3D_bhfym")
+size = Vector3(0.98417664, 1.9924664, 0.08691406)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cyyaw"]
+material = SubResource("StandardMaterial3D_bhfym")
+size = Vector3(0.50756836, 1.905771, 0.08691406)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pweli"]
+material = SubResource("StandardMaterial3D_bhfym")
+size = Vector3(0.50756836, 0.99526596, 0.08691406)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ue8p"]
+material = SubResource("StandardMaterial3D_bhfym")
+size = Vector3(0.50756836, 0.8232794, 0.08691406)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c1t0j"]
+size = Vector3(0.3, 0.05, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmqdl"]
+size = Vector3(0.3, 0.05, 0.01)
+
+[node name="Bookshelf" type="Area3D" unique_id=51938480 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("1_bhfym")
+camera_marker = NodePath("Marker3D")
+camera_fov = 60.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=914914570]
+transform = Transform3D(0.9999987, 0, 0, 0, 1, 0, 0, 0, 0.9999987, 0, 0, -0.0044511845)
+shape = SubResource("BoxShape3D_gv5m4")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=483619954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6232835)
+
+[node name="Mesh" type="Node3D" parent="." unique_id=1664873079]
+
+[node name="Back" type="MeshInstance3D" parent="Mesh" unique_id=1226391554]
+transform = Transform3D(0.9999427, 0, 0, 0, 1, 0, 0, 0, 0.9999427, 8.054075e-06, -0.0028425753, -0.24755934)
+mesh = SubResource("BoxMesh_bhfym")
+
+[node name="Side" type="MeshInstance3D" parent="Mesh" unique_id=456869698]
+transform = Transform3D(-4.3708695e-08, 0, 0.99994785, 0, 1, 0, -0.99994785, 0, -4.3708695e-08, -0.4527334, -0.03730321, 0.037955057)
+mesh = SubResource("BoxMesh_cyyaw")
+
+[node name="Side2" type="MeshInstance3D" parent="Mesh" unique_id=1377846676]
+transform = Transform3D(-4.370947e-08, 0, 0.99996084, 0, 1, 0, -0.99996084, 0, -4.370947e-08, 0.451542, -0.043954074, 0.037955068)
+mesh = SubResource("BoxMesh_cyyaw")
+
+[node name="Top" type="MeshInstance3D" parent="Mesh" unique_id=1224314586]
+transform = Transform3D(1.910538e-15, 0.9999819, -4.370861e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.999943, 0, -4.3708408e-08, -0.0030045805, 0.9501629, 0.037955035)
+mesh = SubResource("BoxMesh_pweli")
+
+[node name="Bottom" type="MeshInstance3D" parent="Mesh" unique_id=1792736139]
+transform = Transform3D(1.9105377e-15, 0.99998176, -4.3708603e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.9999429, 0, -4.37084e-08, -0.00300458, -0.95751494, 0.037955027)
+mesh = SubResource("BoxMesh_pweli")
+
+[node name="Shelf" type="MeshInstance3D" parent="Mesh" unique_id=1119800876]
+transform = Transform3D(1.910519e-15, 0.9999765, -4.370829e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.99993765, 0, -4.3708088e-08, -0.0010327732, -0.45439124, 0.03795501)
+mesh = SubResource("BoxMesh_7ue8p")
+
+[node name="Shelf2" type="MeshInstance3D" parent="Mesh" unique_id=1650006428]
+transform = Transform3D(1.9105188e-15, 0.99997646, -4.3708287e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.9999376, 0, -4.3708084e-08, -0.001032773, 0.031672448, 0.037955005)
+mesh = SubResource("BoxMesh_7ue8p")
+
+[node name="Shelf3" type="MeshInstance3D" parent="Mesh" unique_id=418772132]
+transform = Transform3D(1.9105186e-15, 0.9999764, -4.3708283e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.99993753, 0, -4.370808e-08, -0.0010327729, 0.5259669, 0.037955)
+mesh = SubResource("BoxMesh_7ue8p")
+
+[node name="Labels" type="Node3D" parent="." unique_id=1100338032]
+
+[node name="Label" type="Area3D" parent="Labels" unique_id=1160744624 node_paths=PackedStringArray("required_parent", "camera_marker")]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, 0, 0.5258569, 0.29376984)
+script = ExtResource("1_bhfym")
+required_parent = NodePath("../..")
+camera_marker = NodePath("Marker3D")
+camera_fov = 35.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Labels/Label" unique_id=1590671846]
+mesh = SubResource("BoxMesh_c1t0j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Labels/Label" unique_id=1765600714]
+shape = SubResource("BoxShape3D_dmqdl")
+
+[node name="Marker3D" type="Marker3D" parent="Labels/Label" unique_id=1115260311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39858916)

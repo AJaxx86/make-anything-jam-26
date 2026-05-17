@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bgh6l2fm2tnvh" path="res://fact_builder.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ceae0gdus63p1" path="res://pause_menu.tscn" id="2_aqk2v"]
 [ext_resource type="Script" uid="uid://cacacaq8un183" path="res://player_cam.gd" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://bookshelf.tscn" id="4_036b0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,16 +18,6 @@ background_mode = 2
 sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlwt5"]
-albedo_color = Color(0.5824438, 0.2681449, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gv5m4"]
-material = SubResource("StandardMaterial3D_tlwt5")
-size = Vector3(1, 2, 0.59)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
-size = Vector3(1, 2, 0.593)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
 albedo_color = Color(0.5667972, 0.2136864, 0, 1)
@@ -66,20 +57,8 @@ current = true
 script = ExtResource("2_tlwt5")
 pause_menu = NodePath("../CanvasLayer/PauseMenu")
 
-[node name="Bookshelf" type="Area3D" parent="." unique_id=1064800319 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.0408654, 0.9486022, -5.8778586)
-script = ExtResource("1_f3sb7")
-camera_marker = NodePath("Marker3D")
-camera_fov = 60.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Bookshelf" unique_id=1664852681]
-mesh = SubResource("BoxMesh_gv5m4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Bookshelf" unique_id=1028765943]
-shape = SubResource("BoxShape3D_gv5m4")
-
-[node name="Marker3D" type="Marker3D" parent="Bookshelf" unique_id=1329962872]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6232835)
+[node name="Bookshelf" parent="." unique_id=51938480 instance=ExtResource("4_036b0")]
+transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 3.0408654, 0.9486022, -5.8778586)
 
 [node name="Table" type="Area3D" parent="." unique_id=120654855 node_paths=PackedStringArray("camera_marker", "open_ui") groups=["Interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12928343, -4.48042)
