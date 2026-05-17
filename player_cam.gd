@@ -55,21 +55,16 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and not _escape_is_down:
+	if event.is_action_pressed(&"pause") and not _escape_is_down:
 		_escape_is_down = true
 		_escape_hold_time = 0.0
 		_escape_hold_triggered = false
 		get_viewport().set_input_as_handled()
-	elif event.is_action_released("pause"):
+	elif event.is_action_released(&"pause"):
 		if _escape_is_down and not _escape_hold_triggered:
 			handle_escape_tap()
 		reset_escape_hold_state()
 		get_viewport().set_input_as_handled()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		pass
 
 
 func _process(delta: float) -> void:
