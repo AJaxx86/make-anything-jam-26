@@ -89,13 +89,18 @@ func set_camera_view(camera_marker: Marker3D, camera_fov: float, open_ui: Contro
 		return
 
 	var camera_state := {
+		"marker": camera_marker,
 		"position": camera_marker.global_position,
 		"basis": camera_marker.global_transform.basis.orthonormalized(),
 		"fov": clamp(camera_fov, 1.0, 179.0),
 		"ui": open_ui,
 	}
 
-	_position_history.append(camera_state)
+	if is_current_camera_state(camera_marker):
+		_position_history[_position_history.size() - 1] = camera_state
+	else:
+		_position_history.append(camera_state)
+
 	apply_camera_state(camera_state)
 
 
@@ -164,11 +169,20 @@ func close_current_ui(update_current_state: bool = false) -> void:
 
 func get_current_target_camera_state(ui: Control = null) -> Dictionary:
 	return {
+		"marker": null,
 		"position": _target_global_position,
 		"basis": _target_center_basis,
 		"fov": _target_fov,
 		"ui": ui,
 	}
+
+
+func is_current_camera_state(camera_marker: Marker3D) -> bool:
+	if _position_history.is_empty():
+		return false
+
+	var current_state := _position_history[_position_history.size() - 1]
+	return current_state.get("marker", null) == camera_marker
 
 
 func apply_camera_state(camera_state: Dictionary) -> void:
