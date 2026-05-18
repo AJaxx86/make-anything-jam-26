@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c1sbx0ul7pd6q"]
 
-[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactable.gd" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://bgh6l2fm2tnvh" path="res://fact_builder.tscn" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ceae0gdus63p1" path="res://pause_menu.tscn" id="2_aqk2v"]
 [ext_resource type="Script" uid="uid://cacacaq8un183" path="res://player_cam.gd" id="2_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://bookshelf.tscn" id="4_036b0"]
+[ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://interactables/bookshelf.tscn" id="4_036b0"]
+[ext_resource type="PackedScene" uid="uid://dk10ax2q8kp4t" path="res://interactables/table.tscn" id="5_036b0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -18,16 +18,6 @@ background_mode = 2
 sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
-albedo_color = Color(0.5667972, 0.2136864, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_aqk2v"]
-material = SubResource("StandardMaterial3D_aqk2v")
-size = Vector3(1, 0.33, 0.75)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
-size = Vector3(1, 0.33, 0.75)
 
 [node name="World" type="Node3D" unique_id=921156161]
 
@@ -60,18 +50,6 @@ pause_menu = NodePath("../CanvasLayer/PauseMenu")
 [node name="Bookshelf" parent="." unique_id=51938480 instance=ExtResource("4_036b0")]
 transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 3.0408654, 0.9486022, -5.8778586)
 
-[node name="Table" type="Area3D" parent="." unique_id=120654855 node_paths=PackedStringArray("camera_marker", "open_ui") groups=["Interactable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12928343, -4.48042)
-script = ExtResource("1_f3sb7")
-camera_marker = NodePath("Marker3D")
-camera_fov = 60.0
+[node name="Table" parent="." unique_id=1557502727 node_paths=PackedStringArray("open_ui") instance=ExtResource("5_036b0")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.6794432, -0.017860532, -5.9000406)
 open_ui = NodePath("../CanvasLayer/FactBuilder")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1572485680]
-mesh = SubResource("BoxMesh_aqk2v")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1846089750]
-shape = SubResource("BoxShape3D_036b0")
-
-[node name="Marker3D" type="Marker3D" parent="Table" unique_id=2009077442]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 1.35, 1.0591333)

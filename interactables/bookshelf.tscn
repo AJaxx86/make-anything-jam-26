@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://bpsfi1tskpjla"]
 
-[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactable.gd" id="1_bhfym"]
+[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactables/interactable.gd" id="1_bhfym"]
+[ext_resource type="Script" uid="uid://ume7rejtp6vh" path="res://interactables/draw_babel.gd" id="2_cyyaw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
-size = Vector3(1, 2, 0.5840976)
+size = Vector3(1.22, 2, 0.5633672)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhfym"]
 albedo_color = Color(0.38223523, 0.12471258, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bhfym"]
 material = SubResource("StandardMaterial3D_bhfym")
-size = Vector3(0.98417664, 1.9924664, 0.08691406)
+size = Vector3(1.2360245, 1.9930704, 0.087)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cyyaw"]
 material = SubResource("StandardMaterial3D_bhfym")
@@ -18,17 +19,21 @@ size = Vector3(0.50756836, 1.905771, 0.08691406)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pweli"]
 material = SubResource("StandardMaterial3D_bhfym")
-size = Vector3(0.50756836, 0.99526596, 0.08691406)
+size = Vector3(0.508, 1.235, 0.087)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ue8p"]
 material = SubResource("StandardMaterial3D_bhfym")
-size = Vector3(0.50756836, 0.8232794, 0.08691406)
+size = Vector3(0.508, 1.073, 0.122)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyyaw"]
+albedo_color = Color(0.8949411, 0.6110295, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c1t0j"]
-size = Vector3(0.3, 0.05, 0.01)
+material = SubResource("StandardMaterial3D_cyyaw")
+size = Vector3(0.805, 0.1, 0.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmqdl"]
-size = Vector3(0.3, 0.05, 0.01)
+size = Vector3(0.805, 0.1, 0.01)
 
 [node name="Bookshelf" type="Area3D" unique_id=51938480 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -37,7 +42,7 @@ camera_marker = NodePath("Marker3D")
 camera_fov = 60.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=914914570]
-transform = Transform3D(0.9999987, 0, 0, 0, 1, 0, 0, 0, 0.9999987, 0, 0, -0.0044511845)
+transform = Transform3D(0.99999833, 0, 0, 0, 1, 0, 0, 0, 0.99999833, 0, 0, 0.0008652149)
 shape = SubResource("BoxShape3D_gv5m4")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=483619954]
@@ -46,19 +51,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6232835)
 [node name="Mesh" type="Node3D" parent="." unique_id=1664873079]
 
 [node name="Back" type="MeshInstance3D" parent="Mesh" unique_id=1226391554]
-transform = Transform3D(0.9999427, 0, 0, 0, 1, 0, 0, 0, 0.9999427, 8.054075e-06, -0.0028425753, -0.24755934)
+transform = Transform3D(0.99993694, 0, 0, 0, 1, 0, 0, 0, 0.99993694, -0.004910585, -0.0033777654, -0.24755919)
 mesh = SubResource("BoxMesh_bhfym")
 
 [node name="Side" type="MeshInstance3D" parent="Mesh" unique_id=456869698]
-transform = Transform3D(-4.3708695e-08, 0, 0.99994785, 0, 1, 0, -0.99994785, 0, -4.3708695e-08, -0.4527334, -0.03730321, 0.037955057)
+transform = Transform3D(-4.3708685e-08, 0, 0.99994767, 0, 1, 0, -0.99994767, 0, -4.3708685e-08, -0.5759895, -0.03730321, 0.037955046)
 mesh = SubResource("BoxMesh_cyyaw")
 
 [node name="Side2" type="MeshInstance3D" parent="Mesh" unique_id=1377846676]
-transform = Transform3D(-4.370947e-08, 0, 0.99996084, 0, 1, 0, -0.99996084, 0, -4.370947e-08, 0.451542, -0.043954074, 0.037955068)
+transform = Transform3D(-4.3709463e-08, 0, 0.9999607, 0, 1, 0, -0.9999607, 0, -4.3709463e-08, 0.57349813, -0.043954074, 0.03795506)
 mesh = SubResource("BoxMesh_cyyaw")
 
 [node name="Top" type="MeshInstance3D" parent="Mesh" unique_id=1224314586]
-transform = Transform3D(1.910538e-15, 0.9999819, -4.370861e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.999943, 0, -4.3708408e-08, -0.0030045805, 0.9501629, 0.037955035)
+transform = Transform3D(1.9105275e-15, 0.9999789, -4.3708432e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.99994004, 0, -4.370823e-08, -0.0030045803, 0.9501629, 0.03795503)
 mesh = SubResource("BoxMesh_pweli")
 
 [node name="Bottom" type="MeshInstance3D" parent="Mesh" unique_id=1792736139]
@@ -79,12 +84,9 @@ mesh = SubResource("BoxMesh_7ue8p")
 
 [node name="Labels" type="Node3D" parent="." unique_id=1100338032]
 
-[node name="Label" type="Area3D" parent="Labels" unique_id=1160744624 node_paths=PackedStringArray("required_parent", "camera_marker")]
-transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, 0, 0.5258569, 0.29376984)
-script = ExtResource("1_bhfym")
-required_parent = NodePath("../..")
-camera_marker = NodePath("Marker3D")
-camera_fov = 35.0
+[node name="Label" type="Area3D" parent="Labels" unique_id=1160744624]
+transform = Transform3D(0.99999946, 0, 0, 0, 1, 0, 0, 0, 0.99999946, 0, 0.9626802, 0.29376972)
+script = ExtResource("2_cyyaw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Labels/Label" unique_id=1590671846]
 mesh = SubResource("BoxMesh_c1t0j")
@@ -93,10 +95,12 @@ mesh = SubResource("BoxMesh_c1t0j")
 shape = SubResource("BoxShape3D_dmqdl")
 
 [node name="Marker3D" type="Marker3D" parent="Labels/Label" unique_id=1115260311]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39858916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
+
+[node name="Sprite3D" type="Sprite3D" parent="Labels/Label" unique_id=1241670411]
 
 [node name="Label2" type="Area3D" parent="Labels" unique_id=1468983417 node_paths=PackedStringArray("required_parent", "camera_marker")]
-transform = Transform3D(0.99999964, 0, 0, 0, 1, 0, 0, 0, 0.99999964, 0, 0.03482002, 0.2937698)
+transform = Transform3D(0.9999994, 0, 0, 0, 1, 0, 0, 0, 0.9999994, 0, 0.5310688, 0.2937697)
 script = ExtResource("1_bhfym")
 required_parent = NodePath("../..")
 camera_marker = NodePath("Marker3D")
@@ -109,10 +113,10 @@ mesh = SubResource("BoxMesh_c1t0j")
 shape = SubResource("BoxShape3D_dmqdl")
 
 [node name="Marker3D" type="Marker3D" parent="Labels/Label2" unique_id=536256800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39858916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
 
 [node name="Label3" type="Area3D" parent="Labels" unique_id=863989172 node_paths=PackedStringArray("required_parent", "camera_marker")]
-transform = Transform3D(0.9999996, 0, 0, 0, 1, 0, 0, 0, 0.9999996, 0, -0.4544162, 0.29376978)
+transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0, 0.029506922, 0.29376966)
 script = ExtResource("1_bhfym")
 required_parent = NodePath("../..")
 camera_marker = NodePath("Marker3D")
@@ -125,4 +129,20 @@ mesh = SubResource("BoxMesh_c1t0j")
 shape = SubResource("BoxShape3D_dmqdl")
 
 [node name="Marker3D" type="Marker3D" parent="Labels/Label3" unique_id=1176253396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39858916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
+
+[node name="Label4" type="Area3D" parent="Labels" unique_id=1736100253 node_paths=PackedStringArray("required_parent", "camera_marker")]
+transform = Transform3D(0.9999993, 0, 0, 0, 1, 0, 0, 0, 0.9999993, 0, -0.45457852, 0.29376963)
+script = ExtResource("1_bhfym")
+required_parent = NodePath("../..")
+camera_marker = NodePath("Marker3D")
+camera_fov = 35.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Labels/Label4" unique_id=2095004123]
+mesh = SubResource("BoxMesh_c1t0j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Labels/Label4" unique_id=425522345]
+shape = SubResource("BoxShape3D_dmqdl")
+
+[node name="Marker3D" type="Marker3D" parent="Labels/Label4" unique_id=986072974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)

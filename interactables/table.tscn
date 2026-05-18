@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dk10ax2q8kp4t"]
+
+[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactables/interactable.gd" id="1_jd0nb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
+albedo_color = Color(0.5667972, 0.2136864, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aqk2v"]
+material = SubResource("StandardMaterial3D_aqk2v")
+size = Vector3(2.01, 0.25, 1.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jsnxf"]
+material = SubResource("StandardMaterial3D_aqk2v")
+size = Vector3(0.25, 0.9008789, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
+size = Vector3(2.02, 1.1577305, 1.195)
+
+[node name="Table" type="Area3D" unique_id=1557502727 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
+script = ExtResource("1_jd0nb")
+camera_marker = NodePath("Marker3D")
+camera_fov = 60.0
+
+[node name="Mesh" type="Node3D" parent="." unique_id=501545531]
+
+[node name="Top" type="MeshInstance3D" parent="Mesh" unique_id=1164117208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_aqk2v")
+
+[node name="Leg" type="MeshInstance3D" parent="Mesh" unique_id=295645446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8798603, 0.42476773, 0.47606558)
+mesh = SubResource("BoxMesh_jsnxf")
+
+[node name="Leg2" type="MeshInstance3D" parent="Mesh" unique_id=1024538897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8798603, 0.42476773, -0.47040248)
+mesh = SubResource("BoxMesh_jsnxf")
+
+[node name="Leg3" type="MeshInstance3D" parent="Mesh" unique_id=2121502051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87956333, 0.42476773, -0.47040248)
+mesh = SubResource("BoxMesh_jsnxf")
+
+[node name="Leg4" type="MeshInstance3D" parent="Mesh" unique_id=1460261100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87956333, 0.42476773, 0.47399944)
+mesh = SubResource("BoxMesh_jsnxf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=999298473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54934376, 0)
+shape = SubResource("BoxShape3D_036b0")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=658876624]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.1263497, 1.0591333)

@@ -1,6 +1,6 @@
 class_name Interactable extends Area3D
 
-signal Activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float, open_ui: Control)
+signal activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float, open_ui: Control)
 
 ## Prevents this interactable from being selected unless it's parent is selected first.
 @export var required_parent: Interactable = null
@@ -10,7 +10,7 @@ signal Activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float
 
 
 func _ready() -> void:
-	connect("input_event", self._on_input_event)
+	connect("input_event", _on_input_event)
 
 
 func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
@@ -26,6 +26,6 @@ func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, 
 		print_debug(self.name + " requires " + required_parent.name + " to be active first")
 		return
 
-	emit_signal(&"Activate", self, camera_marker, camera_fov, open_ui)
+	emit_signal(&"activate", self, camera_marker, camera_fov, open_ui)
 	player_camera.set_camera_view(self, camera_marker, camera_fov, open_ui)
 	print_debug("Clicked on " + name)
