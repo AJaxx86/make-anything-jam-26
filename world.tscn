@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cacacaq8un183" path="res://player_cam.gd" id="2_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://interactables/bookshelf.tscn" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://dk10ax2q8kp4t" path="res://interactables/table.tscn" id="5_036b0"]
+[ext_resource type="Texture2D" uid="uid://b3hl2pyssdd2s" path="res://books/Aqua Book.png" id="6_pkg7o"]
+[ext_resource type="ArrayMesh" uid="uid://c76ngjvbo0cmx" path="res://books/Blue_Book.obj" id="7_gbfbk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -18,6 +20,10 @@ background_mode = 2
 sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkg7o"]
+albedo_texture = ExtResource("6_pkg7o")
+texture_filter = 0
 
 [node name="World" type="Node3D" unique_id=921156161]
 
@@ -54,3 +60,8 @@ transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710
 
 [node name="Table" parent="." unique_id=1557502727 instance=ExtResource("5_036b0")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.6794432, -0.017860532, -5.9000406)
+
+[node name="BlueBook" type="MeshInstance3D" parent="." unique_id=319605600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9436346, 1.2084367, -6.428647)
+material_override = SubResource("StandardMaterial3D_pkg7o")
+mesh = ExtResource("7_gbfbk")

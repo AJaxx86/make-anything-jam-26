@@ -1,6 +1,6 @@
 extends Node
 
-var facts: Dictionary[Array] = {
+var facts: Dictionary[String, Array] = {
 	"space": [],
 	"history": [],
 	"animals": [],
