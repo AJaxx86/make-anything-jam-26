@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bpsfi1tskpjla"]
 
 [ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactables/interactable.gd" id="1_bhfym"]
+[ext_resource type="FontFile" uid="uid://c5npascuojkq2" path="res://fonts/pixeloid-font/PixeloidSans-mLxMm.ttf" id="2_8veei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
 size = Vector3(1.22, 2, 0.5633672)
@@ -18,7 +19,7 @@ size = Vector3(0.50756836, 1.905771, 0.08691406)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pweli"]
 material = SubResource("StandardMaterial3D_bhfym")
-size = Vector3(0.508, 1.235, 0.087)
+size = Vector3(0.508, 1.2368946, 0.087)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ue8p"]
 material = SubResource("StandardMaterial3D_bhfym")
@@ -62,7 +63,7 @@ transform = Transform3D(-4.3709463e-08, 0, 0.9999607, 0, 1, 0, -0.9999607, 0, -4
 mesh = SubResource("BoxMesh_cyyaw")
 
 [node name="Top" type="MeshInstance3D" parent="Mesh" unique_id=1224314586]
-transform = Transform3D(1.9105275e-15, 0.9999789, -4.3708432e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.99994004, 0, -4.370823e-08, -0.0030045803, 0.9501629, 0.03795503)
+transform = Transform3D(1.910522e-15, 0.99997735, -4.370834e-08, 4.3709488e-08, -4.371139e-08, -0.99996114, -0.9999385, 0, -4.3708138e-08, -0.0020573034, 0.9501629, 0.03795501)
 mesh = SubResource("BoxMesh_pweli")
 
 [node name="Bottom" type="MeshInstance3D" parent="Mesh" unique_id=1792736139]
@@ -99,6 +100,13 @@ shape = SubResource("BoxShape3D_dmqdl")
 [node name="Marker3D" type="Marker3D" parent="Labels/Label" unique_id=1115260311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
 
+[node name="Label3D" type="Label3D" parent="Labels/Label" unique_id=1350215010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "PLACEHOLDER"
+font = ExtResource("2_8veei")
+font_size = 18
+outline_size = 4
+
 [node name="Label2" type="Area3D" parent="Labels" unique_id=1468983417 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.9999994, 0, 0, 0, 1, 0, 0, 0, 0.9999994, 0, 0.5310688, 0.2937697)
 script = ExtResource("1_bhfym")
@@ -114,6 +122,13 @@ shape = SubResource("BoxShape3D_dmqdl")
 
 [node name="Marker3D" type="Marker3D" parent="Labels/Label2" unique_id=536256800]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
+
+[node name="Label3D" type="Label3D" parent="Labels/Label2" unique_id=104422890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "PLACEHOLDER"
+font = ExtResource("2_8veei")
+font_size = 18
+outline_size = 4
 
 [node name="Label3" type="Area3D" parent="Labels" unique_id=863989172 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0, 0.029506922, 0.29376966)
@@ -131,6 +146,13 @@ shape = SubResource("BoxShape3D_dmqdl")
 [node name="Marker3D" type="Marker3D" parent="Labels/Label3" unique_id=1176253396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
 
+[node name="Label3D" type="Label3D" parent="Labels/Label3" unique_id=1613303029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "PLACEHOLDER"
+font = ExtResource("2_8veei")
+font_size = 18
+outline_size = 4
+
 [node name="Label4" type="Area3D" parent="Labels" unique_id=1736100253 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.9999993, 0, 0, 0, 1, 0, 0, 0, 0.9999993, 0, -0.45457852, 0.29376963)
 script = ExtResource("1_bhfym")
@@ -146,3 +168,10 @@ shape = SubResource("BoxShape3D_dmqdl")
 
 [node name="Marker3D" type="Marker3D" parent="Labels/Label4" unique_id=986072974]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55211055)
+
+[node name="Label3D" type="Label3D" parent="Labels/Label4" unique_id=1357663415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "PLACEHOLDER"
+font = ExtResource("2_8veei")
+font_size = 18
+outline_size = 4

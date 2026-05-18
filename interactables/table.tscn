@@ -64,7 +64,6 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 [node name="FactBook" type="Area3D" parent="." unique_id=793978612]
 transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -0.43745244, 1.1545217, 0)
 script = ExtResource("1_jd0nb")
-open_ui = "PauseMenu"
 
 [node name="Mesh" type="Node3D" parent="FactBook" unique_id=1664121765]
 
@@ -82,3 +81,6 @@ mesh = SubResource("CylinderMesh_jsnxf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FactBook" unique_id=607359828]
 shape = SubResource("BoxShape3D_6eedg")
+
+[node name="BookStack" type="Node3D" parent="." unique_id=1531723213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.670444, 1.1304194, -0.20939001)
