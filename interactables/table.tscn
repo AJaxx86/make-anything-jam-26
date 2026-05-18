@@ -16,10 +16,21 @@ size = Vector3(0.25, 0.9008789, 0.25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(2.02, 1.1577305, 1.195)
 
+[sub_resource type="BoxMesh" id="BoxMesh_yhnjf"]
+size = Vector3(0.3, 0.05, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jsnxf"]
+top_radius = 0.030273438
+bottom_radius = 0.030273438
+height = 0.30485535
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6eedg"]
+size = Vector3(0.435, 0.05, 0.3)
+
 [node name="Table" type="Area3D" unique_id=1557502727 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
 script = ExtResource("1_jd0nb")
 camera_marker = NodePath("Marker3D")
-camera_fov = 60.0
+camera_fov = 50.0
 
 [node name="Mesh" type="Node3D" parent="." unique_id=501545531]
 
@@ -48,4 +59,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54934376, 0)
 shape = SubResource("BoxShape3D_036b0")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=658876624]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.1263497, 1.0591333)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.4320922, 1.4235417)
+
+[node name="FactBook" type="Area3D" parent="." unique_id=793978612]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -0.43745244, 1.1545217, 0)
+script = ExtResource("1_jd0nb")
+open_ui = "PauseMenu"
+
+[node name="Mesh" type="Node3D" parent="FactBook" unique_id=1664121765]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FactBook/Mesh" unique_id=1101581848]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.11691548, 0, 0)
+mesh = SubResource("BoxMesh_yhnjf")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FactBook/Mesh" unique_id=1290606949]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.117594436, 0, 0)
+mesh = SubResource("BoxMesh_yhnjf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="FactBook/Mesh" unique_id=521551114]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.00023651123)
+mesh = SubResource("CylinderMesh_jsnxf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FactBook" unique_id=607359828]
+shape = SubResource("BoxShape3D_6eedg")

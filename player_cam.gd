@@ -72,7 +72,8 @@ func _process(delta: float) -> void:
 	if paused:
 		return
 	update_camera_target(delta)
-	handle_cam_movement(delta)
+	if _open_ui == null:
+		handle_cam_movement(delta)
 
 
 func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui: Control = null) -> void:
@@ -294,6 +295,9 @@ func get_fov_scale(aspect_ratio: float) -> Vector2:
 		current_fov.x / reference_fov.x,
 		current_fov.y / reference_fov.y
 	)
+
+
+
 
 
 func get_camera_fov_radians(fov_degrees: float, aspect_ratio: float) -> Vector2:
