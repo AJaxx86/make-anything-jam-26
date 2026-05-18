@@ -85,6 +85,9 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 		state_position = camera_marker.global_position
 		state_basis = camera_marker.global_transform.basis.orthonormalized()
 
+	if camera_fov == 0.0:
+		state_fov = _target_fov
+
 	if _position_history.size() >= 2:
 		var previous_state := _position_history[_position_history.size() - 2]
 		var previous_interactable := previous_state.get("interactable", null) as Interactable
