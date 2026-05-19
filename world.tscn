@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://interactables/bookshelf.tscn" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://dk10ax2q8kp4t" path="res://interactables/table.tscn" id="5_036b0"]
 [ext_resource type="Texture2D" uid="uid://b3hl2pyssdd2s" path="res://books/Aqua Book.png" id="6_pkg7o"]
-[ext_resource type="ArrayMesh" uid="uid://c76ngjvbo0cmx" path="res://books/Blue_Book.obj" id="7_gbfbk"]
+[ext_resource type="ArrayMesh" uid="uid://c76ngjvbo0cmx" path="res://books/Book.obj" id="7_gbfbk"]
+[ext_resource type="Texture2D" uid="uid://c8nrwdbe4a2d2" path="res://books/Brown Open Book.png" id="8_ioo17"]
+[ext_resource type="ArrayMesh" uid="uid://dfy5juue45kgs" path="res://books/OpenBook.obj" id="9_wse8f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -24,6 +26,9 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkg7o"]
 albedo_texture = ExtResource("6_pkg7o")
 texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ic0uy"]
+albedo_texture = ExtResource("8_ioo17")
 
 [node name="World" type="Node3D" unique_id=921156161]
 
@@ -65,3 +70,8 @@ transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.67944
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9436346, 1.2084367, -6.428647)
 material_override = SubResource("StandardMaterial3D_pkg7o")
 mesh = ExtResource("7_gbfbk")
+
+[node name="OpenBook" type="MeshInstance3D" parent="." unique_id=675681811]
+transform = Transform3D(0.8587359, 0, 0.5124184, 0, 1, 0, -0.5124184, 0, 0.8587359, -1.4609131, 1.6567796, -6.8331165)
+material_override = SubResource("StandardMaterial3D_ic0uy")
+mesh = ExtResource("9_wse8f")
