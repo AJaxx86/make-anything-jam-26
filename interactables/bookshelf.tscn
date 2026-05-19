@@ -1,45 +1,48 @@
 [gd_scene format=3 uid="uid://bpsfi1tskpjla"]
 
-[ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactables/interactable.gd" id="1_bhfym"]
+[ext_resource type="Script" uid="uid://ckscqe11epn72" path="res://interactables/bookshelf_interactable.gd" id="1_bhfym"]
 [ext_resource type="FontFile" uid="uid://c5npascuojkq2" path="res://fonts/pixeloid-font/PixeloidSans-mLxMm.ttf" id="2_8veei"]
 [ext_resource type="Script" uid="uid://bvf3g55x8en7d" path="res://interactables/label_interactable.gd" id="3_abcde"]
 [ext_resource type="Texture2D" uid="uid://cpx43tvbyp0li" path="res://furniture/Bookcase.png" id="4_anqpn"]
 [ext_resource type="ArrayMesh" uid="uid://b73whsgjsxdv7" path="res://furniture/Bookcase.obj" id="5_1awdb"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
-size = Vector3(2.4244533, 2.913208, 0.65387595)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwdv0"]
 albedo_texture = ExtResource("4_anqpn")
 texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gv5m4"]
+size = Vector3(2.4244533, 2.913208, 0.65387595)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cyyaw"]
 albedo_color = Color(0.8949411, 0.6110295, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c1t0j"]
 material = SubResource("StandardMaterial3D_cyyaw")
-size = Vector3(0.805, 0.1, 0.01)
+size = Vector3(1, 0.1, 0.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmqdl"]
-size = Vector3(0.805, 0.1, 0.01)
+size = Vector3(1, 0.1, 0.01)
 
 [node name="Bookshelf" type="Area3D" unique_id=51938480 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_bhfym")
+columns = 13
+marker_container = NodePath("Markers")
+slot_spacing = 0.15
 camera_marker = NodePath("Marker3D")
 camera_fov = 60.0
 
+[node name="Bookcase" type="MeshInstance3D" parent="." unique_id=1603502362]
+transform = Transform3D(0.29999977, 0, 0, 0, 0.3, 0, 0, 0, 0.29999977, -0.26240557, 0.16723841, -0.12887058)
+material_override = SubResource("StandardMaterial3D_dwdv0")
+mesh = ExtResource("5_1awdb")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=914914570]
-transform = Transform3D(0.9999868, 0, 0, 0, 1, 0, 0, 0, 0.9999868, 1.1975266, 1.456604, 0.32392973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1975266, 1.456604, 0.32392973)
 shape = SubResource("BoxShape3D_gv5m4")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=483619954]
 transform = Transform3D(0.99999946, 0, 0, 0, 1, 0, 0, 0, 0.99999946, 1.1605879, 1.4268295, 2.4174433)
-
-[node name="Bookcase" type="MeshInstance3D" parent="." unique_id=1603502362]
-transform = Transform3D(0.29999998, 0, 0, 0, 0.3, 0, 0, 0, 0.29999998, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_dwdv0")
-mesh = ExtResource("5_1awdb")
 
 [node name="Labels" type="Node3D" parent="." unique_id=1100338032]
 transform = Transform3D(0.9999995, 0, 0, 0, 1, 0, 0, 0, 0.9999995, 1.1694793, 1, 0.39069784)
@@ -131,3 +134,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
 font = ExtResource("2_8veei")
 font_size = 18
 outline_size = 4
+
+[node name="Markers" type="Node3D" parent="." unique_id=913002213]
+transform = Transform3D(0.9999996, 0, 0, 0, 1, 0, 0, 0, 0.9999996, 0.37504742, 2.3096857, 0.43725467)
+
+[node name="ShelfSlot" type="Marker3D" parent="Markers" unique_id=460595579]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, -0.046660632, -0.17754984, 0.068789065)
+
+[node name="ShelfSlot2" type="Marker3D" parent="Markers" unique_id=1755731521]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, -0.046660632, -0.83231175, 0.068789065)
+
+[node name="ShelfSlot3" type="Marker3D" parent="Markers" unique_id=1489348370]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, -0.046660632, -1.4893413, 0.068789065)
+
+[node name="ShelfSlot4" type="Marker3D" parent="Markers" unique_id=136545845]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, -0.046660632, -2.157302, 0.068789065)

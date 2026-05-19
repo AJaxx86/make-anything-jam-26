@@ -3,13 +3,20 @@ extends Node
 signal added_to_stack(fact_dict: Dictionary)
 signal removed_from_stack(fact_dict: Dictionary)
 
-# Order: Category -> Texture path and fact array -> split sentence/completed
 var _facts: Dictionary = {
 	"space": {
 		"book_texture": preload("res://books/materials/black.tres"),
 		"split_facts": [
 			{
-				"sentence": [],
+				"sentence": ["The International Space Station is", "the third brightest", "object in the sky"],
+				"false_words": ["the fifth brightest", "the third largest", "the heaviest"],
+				"description": "",
+				"completed": false
+			},
+			{
+				"sentence": ["On Mercury", "a day", "is twice as long as", "a year"],
+				"false_words": ["a month", "a decade"],
+				"description": "",
 				"completed": false
 			}
 		]
@@ -19,6 +26,8 @@ var _facts: Dictionary = {
 		"split_facts": [
 			{
 				"sentence": [],
+				"false_words": [],
+				"description": "",
 				"completed": false
 			}
 		]
@@ -28,12 +37,14 @@ var _facts: Dictionary = {
 		"split_facts": [
 			{
 				"sentence": [],
+				"false_words": [],
+				"description": "",
 				"completed": false
 			}
 		]
 	}
 }
-# Save the fact category when adding it to the book stack: [ {"category": "name", "fact": [split, fact], "book_texture": MaterialTexture3D} ]
+# Save the fact category when adding it to the book stack: [ {"category": "name", "fact": [split, fact] ]
 var _book_stack: Array[Dictionary] = []
 
 
@@ -80,7 +91,10 @@ func complete_fact(fact_dict: Dictionary) -> bool:
 				print_debug("Fact was already completed: " + str(fact_dict["fact"]))
 				return false
 			fact["completed"] = true
-			add_to_book_stack(fact_dict)
+			var enriched := fact_dict.duplicate()
+			if not enriched.has("book_texture"):
+				enriched["book_texture"] = _facts[cat]["book_texture"]
+			add_to_book_stack(enriched)
 			print_debug("Marked fact as completed: " + str(fact_dict["fact"]))
 			return true
 
@@ -105,8 +119,14 @@ func add_to_book_stack(fact: Dictionary) -> void:
 		if entry["category"] == fact["category"] and entry["fact"] == fact["fact"]:
 			print_debug("Fact already in book stack, skipping: " + str(fact))
 			return
-	_book_stack.append(fact)
-	added_to_stack.emit(fact)
+	var enriched := fact.duplicate()
+	if not enriched.has("book_texture"):
+		for cat in _facts.keys():
+			if cat == enriched.get("category", ""):
+				enriched["book_texture"] = _facts[cat]["book_texture"]
+				break
+	_book_stack.append(enriched)
+	added_to_stack.emit(enriched)
 
 
 func remove_from_book_stack(fact: Dictionary) -> bool:

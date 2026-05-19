@@ -2,7 +2,7 @@ class_name LabelInteractable extends Interactable
 
 @onready var label_3d: Label3D = $Label3D
 
-@export var max_length: int = 13
+@export var max_length: int = 16
 
 var is_editing: bool = false
 var _original_text: String = ""

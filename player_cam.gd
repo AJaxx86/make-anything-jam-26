@@ -71,10 +71,10 @@ func _input(event: InputEvent) -> void:
 	if paused or _open_ui != null:
 		return
 
-	var current := get_current_interactable()
-	if current is LabelInteractable and current.is_editing:
+	var current_interactable := get_current_interactable()
+	if current_interactable is LabelInteractable and current_interactable.is_editing:
 		if event is InputEventKey:
-			current.handle_text_input(event)
+			current_interactable.handle_text_input(event)
 			get_viewport().set_input_as_handled()
 
 
@@ -88,9 +88,9 @@ func _process(delta: float) -> void:
 
 
 func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui: Control = null) -> void:
-	var current := get_current_interactable()
-	if current is LabelInteractable:
-		current.stop_editing(false)
+	var current_interactable := get_current_interactable()
+	if current_interactable is LabelInteractable:
+		current_interactable.stop_editing(false)
 
 	var state_position: Vector3 = _target_global_position
 	var state_basis: Basis = _target_center_basis
@@ -158,9 +158,9 @@ func handle_escape_tap() -> void:
 		close_pause_menu()
 		return
 
-	var current := get_current_interactable()
-	if current is LabelInteractable and current.is_editing:
-		current.stop_editing(false)
+	var current_interactable := get_current_interactable()
+	if current_interactable is LabelInteractable and current_interactable.is_editing:
+		current_interactable.stop_editing(false)
 		go_back_camera_state()
 		return
 
@@ -269,9 +269,9 @@ func go_back_camera_state() -> void:
 	if _position_history.size() <= 1:
 		return
 
-	var current := get_current_interactable()
-	if current is LabelInteractable:
-		current.stop_editing(false)
+	var current_interactable := get_current_interactable()
+	if current_interactable is LabelInteractable:
+		current_interactable.stop_editing(false)
 
 	_position_history.pop_back()
 	apply_camera_state(_position_history[_position_history.size() - 1])

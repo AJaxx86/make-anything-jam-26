@@ -1,10 +1,5 @@
 [gd_scene format=3 uid="uid://bgh6l2fm2tnvh"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_x1631"]
-font_size = 40
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
 [node name="FactBuilder" type="Control" unique_id=1788143439]
 layout_mode = 3
 anchors_preset = 15
@@ -13,11 +8,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="." unique_id=364557005]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 245.0
-offset_right = 758.0
-offset_bottom = 300.0
-text = "BUILD FACTS HERE"
-label_settings = SubResource("LabelSettings_x1631")
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1157002671]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=552328430]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=1422965716]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=715806786]
+layout_mode = 2
