@@ -60,11 +60,22 @@ func _input(event: InputEvent) -> void:
 		_escape_hold_time = 0.0
 		_escape_hold_triggered = false
 		get_viewport().set_input_as_handled()
+		return
 	elif event.is_action_released(&"pause"):
 		if _escape_is_down and not _escape_hold_triggered:
 			handle_escape_tap()
 		reset_escape_hold_state()
 		get_viewport().set_input_as_handled()
+		return
+
+	if paused or _open_ui != null:
+		return
+
+	var current := get_current_interactable()
+	if current is LabelInteractable and current.is_editing:
+		if event is InputEventKey:
+			current.handle_text_input(event)
+			get_viewport().set_input_as_handled()
 
 
 func _process(delta: float) -> void:
@@ -77,6 +88,10 @@ func _process(delta: float) -> void:
 
 
 func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui: Control = null) -> void:
+	var current := get_current_interactable()
+	if current is LabelInteractable:
+		current.stop_editing(false)
+
 	var state_position: Vector3 = _target_global_position
 	var state_basis: Basis = _target_center_basis
 	var state_fov: float = clamp(camera_fov, 1.0, 179.0)
@@ -105,11 +120,24 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 	}
 
 	if is_current_camera_state(camera_marker, caller):
+		# If the camera isn't changing and only the UI differs, just toggle the UI
+		# without pushing a duplicate history state.
+		if camera_marker == null and camera_fov == 0.0 and _open_ui != open_ui:
+			if open_ui != null:
+				close_current_ui(false)
+				_open_ui = open_ui
+				set_ui_visibility(_open_ui, true)
+			else:
+				close_current_ui(true)
+			return
 		_position_history[_position_history.size() - 1] = camera_state
 	else:
 		_position_history.append(camera_state)
 
 	apply_camera_state(camera_state)
+
+	if caller is LabelInteractable:
+		caller.start_editing()
 
 
 func handle_escape_hold(delta: float) -> void:
@@ -128,6 +156,12 @@ func handle_escape_hold(delta: float) -> void:
 func handle_escape_tap() -> void:
 	if paused:
 		close_pause_menu()
+		return
+
+	var current := get_current_interactable()
+	if current is LabelInteractable and current.is_editing:
+		current.stop_editing(false)
+		go_back_camera_state()
 		return
 
 	if _open_ui != null:
@@ -171,8 +205,13 @@ func close_current_ui(update_current_state: bool = false) -> void:
 	if update_current_state and _position_history.size() > 0:
 		var current_state_index := _position_history.size() - 1
 		var current_state := _position_history[current_state_index]
-		current_state["ui"] = null
-		_position_history[current_state_index] = current_state
+		if current_state.get("ui", null) == null:
+			# The state didn't originally have a UI open; this was a transient reopen.
+			# Pop back instead of lingering on a state with no UI.
+			go_back_camera_state()
+		else:
+			current_state["ui"] = null
+			_position_history[current_state_index] = current_state
 
 
 func get_current_target_camera_state(ui: Control = null) -> Dictionary:
@@ -229,6 +268,10 @@ func set_ui_visibility(ui_node: Control, should_be_visible: bool) -> void:
 func go_back_camera_state() -> void:
 	if _position_history.size() <= 1:
 		return
+
+	var current := get_current_interactable()
+	if current is LabelInteractable:
+		current.stop_editing(false)
 
 	_position_history.pop_back()
 	apply_camera_state(_position_history[_position_history.size() - 1])

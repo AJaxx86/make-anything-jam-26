@@ -22,7 +22,8 @@ func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, 
 		push_warning("Interactable " + name + " was clicked by a camera that is not a PlayerCam: " + camera.name)
 		return
 
-	if required_parent != null and player_camera.get_current_interactable() != required_parent:
+	var current_interactable := player_camera.get_current_interactable()
+	if required_parent != null and current_interactable != required_parent and current_interactable != self:
 		print_debug(self.name + " requires " + required_parent.name + " to be active first")
 		return
 
