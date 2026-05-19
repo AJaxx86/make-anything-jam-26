@@ -50,10 +50,10 @@ script = ExtResource("2_tlwt5")
 pause_menu = NodePath("../CanvasLayer/PauseMenu")
 
 [node name="Bookshelf" parent="." unique_id=51938480 instance=ExtResource("4_036b0")]
-transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 3.0408654, 0.9486022, -5.8778586)
+transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 2.3328128, -0.07065141, -6.5859113)
 
 [node name="Table" parent="." unique_id=1557502727 instance=ExtResource("5_036b0")]
-transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.6794432, -0.017860532, -5.9000406)
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -2.151265, -0.08452439, -4.7270713)
 
 [node name="FactBook" parent="Table" index="3" unique_id=793978612 node_paths=PackedStringArray("open_ui")]
 open_ui = NodePath("../../CanvasLayer/FactBuilder")

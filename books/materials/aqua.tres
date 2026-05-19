@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dcntw4ehvh4uk"]
+
+[ext_resource type="Texture2D" uid="uid://b3hl2pyssdd2s" path="res://books/Aqua Book.png" id="1_07vav"]
+
+[resource]
+albedo_texture = ExtResource("1_07vav")
+texture_filter = 0

@@ -1,9 +1,12 @@
 extends Node
 
+signal added_to_stack(fact_dict: Dictionary)
+signal removed_from_stack(fact_dict: Dictionary)
+
 # Order: Category -> Texture path and fact array -> split sentence/completed
 var _facts: Dictionary = {
 	"space": {
-		"book_texture_path": "res://books/Black Book.png",
+		"book_texture": preload("res://books/materials/black.tres"),
 		"split_facts": [
 			{
 				"sentence": [],
@@ -12,7 +15,7 @@ var _facts: Dictionary = {
 		]
 	},
 	"history": {
-		"book_texture_path": "",
+		"book_texture": preload("res://books/materials/yellow.tres"),
 		"split_facts": [
 			{
 				"sentence": [],
@@ -21,7 +24,7 @@ var _facts: Dictionary = {
 		]
 	},
 	"animals": {
-		"book_texture_path": "",
+		"book_texture": preload("res://books/materials/brown.tres"),
 		"split_facts": [
 			{
 				"sentence": [],
@@ -103,6 +106,7 @@ func add_to_book_stack(fact: Dictionary) -> void:
 			print_debug("Fact already in book stack, skipping: " + str(fact))
 			return
 	_book_stack.append(fact)
+	added_to_stack.emit(fact)
 
 
 func remove_from_book_stack(fact: Dictionary) -> bool:
@@ -111,6 +115,7 @@ func remove_from_book_stack(fact: Dictionary) -> bool:
 		if entry["category"] == fact["category"] and entry["fact"] == fact["fact"]:
 			_book_stack.remove_at(i)
 			print_debug("Removed fact from book stack: " + str(fact))
+			removed_from_stack.emit(fact)
 			return true
 	push_error("Fact not found in book stack: " + str(fact))
 	return false

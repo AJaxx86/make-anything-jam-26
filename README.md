@@ -14,7 +14,7 @@ LEFT CLICK - Interact
 # FACTS
 - sea (blue)
 - plants (green)
-- brown (creatures)
+- creatures (brown)
 - sky (white)
 - science (red)
 - space (black)
