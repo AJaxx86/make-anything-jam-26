@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bfybevkb0t5ql"]
+
+[ext_resource type="Script" uid="uid://cbv7l1c1xxx1d" path="res://ui/fact_piece.gd" id="1_2l22i"]
+
+[node name="FactPiece" type="PanelContainer" unique_id=1331250735 groups=["DraggableUI"]]
+script = ExtResource("1_2l22i")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=203927839]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1182446728]
+unique_name_in_owner = true
+layout_mode = 2

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1sbx0ul7pd6q"]
 
-[ext_resource type="PackedScene" uid="uid://bgh6l2fm2tnvh" path="res://fact_builder.tscn" id="1_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://ceae0gdus63p1" path="res://pause_menu.tscn" id="2_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://bgh6l2fm2tnvh" path="res://ui/fact_builder.tscn" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://ceae0gdus63p1" path="res://ui/pause_menu.tscn" id="2_aqk2v"]
 [ext_resource type="Script" uid="uid://cacacaq8un183" path="res://player_cam.gd" id="2_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://interactables/bookshelf.tscn" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://dk10ax2q8kp4t" path="res://interactables/table.tscn" id="5_036b0"]
@@ -26,6 +26,7 @@ glow_enabled = true
 [node name="FactBuilder" parent="CanvasLayer" unique_id=1788143439 instance=ExtResource("1_fj7yv")]
 unique_name_in_owner = true
 visible = false
+facts_per_round = 2
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1628101525 instance=ExtResource("2_aqk2v")]
 unique_name_in_owner = true

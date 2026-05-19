@@ -85,6 +85,8 @@ func _process(delta: float) -> void:
 	update_camera_target(delta)
 	if _open_ui == null:
 		handle_cam_movement(delta)
+	else:
+		global_transform.basis = _center_basis
 
 
 func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui: Control = null) -> void:

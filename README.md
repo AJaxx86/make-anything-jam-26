@@ -3,9 +3,8 @@
 [ ] Add FactBuilder UI
 [X] Add editable labels
 [ ] Add bookshelf logic for placing books, as well as opening the books so the player can re-read the fact
-[ ] Change the table scene so clicking the table zooms, then clicking an empty book opens the FactBuilder
-[ ] Add book stack to table scene for completed books
-[ ] Change the UI opening system to use PackedScenes and load them when needed instead. FactBuilder should use a global script to keep track of facts
+[X] Change the table scene so clicking the table zooms, then clicking an empty book opens the FactBuilder
+[X] Add book stack to table scene for completed books
 
 # CONTROLS
 ESC - Tap to go back, hold to pause

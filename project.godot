@@ -26,6 +26,7 @@ project/assembly_name="Make Anything Jam 26"
 [global_group]
 
 Interactable=""
+DraggableUI=""
 
 [input]
 

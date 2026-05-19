@@ -84,7 +84,7 @@ func complete_fact(fact_dict: Dictionary) -> bool:
 		push_error("Invalid fact category: " + cat)
 		return false
 
-	var category_facts: Array[Dictionary] = _facts[cat]["split_facts"]
+	var category_facts: Array = _facts[cat]["split_facts"]
 	for fact in category_facts:
 		if fact["sentence"] == fact_dict["fact"]:
 			if fact["completed"]:
