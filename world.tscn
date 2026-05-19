@@ -9,6 +9,10 @@
 [ext_resource type="ArrayMesh" uid="uid://c76ngjvbo0cmx" path="res://books/Book.obj" id="7_gbfbk"]
 [ext_resource type="Texture2D" uid="uid://c8nrwdbe4a2d2" path="res://books/Brown Open Book.png" id="8_ioo17"]
 [ext_resource type="ArrayMesh" uid="uid://dfy5juue45kgs" path="res://books/OpenBook.obj" id="9_wse8f"]
+[ext_resource type="Texture2D" uid="uid://dddytmdbnhlo1" path="res://furniture/Table.png" id="10_ic0uy"]
+[ext_resource type="ArrayMesh" uid="uid://cwuji7apwbarb" path="res://furniture/Table.obj" id="11_k3n1d"]
+[ext_resource type="Texture2D" uid="uid://cpx43tvbyp0li" path="res://furniture/Bookcase.png" id="12_2o6r5"]
+[ext_resource type="ArrayMesh" uid="uid://b73whsgjsxdv7" path="res://furniture/Bookcase.obj" id="13_70uel"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -29,6 +33,14 @@ texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ic0uy"]
 albedo_texture = ExtResource("8_ioo17")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o6r5"]
+albedo_texture = ExtResource("10_ic0uy")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqwa"]
+albedo_texture = ExtResource("12_2o6r5")
+texture_filter = 0
 
 [node name="World" type="Node3D" unique_id=921156161]
 
@@ -64,7 +76,7 @@ pause_menu = NodePath("../CanvasLayer/PauseMenu")
 transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 3.0408654, 0.9486022, -5.8778586)
 
 [node name="Table" parent="." unique_id=1557502727 instance=ExtResource("5_036b0")]
-transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.6794432, -0.017860532, -5.9000406)
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -1.6794432, -0.017860532, -5.8098774)
 
 [node name="BlueBook" type="MeshInstance3D" parent="." unique_id=319605600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9436346, 1.2084367, -6.428647)
@@ -75,3 +87,43 @@ mesh = ExtResource("7_gbfbk")
 transform = Transform3D(0.8587359, 0, 0.5124184, 0, 1, 0, -0.5124184, 0, 0.8587359, -1.4609131, 1.6567796, -6.8331165)
 material_override = SubResource("StandardMaterial3D_ic0uy")
 mesh = ExtResource("9_wse8f")
+
+[node name="Table2" type="MeshInstance3D" parent="." unique_id=1975926018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.496983, 3.4696918, 1.7354867)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("11_k3n1d")
+
+[node name="Table3" type="MeshInstance3D" parent="." unique_id=2103622858]
+transform = Transform3D(-0.00067345693, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -0.00067345693, -18.393593, 3.4696918, 2.5403004)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("11_k3n1d")
+
+[node name="Table4" type="MeshInstance3D" parent="." unique_id=1161666269]
+transform = Transform3D(-0.00067345693, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -0.00067345693, 13.952927, 3.4696918, 2.5403004)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("11_k3n1d")
+
+[node name="Bookcase" type="MeshInstance3D" parent="." unique_id=1879785063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.823454, 0.012500763, -10.661022)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("13_70uel")
+
+[node name="Bookcase3" type="MeshInstance3D" parent="." unique_id=725590492]
+transform = Transform3D(0.9320828, 0, -0.3622452, 0, 1, 0, 0.3622452, 0, 0.9320828, 4.424139, 0.012500763, -10.661022)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("13_70uel")
+
+[node name="Bookcase5" type="MeshInstance3D" parent="." unique_id=679659495]
+transform = Transform3D(0.72398466, 0, -0.689816, 0, 1, 0, 0.689816, 0, 0.72398466, 12.6374655, 0.012500763, -6.5599127)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("13_70uel")
+
+[node name="Bookcase2" type="MeshInstance3D" parent="." unique_id=2071996897]
+transform = Transform3D(0.9266473, 0, 0.37593174, 0, 1, 0, -0.37593174, 0, 0.9266473, -13.395485, 0.012500763, -7.304091)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("13_70uel")
+
+[node name="Bookcase4" type="MeshInstance3D" parent="." unique_id=1267181329]
+transform = Transform3D(0.6697622, 0, 0.74257576, 0, 1, 0, -0.74257576, 0, 0.6697622, -19.66113, 0.012500763, -0.46438742)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("13_70uel")
