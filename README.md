@@ -1,7 +1,7 @@
 # TODO
 [X] Add interactables, make sure clicking brings up UI and/or moves and zooms the camera
 [ ] Add FactBuilder UI
-[ ] Add editable labels
+[X] Add editable labels
 [ ] Add bookshelf logic for placing books, as well as opening the books so the player can re-read the fact
 [ ] Change the table scene so clicking the table zooms, then clicking an empty book opens the FactBuilder
 [ ] Add book stack to table scene for completed books
