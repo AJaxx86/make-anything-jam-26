@@ -11,9 +11,6 @@ var _cursor_visible: bool = false
 var _cursor_timer: float = 0.0
 
 
-func _ready() -> void:
-	label_3d.text = ""
-
 func _process(delta: float) -> void:
 	if not is_editing:
 		return

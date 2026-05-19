@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://dk10ax2q8kp4t"]
 
 [ext_resource type="Script" uid="uid://dy5p7js7mby1m" path="res://interactables/interactable.gd" id="1_jd0nb"]
+[ext_resource type="Texture2D" uid="uid://vs1djdy5om7u" path="res://books/White Open Book.png" id="2_c2awl"]
 [ext_resource type="Script" uid="uid://cwum546hssj72" path="res://book_stack.gd" id="2_yhnjf"]
+[ext_resource type="ArrayMesh" uid="uid://dfy5juue45kgs" path="res://books/OpenBook.obj" id="3_tvuia"]
 [ext_resource type="Texture2D" uid="uid://b3hl2pyssdd2s" path="res://books/Aqua Book.png" id="4_k5dpw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
@@ -18,16 +20,12 @@ size = Vector3(0.25, 0.9008789, 0.25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_036b0"]
 size = Vector3(2.02, 1.1577305, 1.195)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yhnjf"]
-size = Vector3(0.3, 0.05, 0.2)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_jsnxf"]
-top_radius = 0.030273438
-bottom_radius = 0.030273438
-height = 0.30485535
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_6eedg"]
-size = Vector3(0.435, 0.05, 0.3)
+size = Vector3(0.8210156, 0.05, 0.38188475)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gn131"]
+albedo_texture = ExtResource("2_c2awl")
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t0y17"]
 _surfaces = [{
@@ -63,6 +61,7 @@ shadow_mesh = SubResource("ArrayMesh_t0y17")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eedg"]
 albedo_texture = ExtResource("4_k5dpw")
+texture_filter = 0
 
 [node name="Table" type="Area3D" unique_id=1557502727 node_paths=PackedStringArray("camera_marker") groups=["Interactable"]]
 script = ExtResource("1_jd0nb")
@@ -99,27 +98,19 @@ shape = SubResource("BoxShape3D_036b0")
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2.4320922, 1.4235417)
 
 [node name="FactBook" type="Area3D" parent="." unique_id=793978612 node_paths=PackedStringArray("required_parent")]
-transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -0.43745244, 1.1545217, 0)
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -0.27757382, 1.1545217, -0.19652832)
 script = ExtResource("1_jd0nb")
 required_parent = NodePath("..")
 camera_fov = 0.0
 
-[node name="Mesh" type="Node3D" parent="FactBook" unique_id=1664121765]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FactBook/Mesh" unique_id=1101581848]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.11691548, 0, 0)
-mesh = SubResource("BoxMesh_yhnjf")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="FactBook/Mesh" unique_id=1290606949]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.117594436, 0, 0)
-mesh = SubResource("BoxMesh_yhnjf")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="FactBook/Mesh" unique_id=521551114]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.00023651123)
-mesh = SubResource("CylinderMesh_jsnxf")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FactBook" unique_id=607359828]
+transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, -0.1930081, 0, 0.184546)
 shape = SubResource("BoxShape3D_6eedg")
+
+[node name="OpenBook" type="MeshInstance3D" parent="FactBook" unique_id=734327369]
+transform = Transform3D(0.30000004, 0, -7.450581e-09, 0, 0.30000004, 0, 7.450581e-09, 0, 0.30000004, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gn131")
+mesh = ExtResource("3_tvuia")
 
 [node name="BookStack" type="Node3D" parent="." unique_id=1531723213]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.64898014, 1.1445601, -0.38513967)
