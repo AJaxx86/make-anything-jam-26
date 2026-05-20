@@ -5,7 +5,7 @@ extends Control
 
 
 func setup(fact: Dictionary) -> void:
-	var data: Dictionary = _get_full_fact_data(fact["category"], fact["fact"])
+	var data: Dictionary = Global.get_fact_data(fact["category"], fact["fact"])
 	if data == {}:
 		return
 
@@ -14,18 +14,4 @@ func setup(fact: Dictionary) -> void:
 
 
 func _construct_fact_sentence(sentence: Array) -> String:
-	var sen: String = ""
-	for part in sentence:
-		sen += part + " "
-	return sen.strip_edges()
-
-
-func _get_full_fact_data(category: String, sentence: Array) -> Dictionary:
-	if not Global._facts.has(category):
-		push_error("Category not found: " + category)
-		return {}
-	for f in Global._facts[category]["split_facts"]:
-		if f["sentence"] == sentence:
-			return f
-	push_error("Fact not found: " + str(sentence))
-	return {}
+	return " ".join(sentence).strip_edges()

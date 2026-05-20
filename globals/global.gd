@@ -46,6 +46,20 @@ func get_facts(amount: int, category: String = "random") -> Array[Dictionary]:
 	return picked_facts
 
 
+func get_fact_data(category: String, sentence: Array) -> Dictionary:
+	if category not in _facts:
+		push_error("Invalid fact category: " + category)
+		return {}
+
+	var category_facts: Array = _facts[category]["split_facts"]
+	for fact in category_facts:
+		if fact["sentence"] == sentence:
+			return fact
+
+	push_error("Fact not found in " + category + ": " + str(sentence))
+	return {}
+
+
 func complete_fact(fact_dict: Dictionary) -> bool:
 	if not fact_dict.has("category") or not fact_dict.has("fact"):
 		push_error("Fact dict missing required keys: " + str(fact_dict))
@@ -93,26 +107,17 @@ func add_to_book_stack(fact: Dictionary) -> void:
 			print_debug("Fact already in book stack, skipping: " + str(fact))
 			return
 	var enriched := fact.duplicate()
-	var category: String = enriched.get("category", "")
-	if category in _facts:
-		if not enriched.has("book_texture"):
-			enriched["book_texture"] = _facts[category]["book_texture"]
-		if not enriched.has("open_book_texture"):
-			enriched["open_book_texture"] = _facts[category]["open_book_texture"]
 	_book_stack.append(enriched)
 	added_to_stack.emit(enriched)
 
 
-func remove_from_book_stack(fact: Dictionary) -> bool:
-	for i in range(_book_stack.size()):
-		var entry: Dictionary = _book_stack[i]
-		if entry["category"] == fact["category"] and entry["fact"] == fact["fact"]:
-			_book_stack.remove_at(i)
-			print_debug("Removed fact from book stack: " + str(fact))
-			removed_from_stack.emit(fact)
-			return true
-	push_error("Fact not found in book stack: " + str(fact))
-	return false
+func remove_from_book_stack() -> bool:
+	if _book_stack.size() == 0:
+		return false
+
+	var book = _book_stack.pop_back()
+	removed_from_stack.emit(book)
+	return true
 
 
 func get_book_stack() -> Array[Dictionary]:
@@ -166,6 +171,10 @@ func _import_facts() -> void:
 	var fact_count: int = 0
 	for fact in parsed:
 		var category: String = fact["Category"].to_lower()
+		if category not in _book_textures:
+			push_warning("Book texture unavailable for " + category + ". Skipped.")
+			continue
+			
 		if category not in _facts:
 			_facts[category] = {
 				"book_texture": _book_textures[category]["closed"],

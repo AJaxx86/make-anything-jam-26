@@ -4,15 +4,10 @@ extends Interactable
 @export var columns: int = 6
 
 @export_group("Marker Mode")
-## NodePath to a container of Marker3D nodes. Each marker defines the START
-## (left-most slot) of a shelf row. The remaining slots are generated
-## automatically to the right of the marker.
 @export var marker_container: NodePath = ^""
-## Horizontal spacing between slots in a row. Defaults to scaled book width.
 @export var slot_spacing: float = 0.3375
 
 const _BOOK_OBJ_BOUNDS := Vector3(0.3375, 0.13125, 0.375)
-## Seconds to wait after activation before slots become interactive.
 const _ACTIVATION_DELAY: float = 0.15
 
 var _slots: Array[Area3D] = []
@@ -47,24 +42,9 @@ func _process(delta: float) -> void:
 
 
 func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if not event.is_action_pressed(&"interact"):
-		return
-
-	var player_camera := camera as PlayerCam
-	if player_camera == null:
-		push_warning("Interactable " + name + " was clicked by a camera that is not a PlayerCam: " + camera.name)
-		return
-
-	var current_interactable := player_camera.get_current_interactable()
-	if required_parent != null and current_interactable != required_parent and current_interactable != self:
-		print_debug(self.name + " requires " + required_parent.name + " to be active first")
-		return
-
-	emit_signal(&"activate", self, camera_marker, camera_fov, open_ui_scene, reader_3d_scene)
-	player_camera.set_camera_view(self, camera_marker, camera_fov, open_ui_scene, reader_3d_scene)
-	print_debug("Clicked on " + name)
-
-	_activation_delay_timer = _ACTIVATION_DELAY
+	super._on_input_event(camera, event, _event_position, _normal, _shape_idx)
+	if event.is_action_pressed(&"interact"):
+		_activation_delay_timer = _ACTIVATION_DELAY
 
 
 func _update_pickable_state() -> void:
@@ -135,13 +115,7 @@ func _generate_slots_auto() -> void:
 			_slots.append(slot)
 
 
-func _create_slot(
-	pos: Vector3,
-	width: float,
-	height: float,
-	depth: float,
-	name_str: String
-) -> Area3D:
+func _create_slot(pos: Vector3, width: float, height: float, depth: float, name_str: String) -> Area3D:
 	var slot := Area3D.new()
 	slot.name = name_str
 	slot.position = to_local(pos)

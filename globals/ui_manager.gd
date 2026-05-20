@@ -17,8 +17,11 @@ func open_ui(scene: PackedScene) -> Control:
 
 	if _cache.has(scene):
 		var existing: Control = _cache[scene]
-		existing.show()
-		return existing
+		if is_instance_valid(existing):
+			existing.show()
+			return existing
+		_cache.erase(scene)
+
 
 	var instance: Control = scene.instantiate()
 	_container.add_child(instance)

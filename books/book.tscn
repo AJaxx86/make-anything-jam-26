@@ -19,9 +19,9 @@ ui_open_sfx = ExtResource("4_71p0m")
 ui_close_sfx = ExtResource("5_4qr0n")
 
 [node name="BookMesh" type="MeshInstance3D" parent="." unique_id=2007197873]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.07, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.07074463, 0.07, -0.16693592)
 mesh = ExtResource("1_00uoj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1444410849]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08098784, 0.12116048, 0.17176265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010243207, 0.12116048, 0.0048267245)
 shape = SubResource("BoxShape3D_00uoj")

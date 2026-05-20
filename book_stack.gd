@@ -30,6 +30,7 @@ func _on_removed_from_stack(_fact: Dictionary) -> void:
 func _spawn_book(fact: Dictionary) -> void:
 	var book := preload("res://books/book.tscn").instantiate()
 	book.input_ray_pickable = false
+	book.rotation.y += randf_range(-10.0, 10.0)
 	add_child(book)
 	book.setup(fact)
 	_book_instances.append(book)

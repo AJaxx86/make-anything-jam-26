@@ -2,34 +2,16 @@ class_name PlayerCam extends Camera3D
 
 signal Show_UI(ui_node: Control, show: bool)
 
-## Maximum camera rotation, in degrees, when the mouse reaches the screen edge
-## at the reference FOV. X controls left/right rotation, Y controls up/down rotation.
 @export var mouse_rotation_degrees: Vector2 = Vector2(20.0, 20.0)
-
-## The camera FOV where mouse_rotation_degrees applies exactly.
-## When this camera's FOV changes, the mouse rotation scales from this value
-## so narrow FOVs move less and wide FOVs move more.
 @export var reference_fov_degrees: float = 75.0
-
-## How quickly the camera eases toward the mouse-driven target rotation.
-## Higher values feel snappier. Set to 0 or lower for instant movement.
 @export var rotation_smoothing_speed: float = 10.0
-
-## How quickly the camera moves toward a newly requested camera marker position.
-## Higher values feel snappier. Set to 0 or lower for instant movement.
 @export var position_smoothing_speed: float = 8.0
-
-## How quickly the camera FOV changes toward a newly requested FOV.
-## Higher values feel snappier. Set to 0 or lower for instant movement.
 @export var fov_smoothing_speed: float = 8.0
 
 @export var pause_menu_scene: PackedScene
 
-## Distance in front of the camera to place the 3D reader mesh.
 @export var reader_distance: float = 1.2
 
-## How long the pause action must be held before it opens the pause menu.
-## Releasing before this threshold performs the contextual back/cancel action instead.
 @export var escape_hold_threshold: float = 0.45
 
 var paused: bool = false
@@ -48,6 +30,7 @@ var _target_center_basis: Basis
 var _target_global_position: Vector3
 var _target_fov: float
 
+
 func _ready() -> void:
 	_center_basis = global_transform.basis.orthonormalized()
 	_target_center_basis = _center_basis
@@ -55,6 +38,7 @@ func _ready() -> void:
 	_target_fov = fov
 	_position_history.clear()
 	_position_history.append(get_current_target_camera_state())
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause") and not _escape_is_down:
@@ -79,6 +63,7 @@ func _input(event: InputEvent) -> void:
 			current_interactable.handle_text_input(event)
 			get_viewport().set_input_as_handled()
 
+
 func _process(delta: float) -> void:
 	handle_escape_hold(delta)
 	if paused:
@@ -88,6 +73,7 @@ func _process(delta: float) -> void:
 		handle_cam_movement(delta)
 	else:
 		global_transform.basis = _center_basis
+
 
 func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui_scene: PackedScene = null,
 	reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> void:
@@ -161,6 +147,7 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 	if caller is LabelInteractable:
 		caller.start_editing()
 
+
 func handle_escape_hold(delta: float) -> void:
 	if not _escape_is_down or _escape_hold_triggered:
 		return
@@ -172,6 +159,7 @@ func handle_escape_hold(delta: float) -> void:
 	_escape_hold_triggered = true
 	if not paused:
 		open_pause_menu()
+
 
 func handle_escape_tap() -> void:
 	if paused:
@@ -190,10 +178,12 @@ func handle_escape_tap() -> void:
 
 	go_back_camera_state()
 
+
 func reset_escape_hold_state() -> void:
 	_escape_is_down = false
 	_escape_hold_time = 0.0
 	_escape_hold_triggered = false
+
 
 func open_pause_menu() -> void:
 	if paused:
@@ -209,6 +199,7 @@ func open_pause_menu() -> void:
 		var inst := UIManager.open_ui(pause_menu_scene)
 		set_ui_visibility(inst, true)
 
+
 func close_pause_menu() -> void:
 	if not paused:
 		return
@@ -222,6 +213,7 @@ func close_pause_menu() -> void:
 	if _ui_was_visible_before_pause and _open_ui_scene != null:
 		UIManager.open_ui(_open_ui_scene)
 		_ui_was_visible_before_pause = false
+
 
 func close_current_ui(update_current_state: bool = false, state: Dictionary = {}) -> void:
 	if _open_ui_instance == null and _reader_3d_instance == null:
@@ -252,12 +244,13 @@ func close_current_ui(update_current_state: bool = false, state: Dictionary = {}
 	if update_current_state and _position_history.size() > 0:
 		var current_state_index := _position_history.size() - 1
 		var current_state := _position_history[current_state_index]
-		if current_state.get("ui_scene", null) == null and current_state.get("reader_3d_scene", null) == null:
+		current_state["ui_scene"] = null
+		current_state["reader_3d_scene"] = null
+		_position_history[current_state_index] = current_state
+
+		if current_state.get("marker", null) == null:
 			go_back_camera_state()
-		else:
-			current_state["ui_scene"] = null
-			current_state["reader_3d_scene"] = null
-			_position_history[current_state_index] = current_state
+
 
 func get_current_target_camera_state(ui_scene: PackedScene = null, reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> Dictionary:
 	return {
@@ -270,10 +263,12 @@ func get_current_target_camera_state(ui_scene: PackedScene = null, reader_3d_sce
 		"fact_data": fact_data,
 	}
 
+
 func get_current_interactable() -> Interactable:
 	if _position_history.is_empty():
 		return null
 	return _position_history[_position_history.size() - 1].get("interactable", null) as Interactable
+
 
 func is_current_camera_state(camera_marker: Marker3D, caller: Interactable) -> bool:
 	if _position_history.is_empty():
@@ -287,6 +282,7 @@ func is_current_camera_state(camera_marker: Marker3D, caller: Interactable) -> b
 
 	var current_interactable := current_state.get("interactable", null) as Interactable
 	return current_interactable == caller
+
 
 func apply_camera_state(camera_state: Dictionary, leaving_state: Dictionary = {}) -> void:
 	close_current_ui(false, leaving_state)
@@ -323,6 +319,7 @@ func apply_camera_state(camera_state: Dictionary, leaving_state: Dictionary = {}
 		if reader_open != null:
 			Global.play_sfx(reader_open)
 
+
 func set_ui_visibility(ui_node: Control, should_be_visible: bool, fact_data: Dictionary = {}) -> void:
 	if ui_node == null:
 		return
@@ -331,6 +328,7 @@ func set_ui_visibility(ui_node: Control, should_be_visible: bool, fact_data: Dic
 	if fact_data != {} and ui_node.has_method("setup"):
 		ui_node.setup(fact_data)
 	emit_signal("Show_UI", ui_node, should_be_visible)
+
 
 func go_back_camera_state() -> void:
 	if _position_history.size() <= 1:
@@ -343,6 +341,7 @@ func go_back_camera_state() -> void:
 	var leaving_state := _position_history[_position_history.size() - 1]
 	_position_history.pop_back()
 	apply_camera_state(_position_history[_position_history.size() - 1], leaving_state)
+
 
 func update_camera_target(delta: float) -> void:
 	var position_weight := get_smoothing_weight(position_smoothing_speed, delta)
@@ -362,6 +361,7 @@ func update_camera_target(delta: float) -> void:
 		fov = _target_fov
 	else:
 		fov = lerp(fov, _target_fov, fov_weight)
+
 
 func handle_cam_movement(delta: float) -> void:
 	var viewport_size := Vector2(get_viewport().get_visible_rect().size)
@@ -392,10 +392,12 @@ func handle_cam_movement(delta: float) -> void:
 	next_transform.basis = next_basis
 	global_transform = next_transform
 
+
 func get_smoothing_weight(speed: float, delta: float) -> float:
 	if speed <= 0.0:
 		return 1.0
 	return 1.0 - exp(-speed * delta)
+
 
 func get_fov_scale(aspect_ratio: float) -> Vector2:
 	var current_fov := get_camera_fov_radians(fov, aspect_ratio)
@@ -405,6 +407,7 @@ func get_fov_scale(aspect_ratio: float) -> Vector2:
 		current_fov.x / reference_fov.x,
 		current_fov.y / reference_fov.y
 	)
+
 
 func get_camera_fov_radians(fov_degrees: float, aspect_ratio: float) -> Vector2:
 	var safe_fov_degrees: float = max(fov_degrees, 0.001)

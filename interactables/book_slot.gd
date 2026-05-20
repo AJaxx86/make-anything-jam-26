@@ -53,7 +53,7 @@ func _place_book() -> void:
 		return
 
 	var top: Dictionary = stack.back()
-	if not Global.remove_from_book_stack(top):
+	if not Global.remove_from_book_stack():
 		print_debug("No book placed: could not remove from global stack.")
 		return
 

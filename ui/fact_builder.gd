@@ -8,9 +8,7 @@ extends Control
 @export var submit_button: Button
 
 @export_group("Game Settings")
-## How many facts should be retrieved and jumbled together?
 @export var facts_per_round: int = 1
-## Should the game automatically load new facts when the board is cleared?
 @export var auto_load_next: bool = true
 
 @export_group("SFX")
@@ -21,6 +19,7 @@ extends Control
 
 var active_facts: Array[Dictionary] = []
 
+
 func _ready() -> void:
 	source_flow.item_dropped.connect(_on_item_dropped)
 	target_flow.item_dropped.connect(_on_item_dropped)
@@ -29,8 +28,10 @@ func _ready() -> void:
 
 	load_new_facts()
 
+
 func _on_item_dropped(original_piece: FactPiece) -> void:
 	original_piece.queue_free()
+
 
 func load_new_facts() -> void:
 	if not active_facts.is_empty():
@@ -48,7 +49,7 @@ func load_new_facts() -> void:
 	var all_pieces: Array[String] = []
 
 	for fact_dict in active_facts:
-		var full_fact_data = _get_full_fact_data(fact_dict["category"], fact_dict["fact"])
+		var full_fact_data = Global.get_fact_data(fact_dict["category"], fact_dict["fact"])
 		if not full_fact_data.is_empty():
 			all_pieces.append_array(full_fact_data["sentence"])
 			all_pieces.append_array(full_fact_data["false_words"])
@@ -60,14 +61,6 @@ func load_new_facts() -> void:
 		source_flow.add_child(piece)
 		piece.setup(word)
 
-func _get_full_fact_data(category: String, sentence: Array) -> Dictionary:
-	if not Global._facts.has(category):
-		return {}
-
-	for f in Global._facts[category]["split_facts"]:
-		if f["sentence"] == sentence:
-			return f
-	return {}
 
 func _on_submit_pressed() -> void:
 	var constructed_sentence: Array = []
@@ -86,7 +79,7 @@ func _on_submit_pressed() -> void:
 		print("Correct! Fact solved.")
 		Global.complete_fact(matched_fact)
 
-		var full_data = _get_full_fact_data(matched_fact["category"], matched_fact["fact"])
+		var full_data = Global.get_fact_data(matched_fact["category"], matched_fact["fact"])
 		var false_words_to_remove = full_data.get("false_words", []).duplicate()
 
 		for child in source_flow.get_children():

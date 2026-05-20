@@ -5,6 +5,12 @@
 [ext_resource type="Script" uid="uid://cacacaq8un183" path="res://player_cam.gd" id="2_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bpsfi1tskpjla" path="res://interactables/bookshelf.tscn" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://dk10ax2q8kp4t" path="res://interactables/table.tscn" id="5_036b0"]
+[ext_resource type="ArrayMesh" uid="uid://dud1m47k1hos4" path="res://room/Object_513.obj" id="6_dwbse"]
+[ext_resource type="Texture2D" uid="uid://bjuyowccuagbr" path="res://room/texture_Floor.png" id="7_ioo17"]
+[ext_resource type="Texture2D" uid="uid://cyysvdbad8fuv" path="res://room/texture_Walls.png" id="8_wse8f"]
+[ext_resource type="ArrayMesh" uid="uid://dex8at27y8nb4" path="res://room/Object_66056.obj" id="9_ic0uy"]
+[ext_resource type="Texture2D" uid="uid://dfddk2letfsa3" path="res://room/texture_Wall2.png" id="10_ic0uy"]
+[ext_resource type="ArrayMesh" uid="uid://ddi8f7rjwhnum" path="res://room/Object_66144.obj" id="11_k3n1d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,7 +23,24 @@ sky_material = SubResource("ProceduralSkyMaterial_f3sb7")
 background_mode = 2
 sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.05
+adjustment_saturation = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70uel"]
+albedo_texture = ExtResource("7_ioo17")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o6r5"]
+albedo_texture = ExtResource("8_wse8f")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqwa"]
+albedo_texture = ExtResource("10_ic0uy")
+texture_filter = 0
 
 [node name="World" type="Node3D" unique_id=921156161]
 
@@ -28,25 +51,105 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 8.961844, 0)
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="." unique_id=1943864651]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999905, 0)
-use_collision = true
-size = Vector3(50, 0.1, 50)
-
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=2003679145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.974138, -1.4755901)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1462767, -1.4955603)
 current = true
 script = ExtResource("2_tlwt5")
 pause_menu_scene = ExtResource("2_aqk2v")
 reader_distance = 0.5
 
 [node name="Bookshelf" parent="." unique_id=51938480 instance=ExtResource("4_036b0")]
-transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 2.3328128, -0.07065141, -6.5859113)
+transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 1.2613083, -0.07065141, -7.9107614)
+
+[node name="Bookshelf2" parent="." unique_id=410299969 instance=ExtResource("4_036b0")]
+transform = Transform3D(0.96592563, 0, 0.25881898, 0, 1, 0, -0.25881898, 0, 0.96592563, -3.75754, -0.07065141, -7.3674045)
 
 [node name="Table" parent="." unique_id=1557502727 instance=ExtResource("5_036b0")]
-transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -2.151265, -0.08452439, -4.7270713)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92996395, -0.08452439, -3.5780113)
 
 [node name="FactBook" parent="Table" index="3" unique_id=793978612]
 open_ui_scene = ExtResource("1_fj7yv")
+
+[node name="Room" type="Node3D" parent="." unique_id=530001663]
+
+[node name="Floor" type="MeshInstance3D" parent="Room" unique_id=848879856]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.644247, 0, -8)
+material_override = SubResource("StandardMaterial3D_70uel")
+mesh = ExtResource("6_dwbse")
+
+[node name="Floor2" type="MeshInstance3D" parent="Room" unique_id=61748604]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -3.4950402, 0, -8)
+material_override = SubResource("StandardMaterial3D_70uel")
+mesh = ExtResource("6_dwbse")
+
+[node name="Floor3" type="MeshInstance3D" parent="Room" unique_id=919660905]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 10.767023, 0, -8)
+material_override = SubResource("StandardMaterial3D_70uel")
+mesh = ExtResource("6_dwbse")
+
+[node name="WallSection" type="Node3D" parent="Room" unique_id=752323483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="Wall" type="MeshInstance3D" parent="Room/WallSection" unique_id=975468624]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.6161108, 7.1788225, 0.0020637512)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("9_ic0uy")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room/WallSection" unique_id=1312197588]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.7311392, 7.175757, 0)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("11_k3n1d")
+
+[node name="WallSection2" type="Node3D" parent="Room" unique_id=1522657102]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -4.892229, 0, -6.6910887)
+
+[node name="Wall" type="MeshInstance3D" parent="Room/WallSection2" unique_id=1236357294]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.6161108, 7.1788225, 0.0020637512)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("9_ic0uy")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room/WallSection2" unique_id=639428527]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.7311392, 7.175757, 0)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("11_k3n1d")
+
+[node name="WallSection3" type="Node3D" parent="Room" unique_id=370069185]
+transform = Transform3D(0.258819, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.258819, -7.8385053, 0, -2.85982)
+
+[node name="Wall" type="MeshInstance3D" parent="Room/WallSection3" unique_id=1640020815]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.6161108, 7.1788225, 0.0020637512)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("9_ic0uy")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room/WallSection3" unique_id=1366557412]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.7311392, 7.175757, 0)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("11_k3n1d")
+
+[node name="WallSection4" type="Node3D" parent="Room" unique_id=1710426322]
+transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, 4.8803926, 0, -6.6895285)
+
+[node name="Wall" type="MeshInstance3D" parent="Room/WallSection4" unique_id=1866270849]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.6161108, 7.1788225, 0.0020637512)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("9_ic0uy")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room/WallSection4" unique_id=232969134]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.7311392, 7.175757, 0)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("11_k3n1d")
+
+[node name="WallSection5" type="Node3D" parent="Room" unique_id=238897180]
+transform = Transform3D(0.25881904, 0, -0.96592575, 0, 1, 0, 0.96592575, 0, 0.25881904, 7.84046, 0, -2.8576436)
+
+[node name="Wall" type="MeshInstance3D" parent="Room/WallSection5" unique_id=1075542056]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.6161108, 7.1788225, 0.0020637512)
+material_override = SubResource("StandardMaterial3D_2o6r5")
+mesh = ExtResource("9_ic0uy")
+
+[node name="Wall2" type="MeshInstance3D" parent="Room/WallSection5" unique_id=1822052060]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.7311392, 7.175757, 0)
+material_override = SubResource("StandardMaterial3D_hiqwa")
+mesh = ExtResource("11_k3n1d")
 
 [editable path="Table"]

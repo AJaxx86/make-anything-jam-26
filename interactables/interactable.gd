@@ -2,7 +2,6 @@ class_name Interactable extends Area3D
 
 signal activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float, open_ui_scene: PackedScene, reader_3d_scene: PackedScene)
 
-## Prevents this interactable from being selected unless it's parent is selected first.
 @export var required_parent: Interactable = null
 @export var camera_marker: Marker3D = null
 @export_range(0.0, 100.0, 1.0) var camera_fov: float = 75.0
