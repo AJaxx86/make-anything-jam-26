@@ -24,6 +24,16 @@ UIManager="*uid://jr8prred2kn8"
 
 project/assembly_name="Make Anything Jam 26"
 
+[file_customization]
+
+folder_colors={
+"res://books/": "purple",
+"res://globals/": "green",
+"res://interactables/": "yellow",
+"res://sfx/": "orange",
+"res://ui/": "red"
+}
+
 [global_group]
 
 Interactable=""

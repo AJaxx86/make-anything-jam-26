@@ -10,7 +10,7 @@ size = Vector3(0.343, 0.14, 0.386)
 
 [node name="Book" type="Area3D" unique_id=1047133455]
 script = ExtResource("2_00uoj")
-camera_fov = 0.0
+camera_fov = 47.0
 open_ui_scene = ExtResource("2_vqtis")
 reader_3d_scene = ExtResource("3_hgi2d")
 

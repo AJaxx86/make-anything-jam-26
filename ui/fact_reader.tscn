@@ -1,12 +1,32 @@
 [gd_scene format=3 uid="uid://cu8jtktx46wog"]
 
-[node name="FactReader" type="Control" unique_id=1875538161]
+[ext_resource type="FontFile" uid="uid://c5npascuojkq2" path="res://fonts/pixeloid-font/PixeloidSans-mLxMm.ttf" id="1_akvnp"]
+[ext_resource type="Script" uid="uid://cqg6bnukn8it7" path="res://ui/fact_reader_ui.gd" id="2_4drvm"]
+
+[sub_resource type="Theme" id="Theme_4drvm"]
+default_font = ExtResource("1_akvnp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_akvnp"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4drvm"]
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FactReader" type="Control" unique_id=1875538161 node_paths=PackedStringArray("fact_label", "description_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_4drvm")
+script = ExtResource("2_4drvm")
+fact_label = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Fact")
+description_label = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/Description")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2135088216]
 layout_mode = 1
@@ -16,13 +36,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 60
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1567531379]
 layout_mode = 2
+theme_override_constants/separation = 150
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=212007073]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=544037465]
 layout_mode = 2
-text = "READER"
+size_flags_horizontal = 3
+
+[node name="Fact" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1010830136]
+layout_mode = 2
+text = "The International Space Station is the third brightest object in the sky"
+label_settings = SubResource("LabelSettings_akvnp")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Image" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1767029436]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1446202863]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=242355434]
+layout_mode = 2
+text = "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION "
+label_settings = SubResource("LabelSettings_4drvm")
+autowrap_mode = 3

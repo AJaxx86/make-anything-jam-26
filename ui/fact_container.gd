@@ -3,6 +3,9 @@ class_name FactContainer
 
 signal item_dropped(original_piece: FactPiece)
 
+@export var drop_sfx: AudioStreamMP3
+
+
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
     return data is FactPiece and data.get_parent() != self
 

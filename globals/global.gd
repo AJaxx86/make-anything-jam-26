@@ -3,26 +3,21 @@ extends Node
 signal added_to_stack(fact_dict: Dictionary)
 signal removed_from_stack(fact_dict: Dictionary)
 
-var _facts: Dictionary = {
+var _fact_json_path: String = "res://facts.json"
+var _facts: Dictionary = {}
+var _book_textures: Dictionary = {
 	"space": {
-		"book_texture": preload("res://books/materials/black.tres"),
-		"split_facts": [
-			{
-				"sentence": ["The International Space Station is", "the third brightest", "object in the sky."],
-				"false_words": ["the fifth brightest", "the third largest", "the heaviest"],
-				"description": "",
-				"completed": false
-			},
-			{
-				"sentence": ["On Mercury", "a day", "is twice as long as", "a year."],
-				"false_words": ["a month.", "a decade."],
-				"description": "",
-				"completed": false
-			}
-		]
+		"closed": preload("res://books/materials/black.tres"),
+		"open": preload("res://books/materials/black_open.tres")
 	}
 }
 var _book_stack: Array[Dictionary] = []
+
+var sfx_players: Array[SFXPlayer] = []
+
+
+func _ready() -> void:
+	_import_facts()
 
 
 func get_facts(amount: int, category: String = "random") -> Array[Dictionary]:
@@ -71,6 +66,8 @@ func complete_fact(fact_dict: Dictionary) -> bool:
 			var enriched := fact_dict.duplicate()
 			if not enriched.has("book_texture"):
 				enriched["book_texture"] = _facts[cat]["book_texture"]
+			if not enriched.has("open_book_texture"):
+				enriched["open_book_texture"] = _facts[cat]["open_book_texture"]
 			add_to_book_stack(enriched)
 			print_debug("Marked fact as completed: " + str(fact_dict["fact"]))
 			return true
@@ -96,11 +93,12 @@ func add_to_book_stack(fact: Dictionary) -> void:
 			print_debug("Fact already in book stack, skipping: " + str(fact))
 			return
 	var enriched := fact.duplicate()
-	if not enriched.has("book_texture"):
-		for cat in _facts.keys():
-			if cat == enriched.get("category", ""):
-				enriched["book_texture"] = _facts[cat]["book_texture"]
-				break
+	var category: String = enriched.get("category", "")
+	if category in _facts:
+		if not enriched.has("book_texture"):
+			enriched["book_texture"] = _facts[category]["book_texture"]
+		if not enriched.has("open_book_texture"):
+			enriched["open_book_texture"] = _facts[category]["open_book_texture"]
 	_book_stack.append(enriched)
 	added_to_stack.emit(enriched)
 
@@ -157,3 +155,79 @@ func reset_facts() -> void:
 			fact["completed"] = false
 	clear_book_stack()
 	print_debug("All facts reset and book stack cleared.")
+
+
+func _import_facts() -> void:
+	var parsed := _load_facts_json()
+	if parsed.is_empty():
+		return
+
+	var fact_splitter: String = "+"
+	var fact_count: int = 0
+	for fact in parsed:
+		var category: String = fact["Category"].to_lower()
+		if category not in _facts:
+			_facts[category] = {
+				"book_texture": _book_textures[category]["closed"],
+				"open_book_texture": _book_textures[category]["open"],
+				"split_facts": []
+			}
+
+		var fact_dict: Dictionary = {
+			"sentence": _parse_fact_into_array(fact["Sentence"], fact_splitter),
+			"false_words": _parse_fact_into_array(fact["False Facts"], fact_splitter),
+			"description": fact["Description"],
+			"completed": false
+		}
+		_facts[category]["split_facts"].append(fact_dict)
+		fact_count += 1
+
+	print_debug("Imported " + str(fact_count) + " facts from " + _fact_json_path + ".")
+
+
+func _parse_fact_into_array(words: String, splitter: String) -> Array[String]:
+	if words == "":
+		push_error("Fact is missing words.")
+		return []
+
+	return Array(words.split(splitter)).map(func(part): return part.strip_edges())
+
+
+func _load_facts_json() -> Array:
+	var facts_path: String = _fact_json_path
+	if not FileAccess.file_exists(facts_path):
+		push_error("facts.json not found at " + facts_path)
+		return []
+
+	var file := FileAccess.open(facts_path, FileAccess.READ)
+	var json_string := file.get_as_text()
+	file.close()
+
+	var parsed = JSON.parse_string(json_string)
+	if parsed == null:
+		push_error("Failed to parse facts.json as JSON.")
+		return []
+	if parsed.size() == 0:
+		push_error("facts.json is empty. the game is pointless.")
+		return []
+
+	return parsed
+
+# AUDIO
+
+func play_sfx(sfx: AudioStreamMP3) -> void:
+	var player: SFXPlayer = SFXPlayer.new()
+	player.stream = sfx
+	player.sfx_finished.connect(remove_sfx_player)
+	sfx_players.append(player)
+
+	add_child(player)
+
+
+func remove_sfx_player(player: SFXPlayer) -> void:
+	var to_remove: int = sfx_players.find(player)
+	if to_remove != -1:
+		sfx_players.pop_at(to_remove)
+		player.queue_free()
+	else:
+		push_warning("Tried to remove a non-existent SFX player: " + str(player))

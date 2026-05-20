@@ -1,0 +1,14 @@
+[
+  {
+    "Category": "space",
+    "Sentence": "The International Space Station is + the third brightest + object in the sky.",
+    "Description": "BLAH BLAH BLAH",
+    "False Facts": "the third biggest + the fifth brightest + the heaviest"
+  },
+  {
+    "Category": "space",
+    "Sentence": "On Mercury + a day + is twice as long as  + a year.",
+    "Description": "BLAH BLIH BLAH",
+    "False Facts": "a month. + a decade."
+  }
+]

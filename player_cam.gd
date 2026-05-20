@@ -89,7 +89,8 @@ func _process(delta: float) -> void:
 	else:
 		global_transform.basis = _center_basis
 
-func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui_scene: PackedScene = null, reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> void:
+func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui_scene: PackedScene = null,
+	reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> void:
 	var current_interactable := get_current_interactable()
 	if current_interactable is LabelInteractable:
 		current_interactable.stop_editing(false)
@@ -131,7 +132,7 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 				_reader_3d_scene = reader_3d_scene
 				if open_ui_scene != null:
 					_open_ui_instance = UIManager.open_ui(open_ui_scene)
-					set_ui_visibility(_open_ui_instance, true)
+					set_ui_visibility(_open_ui_instance, true, fact_data)
 				if reader_3d_scene != null:
 					_spawn_reader_3d(reader_3d_scene, fact_data)
 			else:
@@ -281,11 +282,13 @@ func apply_camera_state(camera_state: Dictionary) -> void:
 		var state_fact := camera_state.get("fact_data", {}) as Dictionary
 		_spawn_reader_3d(state_reader_scene, state_fact)
 
-func set_ui_visibility(ui_node: Control, should_be_visible: bool) -> void:
+func set_ui_visibility(ui_node: Control, should_be_visible: bool, fact_data: Dictionary = {}) -> void:
 	if ui_node == null:
 		return
 
 	ui_node.visible = should_be_visible
+	if fact_data != {} and ui_node.has_method("setup"):
+		ui_node.setup(fact_data)
 	emit_signal("Show_UI", ui_node, should_be_visible)
 
 func go_back_camera_state() -> void:
