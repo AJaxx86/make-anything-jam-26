@@ -4,6 +4,20 @@
 [ext_resource type="Script" uid="uid://bahukpdyoe52f" path="res://ui/fact_builder.gd" id="2_b6gxa"]
 [ext_resource type="PackedScene" uid="uid://bfybevkb0t5ql" path="res://ui/fact_piece.tscn" id="2_in4ah"]
 [ext_resource type="Script" uid="uid://cx3edbtwhyq27" path="res://ui/fact_container.gd" id="3_m14j8"]
+[ext_resource type="AudioStream" uid="uid://bes6kps65cdwn" path="res://sfx/checks/check_correct_7.mp3" id="4_yh0kt"]
+[ext_resource type="AudioStream" uid="uid://bew742gd0jjwj" path="res://sfx/checks/check_incorrect_2.mp3" id="5_3v0bg"]
+[ext_resource type="AudioStream" uid="uid://cq2mbqpyurfpo" path="res://sfx/eraser/eraser_sounds_1.mp3" id="5_whxiu"]
+[ext_resource type="AudioStream" uid="uid://6cb1e23lxmuc" path="res://sfx/checks/fart_reverb.mp3" id="6_43vm4"]
+[ext_resource type="AudioStream" uid="uid://dtpmlt4b1brul" path="res://sfx/eraser/eraser_sounds_2.mp3" id="6_h2qjg"]
+[ext_resource type="AudioStream" uid="uid://chbx5hf5q4dqr" path="res://sfx/eraser/eraser_sounds_3.mp3" id="7_m7r3v"]
+[ext_resource type="AudioStream" uid="uid://kvuyckqsvq3a" path="res://sfx/pencil/pencil_sfx_1.mp3" id="8_yh0kt"]
+[ext_resource type="AudioStream" uid="uid://dmbv5wt7cre7" path="res://sfx/pencil/pencil_sfx_2.mp3" id="9_3v0bg"]
+[ext_resource type="AudioStream" uid="uid://bcqm1montpewj" path="res://sfx/pencil/pencil_sfx_3.mp3" id="10_43vm4"]
+[ext_resource type="AudioStream" uid="uid://dcusitteval21" path="res://sfx/pencil/pencil_sfx_4.mp3" id="11_1tkxp"]
+[ext_resource type="AudioStream" uid="uid://ffv8owtwu0ov" path="res://sfx/pencil/pencil_sfx_5.mp3" id="12_u4o7d"]
+[ext_resource type="AudioStream" uid="uid://7m3nys2ev6vj" path="res://sfx/pencil/pencil_sfx_6.mp3" id="13_kld8p"]
+[ext_resource type="AudioStream" uid="uid://c1vt8ahefrca2" path="res://sfx/pencil/pencil_sfx_7.mp3" id="14_bwko5"]
+[ext_resource type="AudioStream" uid="uid://7tg16a56xm5i" path="res://sfx/pencil/pencil_sfx_8.mp3" id="15_ik88q"]
 
 [sub_resource type="Theme" id="Theme_ud4uo"]
 default_font = ExtResource("1_ud4uo")
@@ -23,10 +37,13 @@ grow_vertical = 2
 theme = SubResource("Theme_ud4uo")
 script = ExtResource("2_b6gxa")
 fact_piece_scene = ExtResource("2_in4ah")
-source_flow = NodePath("MarginContainer/Panel/MarginContainer/HFlowContainer")
-target_flow = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/HFlowContainer")
+source_flow = NodePath("MarginContainer/Panel/MarginContainer/FactParts")
+target_flow = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/FactSentence")
 submit_button = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer/CheckFact")
 facts_per_round = 3
+check_correct = ExtResource("4_yh0kt")
+check_incorrect = ExtResource("5_3v0bg")
+check_incorrect_fart = ExtResource("6_43vm4")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1157002671]
 layout_mode = 1
@@ -51,10 +68,11 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 5
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=320103843]
+[node name="FactParts" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=320103843]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_m14j8")
+drop_sfx = Array[AudioStreamMP3]([ExtResource("5_whxiu"), ExtResource("6_h2qjg"), ExtResource("7_m7r3v")])
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1650076695]
 layout_mode = 2
@@ -84,9 +102,10 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1671775345]
+[node name="FactSentence" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1671775345]
 layout_mode = 2
 script = ExtResource("3_m14j8")
+drop_sfx = Array[AudioStreamMP3]([ExtResource("8_yh0kt"), ExtResource("9_3v0bg"), ExtResource("10_43vm4"), ExtResource("11_1tkxp"), ExtResource("12_u4o7d"), ExtResource("13_kld8p"), ExtResource("14_bwko5"), ExtResource("15_ik88q")])
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer" unique_id=371462443]
 layout_mode = 2

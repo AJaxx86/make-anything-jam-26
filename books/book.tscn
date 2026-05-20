@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dtmu2n3xpbn4t" path="res://books/book.gd" id="2_00uoj"]
 [ext_resource type="PackedScene" uid="uid://cu8jtktx46wog" path="res://ui/fact_reader.tscn" id="2_vqtis"]
 [ext_resource type="PackedScene" uid="uid://da7rbj7xwxhm1" path="res://books/fact_book_3d.tscn" id="3_hgi2d"]
+[ext_resource type="AudioStream" uid="uid://cpmri3hq3b3yu" path="res://sfx/book_opening.mp3" id="4_71p0m"]
+[ext_resource type="AudioStream" uid="uid://ocuae66vnoda" path="res://sfx/book_closing.mp3" id="5_4qr0n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_00uoj"]
 size = Vector3(0.343, 0.14, 0.386)
@@ -13,6 +15,8 @@ script = ExtResource("2_00uoj")
 camera_fov = 47.0
 open_ui_scene = ExtResource("2_vqtis")
 reader_3d_scene = ExtResource("3_hgi2d")
+ui_open_sfx = ExtResource("4_71p0m")
+ui_close_sfx = ExtResource("5_4qr0n")
 
 [node name="BookMesh" type="MeshInstance3D" parent="." unique_id=2007197873]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.07, 0)

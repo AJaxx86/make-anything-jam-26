@@ -13,6 +13,12 @@ extends Control
 ## Should the game automatically load new facts when the board is cleared?
 @export var auto_load_next: bool = true
 
+@export_group("SFX")
+@export var check_correct: AudioStreamMP3
+@export var check_incorrect: AudioStreamMP3
+@export var check_incorrect_fart: AudioStreamMP3
+@export_range(0.0, 100.0, 1.0) var fart_chance: float = 20.0
+
 var active_facts: Array[Dictionary] = []
 
 func _ready() -> void:
@@ -99,5 +105,12 @@ func _on_submit_pressed() -> void:
 			print("Round cleared!")
 			if auto_load_next:
 				load_new_facts()
+
+		Global.play_sfx(check_correct)
 	else:
+		var chance: int = randi() % 100
+		if chance < fart_chance:
+			Global.play_sfx(check_incorrect_fart)
+		else:
+			Global.play_sfx(check_incorrect)
 		print("Incorrect, keep trying.")

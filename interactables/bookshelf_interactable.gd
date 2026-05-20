@@ -160,7 +160,3 @@ func _create_slot(
 	slot.add_child(hover_node)
 
 	return slot
-
-
-func _on_read_book(fact: Dictionary) -> void:
-	print_debug("Read book: " + str(fact.get("fact", [])))

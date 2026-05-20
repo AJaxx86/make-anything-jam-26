@@ -122,27 +122,41 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 		"ui_scene": open_ui_scene,
 		"reader_3d_scene": reader_3d_scene,
 		"fact_data": fact_data,
+		"activate_sfx": caller.activate_sfx if caller != null else null,
+		"deactivate_sfx": caller.deactivate_sfx if caller != null else null,
+		"ui_open_sfx": caller.ui_open_sfx if caller != null else null,
+		"ui_close_sfx": caller.ui_close_sfx if caller != null else null,
+		"reader_open_sfx": caller.reader_open_sfx if caller != null else null,
+		"reader_close_sfx": caller.reader_close_sfx if caller != null else null,
 	}
 
 	if is_current_camera_state(camera_marker, caller):
 		if camera_marker == null and camera_fov == 0.0 and (_open_ui_scene != open_ui_scene or _reader_3d_scene != reader_3d_scene):
+			var current_state := _position_history[_position_history.size() - 1]
 			if open_ui_scene != null or reader_3d_scene != null:
-				close_current_ui(false)
+				close_current_ui(false, current_state)
 				_open_ui_scene = open_ui_scene
 				_reader_3d_scene = reader_3d_scene
 				if open_ui_scene != null:
 					_open_ui_instance = UIManager.open_ui(open_ui_scene)
 					set_ui_visibility(_open_ui_instance, true, fact_data)
+					var ui_open := camera_state.get("ui_open_sfx", null) as AudioStreamMP3
+					if ui_open != null:
+						Global.play_sfx(ui_open)
 				if reader_3d_scene != null:
 					_spawn_reader_3d(reader_3d_scene, fact_data)
+					var reader_open := camera_state.get("reader_open_sfx", null) as AudioStreamMP3
+					if reader_open != null:
+						Global.play_sfx(reader_open)
 			else:
-				close_current_ui(true)
+				close_current_ui(true, current_state)
 			return
 		_position_history[_position_history.size() - 1] = camera_state
+		return
 	else:
 		_position_history.append(camera_state)
 
-	apply_camera_state(camera_state)
+	apply_camera_state(camera_state, {})
 
 	if caller is LabelInteractable:
 		caller.start_editing()
@@ -209,9 +223,20 @@ func close_pause_menu() -> void:
 		UIManager.open_ui(_open_ui_scene)
 		_ui_was_visible_before_pause = false
 
-func close_current_ui(update_current_state: bool = false) -> void:
+func close_current_ui(update_current_state: bool = false, state: Dictionary = {}) -> void:
 	if _open_ui_instance == null and _reader_3d_instance == null:
 		return
+
+	var sfx_state := state
+	if sfx_state.is_empty() and not _position_history.is_empty():
+		sfx_state = _position_history[_position_history.size() - 1]
+
+	var ui_close := sfx_state.get("ui_close_sfx", null) as AudioStreamMP3
+	var reader_close := sfx_state.get("reader_close_sfx", null) as AudioStreamMP3
+	if ui_close != null and _open_ui_instance != null:
+		Global.play_sfx(ui_close)
+	if reader_close != null and _reader_3d_instance != null:
+		Global.play_sfx(reader_close)
 
 	if _open_ui_instance != null:
 		set_ui_visibility(_open_ui_instance, false)
@@ -263,24 +288,40 @@ func is_current_camera_state(camera_marker: Marker3D, caller: Interactable) -> b
 	var current_interactable := current_state.get("interactable", null) as Interactable
 	return current_interactable == caller
 
-func apply_camera_state(camera_state: Dictionary) -> void:
-	close_current_ui(false)
+func apply_camera_state(camera_state: Dictionary, leaving_state: Dictionary = {}) -> void:
+	close_current_ui(false, leaving_state)
+
+	if not leaving_state.is_empty():
+		var deactivate := leaving_state.get("deactivate_sfx", null) as AudioStreamMP3
+		if deactivate != null:
+			Global.play_sfx(deactivate)
 
 	_target_global_position = camera_state["position"]
 	_target_center_basis = camera_state["basis"]
 	_target_fov = camera_state["fov"]
 
+	var activate := camera_state.get("activate_sfx", null) as AudioStreamMP3
+	if activate != null:
+		Global.play_sfx(activate)
+
 	var state_ui_scene := camera_state.get("ui_scene", null) as PackedScene
 	if state_ui_scene != null:
 		_open_ui_scene = state_ui_scene
 		_open_ui_instance = UIManager.open_ui(state_ui_scene)
-		set_ui_visibility(_open_ui_instance, true)
+		var state_fact := camera_state.get("fact_data", {}) as Dictionary
+		set_ui_visibility(_open_ui_instance, true, state_fact)
+		var ui_open := camera_state.get("ui_open_sfx", null) as AudioStreamMP3
+		if ui_open != null:
+			Global.play_sfx(ui_open)
 
 	var state_reader_scene := camera_state.get("reader_3d_scene", null) as PackedScene
 	if state_reader_scene != null:
 		_reader_3d_scene = state_reader_scene
 		var state_fact := camera_state.get("fact_data", {}) as Dictionary
 		_spawn_reader_3d(state_reader_scene, state_fact)
+		var reader_open := camera_state.get("reader_open_sfx", null) as AudioStreamMP3
+		if reader_open != null:
+			Global.play_sfx(reader_open)
 
 func set_ui_visibility(ui_node: Control, should_be_visible: bool, fact_data: Dictionary = {}) -> void:
 	if ui_node == null:
@@ -299,8 +340,9 @@ func go_back_camera_state() -> void:
 	if current_interactable is LabelInteractable:
 		current_interactable.stop_editing(false)
 
+	var leaving_state := _position_history[_position_history.size() - 1]
 	_position_history.pop_back()
-	apply_camera_state(_position_history[_position_history.size() - 1])
+	apply_camera_state(_position_history[_position_history.size() - 1], leaving_state)
 
 func update_camera_target(delta: float) -> void:
 	var position_weight := get_smoothing_weight(position_smoothing_speed, delta)

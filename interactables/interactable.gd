@@ -9,6 +9,14 @@ signal activate(caller: Interactable, camera_marker: Marker3D, camera_fov: float
 @export var open_ui_scene: PackedScene = null
 @export var reader_3d_scene: PackedScene = null
 
+@export_group("SFX")
+@export var activate_sfx: AudioStreamMP3 = null
+@export var deactivate_sfx: AudioStreamMP3 = null
+@export var ui_open_sfx: AudioStreamMP3 = null
+@export var ui_close_sfx: AudioStreamMP3 = null
+@export var reader_open_sfx: AudioStreamMP3 = null
+@export var reader_close_sfx: AudioStreamMP3 = null
+
 
 func _ready() -> void:
 	connect("input_event", _on_input_event)

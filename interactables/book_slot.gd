@@ -9,6 +9,8 @@ var _held_fact: Dictionary = {}
 @onready var _collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var _hover_indicator: MeshInstance3D = $HoverIndicator
 
+@export var place_book_sfx: AudioStreamMP3 = preload("res://sfx/book_on_shelf.mp3")
+
 
 func _ready() -> void:
 	var box := BoxShape3D.new()
@@ -75,6 +77,8 @@ func _place_book() -> void:
 		if is_instance_valid(book):
 			book.input_ray_pickable = true
 	)
+
+	Global.play_sfx(place_book_sfx)
 
 func clear_book() -> void:
 	_held_fact.clear()

@@ -49,6 +49,4 @@ transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -2.15126
 [node name="FactBook" parent="Table" index="3" unique_id=793978612]
 open_ui_scene = ExtResource("1_fj7yv")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=414145423]
-
 [editable path="Table"]

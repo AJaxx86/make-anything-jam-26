@@ -3,7 +3,7 @@ class_name FactContainer
 
 signal item_dropped(original_piece: FactPiece)
 
-@export var drop_sfx: AudioStreamMP3
+@export var drop_sfx: Array[AudioStreamMP3]
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
@@ -15,3 +15,4 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
     add_child(new_piece)
     new_piece.setup(original_piece.text_value)
     item_dropped.emit(original_piece)
+    Global.play_sfx_random(drop_sfx)

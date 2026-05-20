@@ -5,7 +5,7 @@ extends Control
 
 
 func setup(fact: Dictionary) -> void:
-	var data: Dictionary = _get_full_fact_data(fact["category"], fact["sentence"])
+	var data: Dictionary = _get_full_fact_data(fact["category"], fact["fact"])
 	if data == {}:
 		return
 
@@ -13,7 +13,7 @@ func setup(fact: Dictionary) -> void:
 	description_label.text = data["description"]
 
 
-func _construct_fact_sentence(sentence: Array[String]) -> String:
+func _construct_fact_sentence(sentence: Array) -> String:
 	var sen: String = ""
 	for part in sentence:
 		sen += part + " "

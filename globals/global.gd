@@ -224,6 +224,11 @@ func play_sfx(sfx: AudioStreamMP3) -> void:
 	add_child(player)
 
 
+func play_sfx_random(sfx_array: Array[AudioStreamMP3]) -> void:
+	var sfx: AudioStreamMP3 = sfx_array[randi() % sfx_array.size()]
+	play_sfx(sfx)
+
+
 func remove_sfx_player(player: SFXPlayer) -> void:
 	var to_remove: int = sfx_players.find(player)
 	if to_remove != -1:
