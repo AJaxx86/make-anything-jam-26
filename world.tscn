@@ -21,17 +21,6 @@ glow_enabled = true
 
 [node name="World" type="Node3D" unique_id=921156161]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=733494147]
-
-[node name="FactBuilder" parent="CanvasLayer" unique_id=1788143439 instance=ExtResource("1_fj7yv")]
-unique_name_in_owner = true
-visible = false
-facts_per_round = 2
-
-[node name="PauseMenu" parent="CanvasLayer" unique_id=1628101525 instance=ExtResource("2_aqk2v")]
-unique_name_in_owner = true
-visible = false
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1730665767]
 environment = SubResource("Environment_tlwt5")
 
@@ -44,11 +33,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999905, 0)
 use_collision = true
 size = Vector3(50, 0.1, 50)
 
-[node name="PlayerCam" type="Camera3D" parent="." unique_id=2003679145 node_paths=PackedStringArray("pause_menu")]
+[node name="PlayerCam" type="Camera3D" parent="." unique_id=2003679145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.974138, -1.4755901)
 current = true
 script = ExtResource("2_tlwt5")
-pause_menu = NodePath("../CanvasLayer/PauseMenu")
+pause_menu_scene = ExtResource("2_aqk2v")
+reader_distance = 3.0
 
 [node name="Bookshelf" parent="." unique_id=51938480 instance=ExtResource("4_036b0")]
 transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, 2.3328128, -0.07065141, -6.5859113)
@@ -56,7 +46,7 @@ transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710
 [node name="Table" parent="." unique_id=1557502727 instance=ExtResource("5_036b0")]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -2.151265, -0.08452439, -4.7270713)
 
-[node name="FactBook" parent="Table" index="3" unique_id=793978612 node_paths=PackedStringArray("open_ui")]
-open_ui = NodePath("../../CanvasLayer/FactBuilder")
+[node name="FactBook" parent="Table" index="3" unique_id=793978612]
+open_ui_scene = ExtResource("1_fj7yv")
 
 [editable path="Table"]

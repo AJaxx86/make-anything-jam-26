@@ -8,43 +8,20 @@ var _facts: Dictionary = {
 		"book_texture": preload("res://books/materials/black.tres"),
 		"split_facts": [
 			{
-				"sentence": ["The International Space Station is", "the third brightest", "object in the sky"],
+				"sentence": ["The International Space Station is", "the third brightest", "object in the sky."],
 				"false_words": ["the fifth brightest", "the third largest", "the heaviest"],
 				"description": "",
 				"completed": false
 			},
 			{
-				"sentence": ["On Mercury", "a day", "is twice as long as", "a year"],
-				"false_words": ["a month", "a decade"],
-				"description": "",
-				"completed": false
-			}
-		]
-	},
-	"history": {
-		"book_texture": preload("res://books/materials/yellow.tres"),
-		"split_facts": [
-			{
-				"sentence": [],
-				"false_words": [],
-				"description": "",
-				"completed": false
-			}
-		]
-	},
-	"animals": {
-		"book_texture": preload("res://books/materials/brown.tres"),
-		"split_facts": [
-			{
-				"sentence": [],
-				"false_words": [],
+				"sentence": ["On Mercury", "a day", "is twice as long as", "a year."],
+				"false_words": ["a month.", "a decade."],
 				"description": "",
 				"completed": false
 			}
 		]
 	}
 }
-# Save the fact category when adding it to the book stack: [ {"category": "name", "fact": [split, fact] ]
 var _book_stack: Array[Dictionary] = []
 
 
@@ -114,7 +91,6 @@ func is_fact_completed(fact_dict: Dictionary) -> bool:
 
 
 func add_to_book_stack(fact: Dictionary) -> void:
-	# Guard against adding the exact same fact twice
 	for entry in _book_stack:
 		if entry["category"] == fact["category"] and entry["fact"] == fact["fact"]:
 			print_debug("Fact already in book stack, skipping: " + str(fact))
