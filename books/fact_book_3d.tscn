@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://brrs1mqe7db0" path="res://books/fact_book_3d.gd" id="1_66gtw"]
 [ext_resource type="ArrayMesh" uid="uid://dfy5juue45kgs" path="res://books/OpenBook.obj" id="1_ohb7r"]
+[ext_resource type="Material" uid="uid://bxtxf3nt4fo2m" path="res://books/materials/blue_open.tres" id="2_p2reo"]
 
 [node name="fact_book_3d" type="Node3D" unique_id=1269275714]
 script = ExtResource("1_66gtw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=745422683]
 transform = Transform3D(0.3, 0, 0, 0, -1.3113417e-08, -0.3, 0, 0.3, -1.3113417e-08, 0.1989572, 0.19083968, 0)
+material_override = ExtResource("2_p2reo")
 mesh = ExtResource("1_ohb7r")

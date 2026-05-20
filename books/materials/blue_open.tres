@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bxtxf3nt4fo2m"]
+
+[ext_resource type="Texture2D" uid="uid://bi1nw8q1t5k41" path="res://books/Blue Open Book.png" id="1_rsotq"]
+
+[resource]
+albedo_texture = ExtResource("1_rsotq")
+texture_filter = 0
