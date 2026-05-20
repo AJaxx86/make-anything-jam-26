@@ -23,7 +23,10 @@ signal Show_UI(ui_node: Control, show: bool)
 ## Higher values feel snappier. Set to 0 or lower for instant movement.
 @export var fov_smoothing_speed: float = 8.0
 
-@export var pause_menu: Control = null
+@export var pause_menu_scene: PackedScene
+
+## Distance in front of the camera to place the 3D reader mesh.
+@export var reader_distance: float = 1.2
 
 ## How long the pause action must be held before it opens the pause menu.
 ## Releasing before this threshold performs the contextual back/cancel action instead.
@@ -32,7 +35,11 @@ signal Show_UI(ui_node: Control, show: bool)
 var paused: bool = false
 
 var _position_history: Array[Dictionary] = []
-var _open_ui: Control = null
+var _open_ui_scene: PackedScene = null
+var _open_ui_instance: Control = null
+var _reader_3d_scene: PackedScene = null
+var _reader_3d_instance: Node3D = null
+var _ui_was_visible_before_pause: bool = false
 var _escape_is_down: bool = false
 var _escape_hold_time: float = 0.0
 var _escape_hold_triggered: bool = false
@@ -41,7 +48,6 @@ var _target_center_basis: Basis
 var _target_global_position: Vector3
 var _target_fov: float
 
-
 func _ready() -> void:
 	_center_basis = global_transform.basis.orthonormalized()
 	_target_center_basis = _center_basis
@@ -49,10 +55,6 @@ func _ready() -> void:
 	_target_fov = fov
 	_position_history.clear()
 	_position_history.append(get_current_target_camera_state())
-
-	if pause_menu != null:
-		set_ui_visibility(pause_menu, false)
-
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause") and not _escape_is_down:
@@ -68,7 +70,7 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 
-	if paused or _open_ui != null:
+	if paused or _open_ui_instance != null:
 		return
 
 	var current_interactable := get_current_interactable()
@@ -77,19 +79,17 @@ func _input(event: InputEvent) -> void:
 			current_interactable.handle_text_input(event)
 			get_viewport().set_input_as_handled()
 
-
 func _process(delta: float) -> void:
 	handle_escape_hold(delta)
 	if paused:
 		return
 	update_camera_target(delta)
-	if _open_ui == null:
+	if _open_ui_instance == null:
 		handle_cam_movement(delta)
 	else:
 		global_transform.basis = _center_basis
 
-
-func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui: Control = null) -> void:
+func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camera_fov: float = 75.0, open_ui_scene: PackedScene = null, reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> void:
 	var current_interactable := get_current_interactable()
 	if current_interactable is LabelInteractable:
 		current_interactable.stop_editing(false)
@@ -118,17 +118,24 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 		"position": state_position,
 		"basis": state_basis,
 		"fov": state_fov,
-		"ui": open_ui,
+		"ui_scene": open_ui_scene,
+		"reader_3d_scene": reader_3d_scene,
+		"fact_data": fact_data,
 	}
 
 	if is_current_camera_state(camera_marker, caller):
 		# If the camera isn't changing and only the UI differs, just toggle the UI
 		# without pushing a duplicate history state.
-		if camera_marker == null and camera_fov == 0.0 and _open_ui != open_ui:
-			if open_ui != null:
+		if camera_marker == null and camera_fov == 0.0 and (_open_ui_scene != open_ui_scene or _reader_3d_scene != reader_3d_scene):
+			if open_ui_scene != null or reader_3d_scene != null:
 				close_current_ui(false)
-				_open_ui = open_ui
-				set_ui_visibility(_open_ui, true)
+				_open_ui_scene = open_ui_scene
+				_reader_3d_scene = reader_3d_scene
+				if open_ui_scene != null:
+					_open_ui_instance = UIManager.open_ui(open_ui_scene)
+					set_ui_visibility(_open_ui_instance, true)
+				if reader_3d_scene != null:
+					_spawn_reader_3d(reader_3d_scene, fact_data)
 			else:
 				close_current_ui(true)
 			return
@@ -140,7 +147,6 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 
 	if caller is LabelInteractable:
 		caller.start_editing()
-
 
 func handle_escape_hold(delta: float) -> void:
 	if not _escape_is_down or _escape_hold_triggered:
@@ -154,7 +160,6 @@ func handle_escape_hold(delta: float) -> void:
 	if not paused:
 		open_pause_menu()
 
-
 func handle_escape_tap() -> void:
 	if paused:
 		close_pause_menu()
@@ -166,71 +171,87 @@ func handle_escape_tap() -> void:
 		go_back_camera_state()
 		return
 
-	if _open_ui != null:
+	if _open_ui_instance != null:
 		close_current_ui(true)
 		return
 
 	go_back_camera_state()
-
 
 func reset_escape_hold_state() -> void:
 	_escape_is_down = false
 	_escape_hold_time = 0.0
 	_escape_hold_triggered = false
 
-
 func open_pause_menu() -> void:
 	if paused:
 		return
 
 	paused = true
-	if pause_menu != null:
-		set_ui_visibility(pause_menu, true)
 
+	if _open_ui_instance != null and _open_ui_instance.visible:
+		UIManager.close_ui(_open_ui_instance)
+		_ui_was_visible_before_pause = true
+
+	if pause_menu_scene != null:
+		var inst := UIManager.open_ui(pause_menu_scene)
+		set_ui_visibility(inst, true)
 
 func close_pause_menu() -> void:
 	if not paused:
 		return
 
 	paused = false
-	if pause_menu != null:
-		set_ui_visibility(pause_menu, false)
 
+	if pause_menu_scene != null:
+		var inst := UIManager.open_ui(pause_menu_scene)
+		UIManager.close_ui(inst)
+
+	if _ui_was_visible_before_pause and _open_ui_scene != null:
+		UIManager.open_ui(_open_ui_scene)
+		_ui_was_visible_before_pause = false
 
 func close_current_ui(update_current_state: bool = false) -> void:
-	if _open_ui == null:
+	if _open_ui_instance == null and _reader_3d_instance == null:
 		return
 
-	set_ui_visibility(_open_ui, false)
-	_open_ui = null
+	if _open_ui_instance != null:
+		set_ui_visibility(_open_ui_instance, false)
+		UIManager.close_ui(_open_ui_instance)
+		_open_ui_instance = null
+		_open_ui_scene = null
+
+	if _reader_3d_instance != null:
+		_reader_3d_instance.queue_free()
+		_reader_3d_instance = null
+		_reader_3d_scene = null
 
 	if update_current_state and _position_history.size() > 0:
 		var current_state_index := _position_history.size() - 1
 		var current_state := _position_history[current_state_index]
-		if current_state.get("ui", null) == null:
+		if current_state.get("ui_scene", null) == null and current_state.get("reader_3d_scene", null) == null:
 			# The state didn't originally have a UI open; this was a transient reopen.
 			# Pop back instead of lingering on a state with no UI.
 			go_back_camera_state()
 		else:
-			current_state["ui"] = null
+			current_state["ui_scene"] = null
+			current_state["reader_3d_scene"] = null
 			_position_history[current_state_index] = current_state
 
-
-func get_current_target_camera_state(ui: Control = null) -> Dictionary:
+func get_current_target_camera_state(ui_scene: PackedScene = null, reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> Dictionary:
 	return {
 		"marker": null,
 		"position": _target_global_position,
 		"basis": _target_center_basis,
 		"fov": _target_fov,
-		"ui": ui,
+		"ui_scene": ui_scene,
+		"reader_3d_scene": reader_3d_scene,
+		"fact_data": fact_data,
 	}
-
 
 func get_current_interactable() -> Interactable:
 	if _position_history.is_empty():
 		return null
 	return _position_history[_position_history.size() - 1].get("interactable", null) as Interactable
-
 
 func is_current_camera_state(camera_marker: Marker3D, caller: Interactable) -> bool:
 	if _position_history.is_empty():
@@ -245,7 +266,6 @@ func is_current_camera_state(camera_marker: Marker3D, caller: Interactable) -> b
 	var current_interactable := current_state.get("interactable", null) as Interactable
 	return current_interactable == caller
 
-
 func apply_camera_state(camera_state: Dictionary) -> void:
 	close_current_ui(false)
 
@@ -253,11 +273,17 @@ func apply_camera_state(camera_state: Dictionary) -> void:
 	_target_center_basis = camera_state["basis"]
 	_target_fov = camera_state["fov"]
 
-	var state_ui := camera_state.get("ui", null) as Control
-	if state_ui != null:
-		_open_ui = state_ui
-		set_ui_visibility(_open_ui, true)
+	var state_ui_scene := camera_state.get("ui_scene", null) as PackedScene
+	if state_ui_scene != null:
+		_open_ui_scene = state_ui_scene
+		_open_ui_instance = UIManager.open_ui(state_ui_scene)
+		set_ui_visibility(_open_ui_instance, true)
 
+	var state_reader_scene := camera_state.get("reader_3d_scene", null) as PackedScene
+	if state_reader_scene != null:
+		_reader_3d_scene = state_reader_scene
+		var state_fact := camera_state.get("fact_data", {}) as Dictionary
+		_spawn_reader_3d(state_reader_scene, state_fact)
 
 func set_ui_visibility(ui_node: Control, should_be_visible: bool) -> void:
 	if ui_node == null:
@@ -265,7 +291,6 @@ func set_ui_visibility(ui_node: Control, should_be_visible: bool) -> void:
 
 	ui_node.visible = should_be_visible
 	emit_signal("Show_UI", ui_node, should_be_visible)
-
 
 func go_back_camera_state() -> void:
 	if _position_history.size() <= 1:
@@ -277,7 +302,6 @@ func go_back_camera_state() -> void:
 
 	_position_history.pop_back()
 	apply_camera_state(_position_history[_position_history.size() - 1])
-
 
 func update_camera_target(delta: float) -> void:
 	var position_weight := get_smoothing_weight(position_smoothing_speed, delta)
@@ -297,7 +321,6 @@ func update_camera_target(delta: float) -> void:
 		fov = _target_fov
 	else:
 		fov = lerp(fov, _target_fov, fov_weight)
-
 
 func handle_cam_movement(delta: float) -> void:
 	var viewport_size := Vector2(get_viewport().get_visible_rect().size)
@@ -328,12 +351,10 @@ func handle_cam_movement(delta: float) -> void:
 	next_transform.basis = next_basis
 	global_transform = next_transform
 
-
 func get_smoothing_weight(speed: float, delta: float) -> float:
 	if speed <= 0.0:
 		return 1.0
 	return 1.0 - exp(-speed * delta)
-
 
 func get_fov_scale(aspect_ratio: float) -> Vector2:
 	var current_fov := get_camera_fov_radians(fov, aspect_ratio)
@@ -343,10 +364,6 @@ func get_fov_scale(aspect_ratio: float) -> Vector2:
 		current_fov.x / reference_fov.x,
 		current_fov.y / reference_fov.y
 	)
-
-
-
-
 
 func get_camera_fov_radians(fov_degrees: float, aspect_ratio: float) -> Vector2:
 	var safe_fov_degrees: float = max(fov_degrees, 0.001)
@@ -361,3 +378,12 @@ func get_camera_fov_radians(fov_degrees: float, aspect_ratio: float) -> Vector2:
 	var height_locked_vertical_fov := locked_fov
 	var height_locked_horizontal_fov := 2.0 * atan(tan(height_locked_vertical_fov * 0.5) * safe_aspect_ratio)
 	return Vector2(height_locked_horizontal_fov, height_locked_vertical_fov)
+
+func _spawn_reader_3d(scene: PackedScene, fact_data: Dictionary = {}) -> void:
+	if scene == null:
+		return
+	_reader_3d_instance = scene.instantiate()
+	add_child(_reader_3d_instance)
+	_reader_3d_instance.position = Vector3(0, 0, -reader_distance)
+	if _reader_3d_instance.has_method("setup") and not fact_data.is_empty():
+		_reader_3d_instance.setup(fact_data)

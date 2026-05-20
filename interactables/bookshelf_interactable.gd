@@ -2,7 +2,6 @@ class_name BookshelfInteractable
 extends Interactable
 
 @export var columns: int = 6
-@export var book_mesh: Mesh = preload("res://books/Book.obj")
 
 @export_group("Marker Mode")
 ## NodePath to a container of Marker3D nodes. Each marker defines the START
@@ -13,9 +12,12 @@ extends Interactable
 @export var slot_spacing: float = 0.3375
 
 const _BOOK_OBJ_BOUNDS := Vector3(0.3375, 0.13125, 0.375)
+## Seconds to wait after activation before slots become interactive.
+const _ACTIVATION_DELAY: float = 0.15
 
 var _slots: Array[Area3D] = []
 var _labels_node: Node3D
+var _activation_delay_timer: float = 0.0
 
 @onready var _slots_container := Node3D.new()
 
@@ -36,14 +38,41 @@ func _ready() -> void:
 	_update_pickable_state()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if _activation_delay_timer > 0.0:
+		_activation_delay_timer -= delta
+		if _activation_delay_timer < 0.0:
+			_activation_delay_timer = 0.0
 	_update_pickable_state()
+
+
+func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
+	if not event.is_action_pressed(&"interact"):
+		return
+
+	var player_camera := camera as PlayerCam
+	if player_camera == null:
+		push_warning("Interactable " + name + " was clicked by a camera that is not a PlayerCam: " + camera.name)
+		return
+
+	var current_interactable := player_camera.get_current_interactable()
+	if required_parent != null and current_interactable != required_parent and current_interactable != self:
+		print_debug(self.name + " requires " + required_parent.name + " to be active first")
+		return
+
+	emit_signal(&"activate", self, camera_marker, camera_fov, open_ui_scene, reader_3d_scene)
+	player_camera.set_camera_view(self, camera_marker, camera_fov, open_ui_scene, reader_3d_scene)
+	print_debug("Clicked on " + name)
+
+	# Start activation delay so the releasing click doesn't instantly hit a slot
+	_activation_delay_timer = _ACTIVATION_DELAY
 
 
 func _update_pickable_state() -> void:
 	var player_camera := get_viewport().get_camera_3d() as PlayerCam
 	var current := player_camera.get_current_interactable() if player_camera != null else null
 	var is_shelf_active := (current == self)
+	var slots_ready := is_shelf_active and _activation_delay_timer <= 0.0
 
 	input_ray_pickable = not is_shelf_active
 
@@ -53,7 +82,8 @@ func _update_pickable_state() -> void:
 				child.input_ray_pickable = is_shelf_active
 
 	for slot in _slots:
-		slot.input_ray_pickable = is_shelf_active
+		var has_book: bool = slot.has_method("has_book") and slot.has_book()
+		slot.input_ray_pickable = slots_ready and not has_book
 
 
 func _generate_slots_from_row_markers() -> void:
@@ -74,10 +104,9 @@ func _generate_slots_from_row_markers() -> void:
 				_BOOK_OBJ_BOUNDS.z,
 				"BookSlot_%d_%d" % [row_idx, col]
 			)
-			slot.rotation_degrees = Vector3(-90, 0, 90)
+			slot.rotation_degrees = Vector3(0, 90, 0)
 			_slots_container.add_child(slot)
 			_slots.append(slot)
-			slot.read_book.connect(_on_read_book)
 
 		row_idx += 1
 
@@ -102,9 +131,9 @@ func _generate_slots_auto() -> void:
 				_BOOK_OBJ_BOUNDS.z,
 				"BookSlot_%d_%d" % [row, col]
 			)
+			slot.rotation_degrees = Vector3(0, 0, 0)
 			_slots_container.add_child(slot)
 			_slots.append(slot)
-			slot.read_book.connect(_on_read_book)
 
 
 func _create_slot(
@@ -125,14 +154,6 @@ func _create_slot(
 	var col_shape := CollisionShape3D.new()
 	col_shape.name = "CollisionShape3D"
 	slot.add_child(col_shape)
-
-	var book_mesh_node := MeshInstance3D.new()
-	book_mesh_node.name = "BookMesh"
-	book_mesh_node.visible = false
-	book_mesh_node.scale = Vector3(0.3, 0.3, 0.3)
-	if book_mesh != null:
-		book_mesh_node.mesh = book_mesh
-	slot.add_child(book_mesh_node)
 
 	var hover_node := MeshInstance3D.new()
 	hover_node.name = "HoverIndicator"

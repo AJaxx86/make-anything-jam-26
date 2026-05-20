@@ -13,7 +13,6 @@ extends Control
 ## Should the game automatically load new facts when the board is cleared?
 @export var auto_load_next: bool = true
 
-# We now store an array of facts in case you retrieve more than 1
 var active_facts: Array[Dictionary] = []
 
 func _ready() -> void:
@@ -23,29 +22,21 @@ func _ready() -> void:
 
 	submit_button.pressed.connect(_on_submit_pressed)
 
-	# Listen for when this UI node is hidden or shown
-	visibility_changed.connect(_on_visibility_changed)
-
-	# Run once on startup if the node starts visible
-	if is_visible_in_tree():
-		reset_and_load()
-
-func _on_visibility_changed() -> void:
-	# Trigger a reset whenever the UI is made visible
-	if is_visible_in_tree():
-		reset_and_load()
+	# Load facts on initialization
+	load_new_facts()
 
 func _on_item_dropped(original_piece: FactPiece) -> void:
 	original_piece.queue_free()
 
-func reset_and_load() -> void:
-	# 1. Clear existing UI pieces
+func load_new_facts() -> void:
+	# Only fetch new facts if the current batch is completely finished
+	if not active_facts.is_empty():
+		return
+
+	# Clear existing UI pieces to prepare a clean board
 	for child in source_flow.get_children(): child.queue_free()
 	for child in target_flow.get_children(): child.queue_free()
 
-	active_facts.clear()
-
-	# 2. Fetch the desired amount of random facts
 	active_facts = Global.get_facts(facts_per_round, "random")
 
 	if active_facts.is_empty():
@@ -54,17 +45,17 @@ func reset_and_load() -> void:
 
 	var all_pieces: Array[String] = []
 
-	# 3. Loop through all retrieved facts to gather their pieces
+	# Loop through all retrieved facts to gather their pieces
 	for fact_dict in active_facts:
 		var full_fact_data = _get_full_fact_data(fact_dict["category"], fact_dict["fact"])
 		if not full_fact_data.is_empty():
 			all_pieces.append_array(full_fact_data["sentence"])
 			all_pieces.append_array(full_fact_data["false_words"])
 
-	# 4. Shuffle them all together
+	# Shuffle them all together
 	all_pieces.shuffle()
 
-	# 5. Instantiate pieces in the top source container
+	# Instantiate pieces in the top source container
 	for word in all_pieces:
 		var piece: FactPiece = fact_piece_scene.instantiate()
 		source_flow.add_child(piece)
@@ -100,11 +91,24 @@ func _on_submit_pressed() -> void:
 		print("Correct! Fact solved.")
 		Global.complete_fact(matched_fact)
 
+		# --- Cleanup False Words ---
+		var full_data = _get_full_fact_data(matched_fact["category"], matched_fact["fact"])
+		# Duplicate the array so we can cross items off as we find them
+		var false_words_to_remove = full_data.get("false_words", []).duplicate()
+
+		# Iterate through the source container and delete matching false words
+		for child in source_flow.get_children():
+			if child is FactPiece:
+				var found_index = false_words_to_remove.find(child.text_value)
+				if found_index != -1:
+					# Remove from our hit-list so we only delete one piece per false word
+					false_words_to_remove.remove_at(found_index)
+					child.queue_free()
+
 		# Remove the solved fact from our active list
 		active_facts.erase(matched_fact)
 
-		# Clear ONLY the target container so the used pieces vanish
-		# The remaining pieces for the other facts stay in the source container!
+		# Clear ONLY the target container so the used correct pieces vanish
 		for child in target_flow.get_children():
 			child.queue_free()
 
@@ -112,6 +116,6 @@ func _on_submit_pressed() -> void:
 		if active_facts.is_empty():
 			print("Round cleared!")
 			if auto_load_next:
-				reset_and_load()
+				load_new_facts()
 	else:
 		print("Incorrect, keep trying.")

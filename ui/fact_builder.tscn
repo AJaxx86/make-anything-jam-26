@@ -26,6 +26,7 @@ fact_piece_scene = ExtResource("2_in4ah")
 source_flow = NodePath("MarginContainer/Panel/MarginContainer/HFlowContainer")
 target_flow = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/HFlowContainer")
 submit_button = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer/CheckFact")
+facts_per_round = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1157002671]
 layout_mode = 1

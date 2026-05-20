@@ -15,7 +15,7 @@ texture_filter = 0
 size = Vector3(1.8167676, 1.0476153, 0.9136182)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6eedg"]
-size = Vector3(0.8210156, 0.05, 0.38188475)
+size = Vector3(0.8210156, 0.10458984, 0.38188475)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gn131"]
 albedo_texture = ExtResource("2_c2awl")
@@ -45,7 +45,7 @@ camera_marker = NodePath("Marker3D")
 camera_fov = 40.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FactBook" unique_id=607359828]
-transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, -0.1930081, 0, 0.184546)
+transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, -0.19300807, 0.027294874, 0.184546)
 shape = SubResource("BoxShape3D_6eedg")
 
 [node name="OpenBook" type="MeshInstance3D" parent="FactBook" unique_id=734327369]
@@ -57,5 +57,5 @@ mesh = ExtResource("3_tvuia")
 transform = Transform3D(0.9999146, 0.013089597, -1.04196515e-05, 0, 0.0007962744, 0.99999994, 0.013089627, -0.99991417, 0.0007962063, -0.6082758, 0.59684956, 0.213639)
 
 [node name="BookStack" type="Node3D" parent="." unique_id=1531723213]
-transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.23008078, 1.0468014, -0.65805703)
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.19725451, 0.98579574, -0.6906829)
 script = ExtResource("2_yhnjf")
