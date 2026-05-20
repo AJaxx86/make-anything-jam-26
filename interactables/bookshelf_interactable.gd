@@ -64,7 +64,6 @@ func _on_input_event(camera: Node, event: InputEvent, _event_position: Vector3, 
 	player_camera.set_camera_view(self, camera_marker, camera_fov, open_ui_scene, reader_3d_scene)
 	print_debug("Clicked on " + name)
 
-	# Start activation delay so the releasing click doesn't instantly hit a slot
 	_activation_delay_timer = _ACTIVATION_DELAY
 
 

@@ -11,12 +11,10 @@ var _held_fact: Dictionary = {}
 
 
 func _ready() -> void:
-	# Build collision shape
 	var box := BoxShape3D.new()
 	box.size = Vector3(slot_width, slot_height, slot_depth)
 	_collision_shape.shape = box
 
-	# Build hover indicator using the real book mesh so it looks identical
 	var ghost_mesh := MeshInstance3D.new()
 	ghost_mesh.mesh = preload("res://books/Book.obj")
 	ghost_mesh.scale = Vector3(0.3, 0.3, 0.3)
@@ -65,7 +63,6 @@ func _place_book() -> void:
 	add_child(book)
 	book.setup(_held_fact)
 
-	# Match ghost indicator transform exactly
 	book.rotation_degrees = _hover_indicator.rotation_degrees
 	var mesh: MeshInstance3D = book.get_node("BookMesh")
 	mesh.position = Vector3.ZERO
@@ -74,7 +71,6 @@ func _place_book() -> void:
 
 	_hover_indicator.visible = false
 
-	# Re-enable interaction after a short delay so the releasing click doesn't open the UI
 	get_tree().create_timer(0.2).timeout.connect(func() -> void:
 		if is_instance_valid(book):
 			book.input_ray_pickable = true

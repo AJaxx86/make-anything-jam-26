@@ -20,31 +20,8 @@ var _facts: Dictionary = {
 				"completed": false
 			}
 		]
-	},
-	# "history": {
-	# 	"book_texture": preload("res://books/materials/yellow.tres"),
-	# 	"split_facts": [
-	# 		{
-	# 			"sentence": [],
-	# 			"false_words": [],
-	# 			"description": "",
-	# 			"completed": false
-	# 		}
-	# 	]
-	# },
-	# "animals": {
-	# 	"book_texture": preload("res://books/materials/brown.tres"),
-	# 	"split_facts": [
-	# 		{
-	# 			"sentence": [],
-	# 			"false_words": [],
-	# 			"description": "",
-	# 			"completed": false
-	# 		}
-	# 	]
-	# }
+	}
 }
-# Save the fact category when adding it to the book stack: [ {"category": "name", "fact": [split, fact] ]
 var _book_stack: Array[Dictionary] = []
 
 
@@ -114,7 +91,6 @@ func is_fact_completed(fact_dict: Dictionary) -> bool:
 
 
 func add_to_book_stack(fact: Dictionary) -> void:
-	# Guard against adding the exact same fact twice
 	for entry in _book_stack:
 		if entry["category"] == fact["category"] and entry["fact"] == fact["fact"]:
 			print_debug("Fact already in book stack, skipping: " + str(fact))

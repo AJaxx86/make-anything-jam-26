@@ -124,8 +124,6 @@ func set_camera_view(caller: Interactable, camera_marker: Marker3D = null, camer
 	}
 
 	if is_current_camera_state(camera_marker, caller):
-		# If the camera isn't changing and only the UI differs, just toggle the UI
-		# without pushing a duplicate history state.
 		if camera_marker == null and camera_fov == 0.0 and (_open_ui_scene != open_ui_scene or _reader_3d_scene != reader_3d_scene):
 			if open_ui_scene != null or reader_3d_scene != null:
 				close_current_ui(false)
@@ -229,8 +227,6 @@ func close_current_ui(update_current_state: bool = false) -> void:
 		var current_state_index := _position_history.size() - 1
 		var current_state := _position_history[current_state_index]
 		if current_state.get("ui_scene", null) == null and current_state.get("reader_3d_scene", null) == null:
-			# The state didn't originally have a UI open; this was a transient reopen.
-			# Pop back instead of lingering on a state with no UI.
 			go_back_camera_state()
 		else:
 			current_state["ui_scene"] = null

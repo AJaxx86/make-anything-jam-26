@@ -9,7 +9,6 @@ func _ready() -> void:
 	Global.added_to_stack.connect(_on_added_to_stack)
 	Global.removed_from_stack.connect(_on_removed_from_stack)
 
-	# Rebuild from existing global stack (e.g. after scene reload)
 	for fact in Global.get_book_stack():
 		_spawn_book(fact)
 	_reposition_books()
