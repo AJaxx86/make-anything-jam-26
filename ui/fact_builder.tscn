@@ -14,10 +14,12 @@
 [ext_resource type="AudioStream" uid="uid://dmbv5wt7cre7" path="res://sfx/pencil/pencil_sfx_2.mp3" id="9_3v0bg"]
 [ext_resource type="AudioStream" uid="uid://bcqm1montpewj" path="res://sfx/pencil/pencil_sfx_3.mp3" id="10_43vm4"]
 [ext_resource type="AudioStream" uid="uid://dcusitteval21" path="res://sfx/pencil/pencil_sfx_4.mp3" id="11_1tkxp"]
+[ext_resource type="Script" uid="uid://crlh8hr1eagdb" path="res://ui/fact_sentence_container.gd" id="11_43vm4"]
 [ext_resource type="AudioStream" uid="uid://ffv8owtwu0ov" path="res://sfx/pencil/pencil_sfx_5.mp3" id="12_u4o7d"]
 [ext_resource type="AudioStream" uid="uid://7m3nys2ev6vj" path="res://sfx/pencil/pencil_sfx_6.mp3" id="13_kld8p"]
 [ext_resource type="AudioStream" uid="uid://c1vt8ahefrca2" path="res://sfx/pencil/pencil_sfx_7.mp3" id="14_bwko5"]
 [ext_resource type="AudioStream" uid="uid://7tg16a56xm5i" path="res://sfx/pencil/pencil_sfx_8.mp3" id="15_ik88q"]
+[ext_resource type="Script" uid="uid://ditmw2o5aebpq" path="res://ui/fact_sentence_drop_overlay.gd" id="20_1tkxp"]
 
 [sub_resource type="Theme" id="Theme_ud4uo"]
 default_font = ExtResource("1_ud4uo")
@@ -42,10 +44,10 @@ grow_vertical = 2
 theme = SubResource("Theme_ud4uo")
 script = ExtResource("2_b6gxa")
 fact_piece_scene = ExtResource("2_in4ah")
-source_flow = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/FactParts")
-target_flow = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/FactSentence")
-submit_button = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer/CheckFact")
-all_facts_message = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/AllFactsMessage")
+source_flow = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/FactParts")
+target_flow = NodePath("MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/SentenceArea/FactSentence")
+submit_button = NodePath("MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/CheckFact")
+all_facts_message = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/AllFactsMessage")
 facts_per_round = 3
 check_correct = ExtResource("4_yh0kt")
 check_incorrect = ExtResource("5_3v0bg")
@@ -63,10 +65,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Panel" type="HBoxContainer" parent="MarginContainer" unique_id=847598837]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=847598837]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1874368044]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1874368044]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
@@ -74,10 +76,10 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=1973356931]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1973356931]
 layout_mode = 2
 
-[node name="AllFactsMessage" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1090435082]
+[node name="AllFactsMessage" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1090435082]
 layout_mode = 2
 text = "You have completed all the facts! Good job!
 
@@ -85,47 +87,65 @@ There's not much else to do, so just enjoy the cozy vibes for as long as you wan
 label_settings = SubResource("LabelSettings_yh0kt")
 autowrap_mode = 3
 
-[node name="FactParts" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=320103843]
+[node name="FactParts" type="HFlowContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=320103843]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("3_m14j8")
 drop_sfx = Array[AudioStreamMP3]([ExtResource("5_whxiu"), ExtResource("6_h2qjg"), ExtResource("7_m7r3v")])
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Panel" unique_id=1650076695]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1650076695]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer2" unique_id=2065020109]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer2" unique_id=2065020109]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer" unique_id=817334348]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=817334348]
 layout_mode = 2
 text = "Drag words here to make a sentence"
 label_settings = SubResource("LabelSettings_ud4uo")
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer" unique_id=253430036]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=253430036]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1362123483]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1362123483]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="FactSentence" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1671775345]
+[node name="SentenceArea" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=329843811]
 layout_mode = 2
-script = ExtResource("3_m14j8")
-drop_sfx = Array[AudioStreamMP3]([ExtResource("8_yh0kt"), ExtResource("9_3v0bg"), ExtResource("10_43vm4"), ExtResource("11_1tkxp"), ExtResource("12_u4o7d"), ExtResource("13_kld8p"), ExtResource("14_bwko5"), ExtResource("15_ik88q")])
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer" unique_id=371462443]
+[node name="FactSentence" type="HFlowContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/SentenceArea" unique_id=1671775345 node_paths=PackedStringArray("overlay")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_43vm4")
+drop_sfx = Array[AudioStreamMP3]([ExtResource("8_yh0kt"), ExtResource("9_3v0bg"), ExtResource("10_43vm4"), ExtResource("11_1tkxp"), ExtResource("12_u4o7d"), ExtResource("13_kld8p"), ExtResource("14_bwko5"), ExtResource("15_ik88q")])
+overlay = NodePath("../FactSentenceDropOverlay")
+
+[node name="FactSentenceDropOverlay" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/SentenceArea" unique_id=503486828]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_1tkxp")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=371462443]
 layout_mode = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 5.0
@@ -134,10 +154,10 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 50
 
-[node name="CheckFact" type="Button" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer" unique_id=287669276]
+[node name="CheckFact" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer" unique_id=287669276]
 layout_mode = 2
 text = "Check"
 
-[connection signal="item_dropped" from="MarginContainer/Panel/MarginContainer/VBoxContainer/FactParts" to="." method="_on_item_dropped"]
-[connection signal="item_dropped" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/FactSentence" to="." method="_on_item_dropped"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer/CheckFact" to="." method="_on_submit_pressed"]
+[connection signal="item_dropped" from="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/FactParts" to="." method="_on_item_dropped"]
+[connection signal="item_dropped" from="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/SentenceArea/FactSentence" to="." method="_on_item_dropped"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/CheckFact" to="." method="_on_submit_pressed"]

@@ -36,7 +36,7 @@ func play_music(delay: float = 0.0, random_track: bool = false) -> void:
 	if delay > 0.0:
 		await get_tree().create_timer(delay).timeout
 
-	music_player.stream = _music_tracks[0 if not random_track else randint(0, _music_tracks.size() - 1)]
+	music_player.stream = _music_tracks[0 if not random_track else randi_range(0, _music_tracks.size() - 1)]
 	music_player.start_playing(15.0, 15.0)
 	print_debug("Playing music track: " + _music_tracks[0].get_path())
 

@@ -4,7 +4,7 @@ extends Control
 
 @export_group("Node References")
 @export var source_flow: FactContainer
-@export var target_flow: FactContainer
+@export var target_flow: FactSentenceContainer
 @export var submit_button: Button
 @export var all_facts_message: Label
 
@@ -27,14 +27,15 @@ func _ready() -> void:
 	load_new_facts()
 
 
-func _on_item_dropped(_original_piece: FactPiece) -> void:
+func _on_item_dropped(original_piece: FactPiece) -> void:
+	if original_piece != null:
+		original_piece.set_feedback_colour(FactPiece.STATE.DEFAULT)
 	_reset_feedback_colours()
 
 
 func _reset_feedback_colours() -> void:
-	for child in target_flow.get_children():
-		if child is FactPiece:
-			child.set_feedback_colour(FactPiece.STATE.DEFAULT)
+	for piece in target_flow.get_fact_pieces():
+		piece.set_feedback_colour(FactPiece.STATE.DEFAULT)
 
 
 func _find_best_matching_fact(constructed_sentence: Array) -> Dictionary:
@@ -105,9 +106,7 @@ func load_new_facts() -> void:
 	for child in source_flow.get_children():
 		if child is FactPiece:
 			child.queue_free()
-	for child in target_flow.get_children():
-		if child is FactPiece:
-			child.queue_free()
+	target_flow.clear_fact_pieces()
 
 	active_facts = Global.get_facts(facts_per_round, "random")
 
@@ -136,10 +135,9 @@ func _on_submit_pressed() -> void:
 	var constructed_sentence: Array = []
 	var pieces: Array[FactPiece] = []
 
-	for child in target_flow.get_children():
-		if child is FactPiece:
-			constructed_sentence.append(child.text_value)
-			pieces.append(child)
+	for piece in target_flow.get_fact_pieces():
+		constructed_sentence.append(piece.text_value)
+		pieces.append(piece)
 
 	var matched_fact: Dictionary = {}
 	for fact in active_facts:
@@ -163,9 +161,7 @@ func _on_submit_pressed() -> void:
 
 		active_facts.erase(matched_fact)
 
-		for child in target_flow.get_children():
-			if child is FactPiece:
-				child.queue_free()
+		target_flow.clear_fact_pieces()
 
 		if active_facts.is_empty():
 			print("Round cleared!")

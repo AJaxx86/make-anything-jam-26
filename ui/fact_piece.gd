@@ -48,3 +48,18 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	set_drag_preview(preview_container)
 
 	return self
+
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return data is FactPiece and get_parent() is FactContainer
+
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	if not data is FactPiece:
+		return
+
+	var container: FactContainer = get_parent() as FactContainer
+	if container == null:
+		return
+
+	container.drop_piece_at_position(data as FactPiece, position + at_position)
