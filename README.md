@@ -20,3 +20,24 @@ Click the opened empty book, which opens the FactBuilder UI containing 7 random 
 
 # CREDITS
 SFX/Music from pixabay.com.
+
+# FEEDBACK
+- options to pick the topic
+- choose between full phrases and figure out which are fake, rather than putting pieces together
+- OR phrases are too broken up, bigger pieces would be easier
+- zero context given for the fact, more confusing to try and put a sentence together and results in trial and error instead of logic
+- would be nicer to place the pieces wherever you want
+- font is hard to read, should be bigger and/or neater
+- better if pieces containing a "leading" word that helps with what the next piece is
+- writing style being a mix of friendly talking and purely factual is a little strange
+- "Lemons are not naturally occuring, but rather a manmade hybrid of wild fruits" | wild fruits is not specific enough, covers too many fruits
+
+# IMMEDIATE IMPROVEMENTS
+- put colour meanings in fact builder
+- add options for choosing topics/random, maybe label random as HARD
+- at least optional dyslexia font in pause menu, probably increase font size
+- add background for FactReader, increase font size
+- less jargon/more explanation for fact descriptions
+- make selecting the books on the bookshelf easier
+- lower check SFX volume
+- pause the moment the game starts to show controls
