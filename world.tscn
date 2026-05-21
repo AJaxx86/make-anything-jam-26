@@ -11,6 +11,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dex8at27y8nb4" path="res://room/Object_66056.obj" id="9_ic0uy"]
 [ext_resource type="Texture2D" uid="uid://dfddk2letfsa3" path="res://room/texture_Wall2.png" id="10_ic0uy"]
 [ext_resource type="ArrayMesh" uid="uid://ddi8f7rjwhnum" path="res://room/Object_66144.obj" id="11_k3n1d"]
+[ext_resource type="Texture2D" uid="uid://bryu6kw4ynyj7" path="res://room/Rug.png" id="12_2o6r5"]
+[ext_resource type="ArrayMesh" uid="uid://dto2udkp8bto3" path="res://room/Rug.obj" id="13_70uel"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_top_color = Color(0.13430977, 0.48999482, 0.6232835, 1)
@@ -41,6 +43,10 @@ texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqwa"]
 albedo_texture = ExtResource("10_ic0uy")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u3nc"]
+albedo_texture = ExtResource("12_2o6r5")
 texture_filter = 0
 
 [node name="World" type="Node3D" unique_id=921156161]
@@ -75,17 +81,17 @@ open_ui_scene = ExtResource("1_fj7yv")
 [node name="Room" type="Node3D" parent="." unique_id=530001663]
 
 [node name="Floor" type="MeshInstance3D" parent="Room" unique_id=848879856]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.644247, 0, -8)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.644247, -0.13071609, -8)
 material_override = SubResource("StandardMaterial3D_70uel")
 mesh = ExtResource("6_dwbse")
 
 [node name="Floor2" type="MeshInstance3D" parent="Room" unique_id=61748604]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -3.4950402, 0, -8)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -3.4950402, -0.13071609, -8)
 material_override = SubResource("StandardMaterial3D_70uel")
 mesh = ExtResource("6_dwbse")
 
 [node name="Floor3" type="MeshInstance3D" parent="Room" unique_id=919660905]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 10.767023, 0, -8)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 10.767023, -0.13071609, -8)
 material_override = SubResource("StandardMaterial3D_70uel")
 mesh = ExtResource("6_dwbse")
 
@@ -153,5 +159,10 @@ mesh = ExtResource("9_ic0uy")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.7311392, 7.175757, 0)
 material_override = SubResource("StandardMaterial3D_hiqwa")
 mesh = ExtResource("11_k3n1d")
+
+[node name="Rug" type="MeshInstance3D" parent="." unique_id=937839345]
+transform = Transform3D(0.36355525, 0, 0, 0, 1, 0, 0, 0, 0.36355525, -1.9624422, -0.092565894, -6.4246645)
+material_override = SubResource("StandardMaterial3D_2u3nc")
+mesh = ExtResource("13_70uel")
 
 [editable path="Table"]
