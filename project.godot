@@ -24,6 +24,11 @@ buses/default_bus_layout="uid://cx7d1iid2rjuk"
 Global="*uid://clwrve1rpgnag"
 UIManager="*uid://jr8prred2kn8"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [dotnet]
 
 project/assembly_name="Make Anything Jam 26"
