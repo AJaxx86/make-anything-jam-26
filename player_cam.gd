@@ -248,8 +248,7 @@ func close_current_ui(update_current_state: bool = false, state: Dictionary = {}
 		current_state["reader_3d_scene"] = null
 		_position_history[current_state_index] = current_state
 
-		if current_state.get("marker", null) == null:
-			go_back_camera_state()
+		go_back_camera_state()
 
 
 func get_current_target_camera_state(ui_scene: PackedScene = null, reader_3d_scene: PackedScene = null, fact_data: Dictionary = {}) -> Dictionary:

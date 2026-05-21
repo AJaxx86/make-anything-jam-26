@@ -6,9 +6,9 @@ signal item_dropped(original_piece: FactPiece)
 @export var drop_sfx: Array[AudioStreamMP3]
 @export var overlay: FactSentenceDropOverlay
 
-const ROW_GROUP_TOLERANCE: float = 10.0
-const ROW_ACTIVATION_THRESHOLD: float = 40.0
-const EDGE_BOUNDARY_THRESHOLD: float = 48.0
+@export var ROW_GROUP_TOLERANCE: float = 10.0
+@export var ROW_ACTIVATION_THRESHOLD: float = 40.0
+@export var EDGE_BOUNDARY_THRESHOLD: float = 48.0
 
 var _hover_insert_index: int = -1
 var _is_dragging: bool = false
