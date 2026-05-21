@@ -50,16 +50,27 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	return self
 
 
-func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data is FactPiece and get_parent() is FactContainer
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	if not data is FactPiece:
+		return false
+
+	var local_drop_pos: Vector2 = position + at_position
+	var parent_node: Node = get_parent()
+	if parent_node is FactContainer:
+		return true
+	if parent_node is FactSentenceContainer:
+		(parent_node as FactSentenceContainer).update_drop_hover(local_drop_pos, data as FactPiece)
+		return true
+	return false
 
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if not data is FactPiece:
 		return
 
-	var container: FactContainer = get_parent() as FactContainer
-	if container == null:
-		return
-
-	container.drop_piece_at_position(data as FactPiece, position + at_position)
+	var local_drop_pos: Vector2 = position + at_position
+	var parent_node: Node = get_parent()
+	if parent_node is FactContainer:
+		(parent_node as FactContainer).drop_piece_at_position(data as FactPiece, local_drop_pos)
+	elif parent_node is FactSentenceContainer:
+		(parent_node as FactSentenceContainer).drop_piece_at_position(data as FactPiece, local_drop_pos)

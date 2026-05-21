@@ -146,7 +146,7 @@ func _on_submit_pressed() -> void:
 			break
 
 	if not matched_fact.is_empty():
-		print("Correct! Fact solved.")
+		print_debug("Fact correct: %s" % str(constructed_sentence))
 		Global.complete_fact(matched_fact)
 
 		var full_data = Global.get_fact_data(matched_fact["category"], matched_fact["fact"])
@@ -164,7 +164,7 @@ func _on_submit_pressed() -> void:
 		target_flow.clear_fact_pieces()
 
 		if active_facts.is_empty():
-			print("Round cleared!")
+			print_debug("Round cleared!")
 			if auto_load_next:
 				load_new_facts()
 
@@ -181,4 +181,4 @@ func _on_submit_pressed() -> void:
 			Global.play_sfx(check_incorrect_fart)
 		else:
 			Global.play_sfx(check_incorrect)
-		print("Incorrect, keep trying.")
+		print_debug("Fact incorrect: %s" % str(constructed_sentence))

@@ -18,20 +18,15 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if not data is FactPiece:
 		return false
 
-	_is_dragging = true
-	_update_hover(at_position, data as FactPiece)
+	update_drop_hover(at_position, data as FactPiece)
 	return true
 
 
-func _drop_data(_at_position: Vector2, data: Variant) -> void:
+func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if not data is FactPiece:
 		return
 
-	var piece: FactPiece = data as FactPiece
-	if _hover_insert_index != -1:
-		insert_piece_at_index(piece, _hover_insert_index)
-
-	_clear_hover()
+	drop_piece_at_position(data as FactPiece, at_position)
 
 
 func _ready() -> void:
@@ -46,6 +41,18 @@ func _notification(what: int) -> void:
 		call_deferred("_update_layout_minimum_height")
 	elif what == NOTIFICATION_RESIZED:
 		call_deferred("_update_layout_minimum_height")
+
+
+func update_drop_hover(local_pos: Vector2, dragged_piece: FactPiece) -> void:
+	_is_dragging = true
+	_update_hover(local_pos, dragged_piece)
+
+
+func drop_piece_at_position(piece: FactPiece, local_pos: Vector2) -> void:
+	update_drop_hover(local_pos, piece)
+	if _hover_insert_index != -1:
+		insert_piece_at_index(piece, _hover_insert_index)
+	_clear_hover()
 
 
 func get_fact_pieces() -> Array[FactPiece]:
