@@ -66,6 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6960275)
 
 [node name="Label3D" type="Label3D" parent="Labels/Label" unique_id=1350215010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "CLICK ME"
 font = ExtResource("2_8veei")
 font_size = 18
 outline_size = 4
@@ -89,6 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6960275)
 
 [node name="Label3D" type="Label3D" parent="Labels/Label2" unique_id=104422890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "Click book = open"
 font = ExtResource("2_8veei")
 font_size = 18
 outline_size = 4
@@ -112,6 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6960275)
 
 [node name="Label3D" type="Label3D" parent="Labels/Label3" unique_id=1613303029]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.006291449)
+text = "Hold click = take"
 font = ExtResource("2_8veei")
 font_size = 18
 outline_size = 4
