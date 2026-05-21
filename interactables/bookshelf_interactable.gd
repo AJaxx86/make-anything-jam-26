@@ -7,7 +7,10 @@ extends Interactable
 @export var marker_container: NodePath = ^""
 @export var slot_spacing: float = 0.3375
 
-const _BOOK_OBJ_BOUNDS := Vector3(0.3375, 0.13125, 0.375)
+# Slot colliders need to match the upright placed book, not the raw mesh bounds.
+# Local slot axes are rotated 90 degrees around Y in marker mode, so the collider is
+# authored as: depth, height, width-across-the-shelf.
+const _BOOK_SLOT_BOUNDS := Vector3(0.343, 0.386, 0.14)
 const _ACTIVATION_DELAY: float = 0.15
 
 var _slots: Array[Area3D] = []
@@ -78,9 +81,9 @@ func _generate_slots_from_row_markers() -> void:
 			var pos := start_pos + right * (col * slot_spacing)
 			var slot := _create_slot(
 				pos,
-				_BOOK_OBJ_BOUNDS.x,
-				_BOOK_OBJ_BOUNDS.y,
-				_BOOK_OBJ_BOUNDS.z,
+				_BOOK_SLOT_BOUNDS.x,
+				_BOOK_SLOT_BOUNDS.y,
+				_BOOK_SLOT_BOUNDS.z,
 				"BookSlot_%d_%d" % [row_idx, col]
 			)
 			slot.rotation_degrees = Vector3(0, 90, 0)
@@ -105,9 +108,9 @@ func _generate_slots_auto() -> void:
 
 			var slot := _create_slot(
 				Vector3(x, y, z),
-				_BOOK_OBJ_BOUNDS.x,
-				_BOOK_OBJ_BOUNDS.y,
-				_BOOK_OBJ_BOUNDS.z,
+				_BOOK_SLOT_BOUNDS.x,
+				_BOOK_SLOT_BOUNDS.y,
+				_BOOK_SLOT_BOUNDS.z,
 				"BookSlot_%d_%d" % [row, col]
 			)
 			slot.rotation_degrees = Vector3(0, 0, 0)
