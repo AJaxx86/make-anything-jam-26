@@ -20,3 +20,7 @@ Click the opened empty book, which opens the FactBuilder UI containing 7 random 
 
 # AI USAGE
 NOTE FROM THE PROGRAMMER: I apologise for using AI on this project, I had assumed since AI usage wasn't mentioned on the game jam page when it started that it would be fine to use it, and I only checked the page again on Wednesday. I'm sorry if this disappoints anyone, and both me and my teammate are understanding if our entry is invalidated because of this.
+
+# CREDITS
+SFX/Music from pixabay.com.
+Lo-Fi - https://pixabay.com/music/lofi-cozy-lofi-background-music-for-study-457198/

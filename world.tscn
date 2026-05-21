@@ -13,6 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ddi8f7rjwhnum" path="res://room/Object_66144.obj" id="11_k3n1d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
+sky_top_color = Color(0.13430977, 0.48999482, 0.6232835, 1)
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
@@ -23,8 +24,8 @@ sky_material = SubResource("ProceduralSkyMaterial_f3sb7")
 background_mode = 2
 sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
-ssao_enabled = true
 ssil_enabled = true
+sdfgi_enabled = true
 glow_enabled = true
 adjustment_enabled = true
 adjustment_contrast = 1.05
@@ -48,11 +49,12 @@ texture_filter = 0
 environment = SubResource("Environment_tlwt5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=718273793]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 8.961844, 0)
+transform = Transform3D(0.25881913, -0.9330127, 0.24999991, 2.9802322e-08, 0.25881895, 0.9659258, -0.9659258, -0.25000006, 0.066987306, 0, 8.961844, 0)
 shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=2003679145]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1462767, -1.4955603)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881904, 0, -0.258819, 0.9659259, 0, 2.1462767, -1.5820571)
 current = true
 script = ExtResource("2_tlwt5")
 pause_menu_scene = ExtResource("2_aqk2v")

@@ -6,6 +6,7 @@ extends Control
 @export var source_flow: FactContainer
 @export var target_flow: FactContainer
 @export var submit_button: Button
+@export var all_facts_message: Label
 
 @export_group("Game Settings")
 @export var facts_per_round: int = 1
@@ -15,35 +16,104 @@ extends Control
 @export var check_correct: AudioStreamMP3
 @export var check_incorrect: AudioStreamMP3
 @export var check_incorrect_fart: AudioStreamMP3
-@export_range(0.0, 100.0, 1.0) var fart_chance: float = 20.0
+@export_range(0.0, 100.0, 1.0) var fart_chance: float = 10.0
 
 var active_facts: Array[Dictionary] = []
 
 
 func _ready() -> void:
-	source_flow.item_dropped.connect(_on_item_dropped)
-	target_flow.item_dropped.connect(_on_item_dropped)
-
-	submit_button.pressed.connect(_on_submit_pressed)
+	all_facts_message.hide()
 
 	load_new_facts()
 
 
-func _on_item_dropped(original_piece: FactPiece) -> void:
-	original_piece.queue_free()
+func _on_item_dropped(_original_piece: FactPiece) -> void:
+	_reset_feedback_colours()
+
+
+func _reset_feedback_colours() -> void:
+	for child in target_flow.get_children():
+		if child is FactPiece:
+			child.set_feedback_colour(FactPiece.STATE.DEFAULT)
+
+
+func _find_best_matching_fact(constructed_sentence: Array) -> Dictionary:
+	var best_fact: Dictionary = {}
+	var best_score: int = -1
+
+	for fact in active_facts:
+		var target: Array = fact["fact"]
+		var score: int = 0
+
+		if constructed_sentence.size() == target.size():
+			score += 1
+
+		for i in range(min(constructed_sentence.size(), target.size())):
+			if constructed_sentence[i] == target[i]:
+				score += 3
+
+		var target_words = target.duplicate()
+		for word in constructed_sentence:
+			var idx = target_words.find(word)
+			if idx != -1:
+				score += 1
+				target_words.remove_at(idx)
+
+		if score > best_score:
+			best_score = score
+			best_fact = fact
+
+	return best_fact
+
+
+func _evaluate_sentence(constructed_sentence: Array, target_fact: Array) -> Array[int]:
+	var result: Array[int] = []
+	result.resize(constructed_sentence.size())
+	result.fill(FactPiece.STATE.INCORRECT)
+
+	if target_fact.is_empty():
+		return result
+
+	var target_remaining: Array = target_fact.duplicate()
+	var matched_constructed: Array[bool] = []
+	matched_constructed.resize(constructed_sentence.size())
+	matched_constructed.fill(false)
+
+	for i in range(min(constructed_sentence.size(), target_fact.size())):
+		if constructed_sentence[i] == target_fact[i]:
+			result[i] = FactPiece.STATE.CORRECT_POSITION
+			matched_constructed[i] = true
+			target_remaining[i] = ""
+
+	for i in range(constructed_sentence.size()):
+		if matched_constructed[i]:
+			continue
+
+		var word = constructed_sentence[i]
+		var found_idx = target_remaining.find(word)
+		if found_idx != -1:
+			result[i] = FactPiece.STATE.WRONG_POSITION
+			target_remaining[found_idx] = ""
+
+	return result
 
 
 func load_new_facts() -> void:
 	if not active_facts.is_empty():
 		return
 
-	for child in source_flow.get_children(): child.queue_free()
-	for child in target_flow.get_children(): child.queue_free()
+	for child in source_flow.get_children():
+		if child is FactPiece:
+			child.queue_free()
+	for child in target_flow.get_children():
+		if child is FactPiece:
+			child.queue_free()
 
 	active_facts = Global.get_facts(facts_per_round, "random")
 
 	if active_facts.is_empty():
-		print("All facts have been completed!")
+		all_facts_message.show()
+		print_debug("All facts have been completed!")
 		return
 
 	var all_pieces: Array[String] = []
@@ -64,10 +134,12 @@ func load_new_facts() -> void:
 
 func _on_submit_pressed() -> void:
 	var constructed_sentence: Array = []
+	var pieces: Array[FactPiece] = []
 
 	for child in target_flow.get_children():
 		if child is FactPiece:
 			constructed_sentence.append(child.text_value)
+			pieces.append(child)
 
 	var matched_fact: Dictionary = {}
 	for fact in active_facts:
@@ -92,7 +164,8 @@ func _on_submit_pressed() -> void:
 		active_facts.erase(matched_fact)
 
 		for child in target_flow.get_children():
-			child.queue_free()
+			if child is FactPiece:
+				child.queue_free()
 
 		if active_facts.is_empty():
 			print("Round cleared!")
@@ -101,6 +174,12 @@ func _on_submit_pressed() -> void:
 
 		Global.play_sfx(check_correct)
 	else:
+		var best_fact = _find_best_matching_fact(constructed_sentence)
+		if not best_fact.is_empty():
+			var feedback = _evaluate_sentence(constructed_sentence, best_fact["fact"])
+			for i in range(min(pieces.size(), feedback.size())):
+				pieces[i].set_feedback_colour(feedback[i])
+
 		var chance: int = randi() % 100
 		if chance < fart_chance:
 			Global.play_sfx(check_incorrect_fart)

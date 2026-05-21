@@ -5,11 +5,38 @@ class_name FactPiece
 
 var text_value: String = ""
 
+enum STATE {DEFAULT, CORRECT_POSITION, WRONG_POSITION, INCORRECT}
+
+
 func setup(word: String) -> void:
 	text_value = word
 	if not is_node_ready():
 		await ready
-	label.text = text_value
+	label.text = text_value.rstrip(".")
+	set_feedback_colour(STATE.DEFAULT)
+
+
+func flash() -> void:
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(1.15, 1.15), 0.15)
+	tween.chain().tween_property(self, "scale", Vector2.ONE, 0.25)
+
+
+func set_feedback_colour(state: int) -> void:
+	match state:
+		STATE.DEFAULT:
+			modulate = Color.WHITE
+		STATE.CORRECT_POSITION:
+			modulate = Color.GREEN
+		STATE.WRONG_POSITION:
+			modulate = Color.YELLOW
+		STATE.INCORRECT:
+			modulate = Color.RED
+		_:
+			push_warning("Invalid state: %s" % state)
+
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	var preview = duplicate()

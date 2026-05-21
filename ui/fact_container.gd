@@ -7,12 +7,18 @@ signal item_dropped(original_piece: FactPiece)
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-    return data is FactPiece and data.get_parent() != self
+	return data is FactPiece
+
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-    var original_piece = data as FactPiece
-    var new_piece = original_piece.duplicate()
-    add_child(new_piece)
-    new_piece.setup(original_piece.text_value)
-    item_dropped.emit(original_piece)
-    Global.play_sfx_random(drop_sfx)
+	var piece: FactPiece = data as FactPiece
+	var original_parent: FactContainer = piece.get_parent() as FactContainer
+
+	if original_parent == self:
+		return
+
+	piece.get_parent().remove_child(piece)
+	add_child(piece)
+	piece.flash()
+	item_dropped.emit(piece)
+	Global.play_sfx_random(drop_sfx)

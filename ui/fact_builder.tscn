@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bahukpdyoe52f" path="res://ui/fact_builder.gd" id="2_b6gxa"]
 [ext_resource type="PackedScene" uid="uid://bfybevkb0t5ql" path="res://ui/fact_piece.tscn" id="2_in4ah"]
 [ext_resource type="Script" uid="uid://cx3edbtwhyq27" path="res://ui/fact_container.gd" id="3_m14j8"]
-[ext_resource type="AudioStream" uid="uid://bes6kps65cdwn" path="res://sfx/checks/check_correct_7.mp3" id="4_yh0kt"]
+[ext_resource type="AudioStream" uid="uid://d0ki2j2dpfqyd" path="res://sfx/checks/check_correct_5.mp3" id="4_yh0kt"]
 [ext_resource type="AudioStream" uid="uid://bew742gd0jjwj" path="res://sfx/checks/check_incorrect_2.mp3" id="5_3v0bg"]
 [ext_resource type="AudioStream" uid="uid://cq2mbqpyurfpo" path="res://sfx/eraser/eraser_sounds_1.mp3" id="5_whxiu"]
 [ext_resource type="AudioStream" uid="uid://6cb1e23lxmuc" path="res://sfx/checks/fart_reverb.mp3" id="6_43vm4"]
@@ -22,12 +22,17 @@
 [sub_resource type="Theme" id="Theme_ud4uo"]
 default_font = ExtResource("1_ud4uo")
 
-[sub_resource type="LabelSettings" id="LabelSettings_ud4uo"]
+[sub_resource type="LabelSettings" id="LabelSettings_yh0kt"]
 font_size = 24
-outline_size = 4
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[node name="FactBuilder" type="Control" unique_id=1788143439 node_paths=PackedStringArray("source_flow", "target_flow", "submit_button")]
+[sub_resource type="LabelSettings" id="LabelSettings_ud4uo"]
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FactBuilder" type="Control" unique_id=1788143439 node_paths=PackedStringArray("source_flow", "target_flow", "submit_button", "all_facts_message")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,9 +42,10 @@ grow_vertical = 2
 theme = SubResource("Theme_ud4uo")
 script = ExtResource("2_b6gxa")
 fact_piece_scene = ExtResource("2_in4ah")
-source_flow = NodePath("MarginContainer/Panel/MarginContainer/FactParts")
+source_flow = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/FactParts")
 target_flow = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/FactSentence")
 submit_button = NodePath("MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer/CheckFact")
+all_facts_message = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/AllFactsMessage")
 facts_per_round = 3
 check_correct = ExtResource("4_yh0kt")
 check_incorrect = ExtResource("5_3v0bg")
@@ -68,9 +74,21 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 5
 
-[node name="FactParts" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=320103843]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=1973356931]
+layout_mode = 2
+
+[node name="AllFactsMessage" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1090435082]
+layout_mode = 2
+text = "You have completed all the facts! Good job!
+
+There's not much else to do, so just enjoy the cozy vibes for as long as you want :>"
+label_settings = SubResource("LabelSettings_yh0kt")
+autowrap_mode = 3
+
+[node name="FactParts" type="HFlowContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=320103843]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("3_m14j8")
 drop_sfx = Array[AudioStreamMP3]([ExtResource("5_whxiu"), ExtResource("6_h2qjg"), ExtResource("7_m7r3v")])
 
@@ -119,3 +137,7 @@ theme_override_constants/margin_bottom = 50
 [node name="CheckFact" type="Button" parent="MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer" unique_id=287669276]
 layout_mode = 2
 text = "Check"
+
+[connection signal="item_dropped" from="MarginContainer/Panel/MarginContainer/VBoxContainer/FactParts" to="." method="_on_item_dropped"]
+[connection signal="item_dropped" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/FactSentence" to="." method="_on_item_dropped"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer2/VBoxContainer/MarginContainer/CheckFact" to="." method="_on_submit_pressed"]

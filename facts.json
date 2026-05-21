@@ -1,14 +1,14 @@
 [
   {
     "Category": "space",
-    "Sentence": "The International Space Station is + the third brightest + object in the sky.",
-    "Description": "BLAH BLAH BLAH",
+    "Sentence": "The International Space Station is + the third brightest + object in the night sky.",
+    "Description": "Often, a good overhead pass of the ISS is the third brightest thing in the sky, right behind the Moon and Venus (which outshines it at dawn and dusk). But on nights when Venus has already set, a bright ISS pass is second only to the Moon! If you're lucky enough to be along its orbital path at twilight, you'll see a human-made star gliding across the sky.",
     "False Facts": "the third biggest + the fifth brightest + the heaviest"
   },
   {
     "Category": "space",
-    "Sentence": "On Mercury + a day + is twice as long as  + a year.",
-    "Description": "BLAH BLIH BLAH",
+    "Sentence": "On Mercury + a day + is twice as long as + a year.",
+    "Description": "This might get a little confusing, but bear with me: a year on Mercury, which is how long it takes to complete one full orbit around the Sun, is 88 days. A \"sidereal\" day, which is the time it takes to do one 360° spin, is 58 and a half days. Now, when we say a day is twice as long as a year, we're actually talking about a \"solar day\" which is how long it takes to go from one sunrise to the next. After one full orbit around the Sun, because of how fast Mercury moves relative to it's spin, it's only just facing away from the sun now, meaning it takes two full years to see the sun in the same position in the sky!",
     "False Facts": "a month. + a decade."
   }
 ]

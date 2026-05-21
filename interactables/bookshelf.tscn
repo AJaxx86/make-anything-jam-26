@@ -50,6 +50,7 @@ transform = Transform3D(0.9999995, 0, 0, 0, 1, 0, 0, 0, 0.9999995, 1.1694793, 1,
 [node name="Label" type="Area3D" parent="Labels" unique_id=1160744624 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.9999994, 0, 0, 0, 1, 0, 0, 0, 0.9999994, 0, 1.8273311, 0.2937697)
 script = ExtResource("3_abcde")
+max_length = 20
 required_parent = NodePath("../..")
 camera_marker = NodePath("Marker3D")
 camera_fov = 45.0
@@ -72,6 +73,7 @@ outline_size = 4
 [node name="Label2" type="Area3D" parent="Labels" unique_id=1468983417 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0, 1.0642128, 0.29376963)
 script = ExtResource("3_abcde")
+max_length = 20
 required_parent = NodePath("../..")
 camera_marker = NodePath("Marker3D")
 camera_fov = 45.0
@@ -94,6 +96,7 @@ outline_size = 4
 [node name="Label3" type="Area3D" parent="Labels" unique_id=863989172 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.9999992, 0, 0, 0, 1, 0, 0, 0, 0.9999992, 0, 0.4103011, 0.29376963)
 script = ExtResource("3_abcde")
+max_length = 20
 required_parent = NodePath("../..")
 camera_marker = NodePath("Marker3D")
 camera_fov = 45.0
@@ -116,6 +119,7 @@ outline_size = 4
 [node name="Label4" type="Area3D" parent="Labels" unique_id=1736100253 node_paths=PackedStringArray("required_parent", "camera_marker")]
 transform = Transform3D(0.9999992, 0, 0, 0, 1, 0, 0, 0, 0.9999992, 0, -0.24462503, 0.29376963)
 script = ExtResource("3_abcde")
+max_length = 20
 required_parent = NodePath("../..")
 camera_marker = NodePath("Marker3D")
 camera_fov = 45.0

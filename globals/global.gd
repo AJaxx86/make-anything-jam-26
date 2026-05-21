@@ -14,10 +14,34 @@ var _book_textures: Dictionary = {
 var _book_stack: Array[Dictionary] = []
 
 var sfx_players: Array[SFXPlayer] = []
+var music_player: MusicPlayer = null
+var _music_tracks: Array[AudioStreamMP3] = [
+	preload("res://music/lofi.mp3"),
+]
 
 
 func _ready() -> void:
 	_import_facts()
+	play_music(2.0)
+
+
+func play_music(delay: float = 0.0) -> void:
+	if music_player == null:
+		var new_player: MusicPlayer = MusicPlayer.new()
+		music_player = new_player
+		music_player.connect("finished", _on_music_ended)
+		add_child(music_player)
+
+	if delay > 0.0:
+		await get_tree().create_timer(delay).timeout
+
+	music_player.stream = _music_tracks[0]
+	music_player.start_playing(15.0, 15.0)
+	print_debug("Playing music track: " + _music_tracks[0].get_path())
+
+
+func _on_music_ended() -> void:
+	play_music(2.0)
 
 
 func get_facts(amount: int, category: String = "random") -> Array[Dictionary]:
@@ -174,7 +198,7 @@ func _import_facts() -> void:
 		if category not in _book_textures:
 			push_warning("Book texture unavailable for " + category + ". Skipped.")
 			continue
-			
+
 		if category not in _facts:
 			_facts[category] = {
 				"book_texture": _book_textures[category]["closed"],
