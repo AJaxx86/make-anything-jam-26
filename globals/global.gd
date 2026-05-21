@@ -18,11 +18,12 @@ var music_player: MusicPlayer = null
 var _music_tracks: Array[AudioStreamMP3] = [
 	preload("res://music/lofi.mp3"),
 ]
+var play_random_music: bool = false
 
 
 func _ready() -> void:
 	_import_facts()
-	play_music(2.0)
+	play_music(2.0, play_random_music)
 
 
 func play_music(delay: float = 0.0, random_track: bool = false) -> void:
@@ -41,7 +42,7 @@ func play_music(delay: float = 0.0, random_track: bool = false) -> void:
 
 
 func _on_music_ended() -> void:
-	play_music(2.0)
+	play_music(2.0, play_random_music)
 
 
 func get_facts(amount: int, category: String = "random") -> Array[Dictionary]:
