@@ -10,5 +10,107 @@
     "Sentence": "On Mercury + a day + is twice as long as + a year.",
     "Description": "This might get a little confusing, but bear with me: a year on Mercury, which is how long it takes to complete one full orbit around the Sun, is 88 days. A \"sidereal\" day, which is the time it takes to do one 360° spin, is 58 and a half days. Now, when we say a day is twice as long as a year, we're actually talking about a \"solar day\" which is how long it takes to go from one sunrise to the next. After one full orbit around the Sun, because of how fast Mercury moves relative to it's spin, it's only just facing away from the sun now, meaning it takes two full years to see the sun in the same position in the sky!",
     "False Facts": "a month. + a decade."
+  },
+  {
+    "Category": "history",
+    "Sentence": "Romans + taxed + the collection of + human urine.",
+    "Description": "The Romans invented plenty of things that were foundational to our society today, like bounded books to replace scrolls, sewage systems, social welfare, the calendar. But this is one practice I'm glad stayed as distant history (and for good reason!): as advanced as the Romans were, and how developed their hygiene was, they didn't have the same level of knowledge in chemistry as we do today so they had to improvise. They discovered that urine breaks down into ammonia when it's left out, and ammonia is an effective, natural chemical cleaner because it can clean grease and remove stains, including from teeth (DON\"T TRY THIS AT HOME! WE USE FLUORIDE INSTEAD FOR A REASON!). Because of how effective it was and how popular it became, businesses would set up large vats (basically public toilets) for people to pee into and collect it. Emperor Vespasian, the ruler at the time, saw an opportunity to raise money by taxing the collection and sale of urine. I'd imagine \"golden shower\" had a much different reputation back then compared to now.",
+    "False Facts": "gave out + producing + hated + human feces + body hair + pets"
+  },
+  {
+    "Category": "history",
+    "Sentence": "The shortest war lasted + 38 + minutes.",
+    "Description": "If you aren't a morning person you'll definitely hate this one. On August 25th, 1896, the Sultan of Zanzibar, Hamid bin Thuwaini, died in a coup, possibly from his nephew poisoning him, so that he could take over. At the time, Zanzibar was a \"British protectorate\", which is just a nice way of saying they owned it, so as you can imagine they weren't too pleased when their puppet passed away. When they found out about the coup, they gave the nephew an ultimatum: step down by August 27th, 9:00 AM, or face war. The nephew, Khalid bin Barghash, barricaded himself inside the royal palace with 3,000 people to defend, waiting for the British to attack. He underestimated THE MIGHT OF HER MAJESTY'S ROYAL NAVY and within 5 minutes the British had all their defences wiped out, the palace completely ablaze, and flattened the place within the hour. By 9:38 AM, Khalid had fled to a foreign consulate and the British were, once again, in charge of the place.",
+    "False Facts": "hours + days + weeks + 10 + 59 + 112"
+  },
+  {
+    "Category": "animals",
+    "Sentence": "Crows remember + human faces + for years.",
+    "Description": "Corvids, the family of birds that include things like crows and ravens, are known for their extremely high intelligence. Not only can they remember human faces for long periods of time, they demonstrate cognition on the level of apes and human children. They can solve abstract problems, manufacture tools, and can both remember and communicate detailed information.",
+    "False Facts": "for decades + for minutes + food + where they last had lunch"
+  },
+  {
+    "Category": "history",
+    "Sentence": "Cleopatra lived closer to + Apollo 11 + than the construction of + the Great Pyramid of Gyza",
+    "Description": "This one's quite the doozy. The Great Pyramid of Giza was built in roughly 2560 BC (or BCE for you history nerds), while Cleopatra was born in 69 BC, meaning there's almost 2500 years between the pyramid and Cleopatra. Meanwhile, the Apollo 11 mission happened in 1969 AD, which means Cleopatra was around 2000 years too early to see it. What a shame. Anyway, another fun observation from this is how there's more time between Cleopatra and the Great Pyramid than us to the Romans, meaning by the time she was running Egypt their most famous landmark was already ancient history!",
+    "False Facts": "the founding of Rome + the reign of King Tut + the invention of writing + my house"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Hops and + cannabis + are closely related, belonging to the same family of + Cannabaceae",
+    "Description": "About 25 million years ago, cannabis and hops diverged from a common ancestor. They still share some characteristics in common, such as having male and female plants. They both also produce strong aromatic terpenes, accounting for the strong odors produced by each.",
+    "False Facts": "Mugwort + Yarrow + black pepper + cocoa + Urticaceae + Moraceae"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Sagebrush + are known for having both + evergreen + and + deciduous leaves",
+    "Description": "Though each type of leaf serves distinct purposes, the sagebrush produces both types. The high deserts that the plant grows in have a climate that can experience dramatic changes, calling for vastly different survival mechanisms. The sagebrush is prepared for maximum food production when water is abundant, and conservation of resources when it isn't.",
+    "False Facts": "Wormwood + Mugwort + are known for having neither + nor"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "The leaves and branches of the + creosote bush + stretch and lean + southeast + in the morning, reaching for the + first light of the day",
+    "Description": "The creosote has evolved a method of maximizing photosynthesis during the coolest part of the day. By opening its stomata and leaning toward first light of the day, it will take in the most carbon dioxide and light possible during cool hours. During the afternoon and evening hours, when heat is the worst and water loss would be highest, it restricts its exposure and food production.",
+    "False Facts": "desert lavender + brittlebush + northwest + northeast + in the evening, reaching for + last light of the day"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Trees + can share nutrients and communication with + mushrooms + through a network of deeply interwoven roots and + mycelium",
+    "Description": "Often referred to as the \"Wood Wide Web\", the network of mycelium that connects trees together throughout forest allows complex exchanges between trees and the fungi. Not only can the fungi and trees pass nutrients around to each other, the trees can even send chemical and electrical signals to communicate with its neighbors, even warning them of danger like parasites or disease.",
+    "False Facts": "Grasses + molds + hyphae"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "The largest flower + in the world + can bloom up a + meter wide + and weigh as much as + 11 kilograms",
+    "Description": "The Rafflesia arnoldii is not only an enormous flower, but one that smells putrid as well. It relies on flies to polinate, and thus must attract them with an odor meant to mimic that of rotting flesh.",
+    "False Facts": "in Asia + half a meter + 5 kilograms"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Goldenrod + produces phytotoxins + that inhibit tree seed growth, + keeping meadows of them free of + trees",
+    "Description": "Goldenrod, depending on the density of a colony and other factors like location, can inhibit tree growth. When large numbers of them occur in a space without trees, they produce enough allelochemicals that act as phytotoxins, keeping trees out of the neighborhood so the flowers can benefit from the sun.",
+    "False Facts": "Ragweed + produces mycotoxins + inhibit growth of fungi, + mushrooms"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Humans + share roughly + 50% of their DNA with bananas",
+    "Description": "Although humans share 50% of their DNA with bananas, it doesn't make us half banana. Many of the similar genes are the basic building blocks of life. They are sometimes referred to as \"housekeeping genes\" and dictate fundamental process like energy production and cell division.",
+    "False Facts": "Bacteria + Viruses + 15% + 25%"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Lemons + are not + naturally occurring, but rather a manmade hybrid of + wild fruits",
+    "Description": "Lemons did not evolve in the wild. Life did not, in fact, give you lemons. People did when they bred together the citron and the bitter orange.",
+    "False Facts": "Citron + Bitter oranges + are + manmade"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Approximately + 25% of + Western pharmaceuticals + come from + rainforest plants",
+    "Description": "Despite the impressive statistic of 25% of modern Western medicine being drerived from some form of rainforest plant, less than 5% of existing tropical species have actually been studied or tested for their medicinal properties.",
+    "False Facts": "70% + 5% + pharmaceuticals worldwide + desert plants + aquatic plants"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Matured trees + are made up of about + 99% + dead matter",
+    "Description": "An extremely thin membrane of living tissue is kept safe inside the tree by a surrounding made up of dead cells. The overwhelming majority of the tree's mass are cells produced to fulfill specific functions in their dead state.",
+    "False Facts": "All trees + 50% + living matter"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Brussels sprouts, + cauliflower, + cabbage, + kale, + and brocolli + are all + the same plant species",
+    "Description": "Brussels sprouts, cauliflower, cabbage, kale, and brocolli all come from the same wild mustard plant. Over multiple millenia, farmers selectively bread this plant to focus on a specific part of it, resulting in highly specialized versions we know today.",
+    "False Facts": "Radishes + turnips + arguula + from closely related families"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "Trees + can move water + hundreds of meters + through evapotranspiration, a process that relies on + cohesion and + adhesion",
+    "Description": "To move water across its vast body, reaching from soil to the highest branches and leaves and back again, trees have a continuous flowing and unbroken chain of water in side them. The process is entirely powered by ambient thermal energy and the natural behavior of water, expending no metabolic energy.",
+    "False Facts": "Flowers + up to a meter + bonding + agglutination"
+  },
+  {
+    "Category": "plants",
+    "Sentence": "About + 90% + of plant calories consumed by humans + come from just + 30 plants",
+    "Description": "Humans have consumed all kinds of plants throughout the ages, but modern diets overwhelmingly rely upon a handful of plants. Grains, vegetables, tubers and legumes are responsible for more than 60% of our daily energy in some form.",
+    "False Facts": "50% + 100 plants"
   }
 ]

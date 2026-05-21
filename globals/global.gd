@@ -9,6 +9,18 @@ var _book_textures: Dictionary = {
 	"space": {
 		"closed": preload("res://books/materials/black.tres"),
 		"open": preload("res://books/materials/black_open.tres")
+	},
+	"history": {
+		"closed": preload("res://books/materials/yellow.tres"),
+		"open": preload("res://books/materials/yellow_open.tres")
+	},
+	"animals": {
+		"closed": preload("res://books/materials/brown.tres"),
+		"open": preload("res://books/materials/brown_open.tres")
+	},
+	"plants": {
+		"closed": preload("res://books/materials/green.tres"),
+		"open": preload("res://books/materials/green_open.tres")
 	}
 }
 var _book_stack: Array[Dictionary] = []
