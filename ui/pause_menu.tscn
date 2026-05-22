@@ -22,7 +22,7 @@ font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="PauseMenu" type="Control" unique_id=1628101525 node_paths=PackedStringArray("master_volume_slider", "sfx_volume_slider", "music_volume_slider", "font_option_button")]
+[node name="PauseMenu" type="Control" unique_id=1628101525 node_paths=PackedStringArray("master_volume_slider", "sfx_volume_slider", "music_volume_slider", "font_option_button", "close_menu_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +35,7 @@ master_volume_slider = NodePath("MarginContainer/PanelContainer/MarginContainer/
 sfx_volume_slider = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/SFXSlider")
 music_volume_slider = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3/MusicSlider")
 font_option_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4/FontSelection")
+close_menu_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/CloseMenu")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=86449112]
 layout_mode = 1
@@ -179,7 +180,7 @@ text = " Quit Game "
 
 [node name="CloseMenu" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2042102599]
 layout_mode = 2
-text = "Close Menu"
+text = "Start Game"
 
 [connection signal="drag_ended" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/MasterSlider" to="." method="_on_master_slider_drag_ended"]
 [connection signal="drag_ended" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]

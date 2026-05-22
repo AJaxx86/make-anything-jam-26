@@ -6,6 +6,7 @@ signal close_menu_pressed
 @export var sfx_volume_slider: HSlider
 @export var music_volume_slider: HSlider
 @export var font_option_button: OptionButton
+@export var close_menu_button: Button
 
 var default_volumes: Dictionary = {}
 var _label_base_font_sizes: Dictionary = {}
@@ -119,3 +120,4 @@ func _on_quit_game_pressed() -> void:
 
 func _on_close_menu_pressed() -> void:
 	close_menu_pressed.emit()
+	close_menu_button.text = "Close Menu"

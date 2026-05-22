@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ocuae66vnoda" path="res://sfx/book_closing.mp3" id="5_4qr0n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_00uoj"]
-size = Vector3(0.343, 0.14, 0.386)
+size = Vector3(0.23382129, 0.14, 0.24500977)
 
 [node name="Book" type="Area3D" unique_id=1047133455]
 script = ExtResource("2_00uoj")
@@ -23,5 +23,5 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.07074463, 0.07, -0.1
 mesh = ExtResource("1_00uoj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1444410849]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010243207, 0.12116048, 0.0048267245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0070366636, 0.12116048, 0.0019605085)
 shape = SubResource("BoxShape3D_00uoj")

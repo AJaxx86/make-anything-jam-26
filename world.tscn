@@ -70,8 +70,14 @@ reader_distance = 0.5
 [node name="Bookshelf" parent="." unique_id=51938480 instance=ExtResource("4_036b0")]
 transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 1.2613083, -0.07065141, -7.9107614)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Bookshelf" unique_id=383554396]
+transform = Transform3D(1.0000002, 1.4901161e-08, -4.4703484e-08, 0, 0.9659259, 0.25881904, 2.9802322e-08, -0.2588191, 0.965926, 1.0352769, 2.125156, 2.8637047)
+
 [node name="Bookshelf2" parent="." unique_id=410299969 instance=ExtResource("4_036b0")]
 transform = Transform3D(0.96592563, 0, 0.25881898, 0, 1, 0, -0.25881898, 0, 0.96592563, -3.75754, -0.07065141, -7.3674045)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Bookshelf2" unique_id=2142973549]
+transform = Transform3D(1.0000002, 1.4901161e-08, -4.4703484e-08, 0, 0.9659259, 0.25881904, 2.9802322e-08, -0.2588191, 0.965926, 1.0352769, 2.125156, 2.8637047)
 
 [node name="Table" parent="." unique_id=1557502727 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92996395, -0.08452439, -3.5780113)

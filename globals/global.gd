@@ -45,6 +45,14 @@ var _book_textures: Dictionary = {
 	"plants": {
 		"closed": preload("res://books/materials/green.tres"),
 		"open": preload("res://books/materials/green_open.tres")
+	},
+	"science": {
+		"closed": preload("res://books/materials/red.tres"),
+		"open": preload("res://books/materials/red_open.tres")
+	},
+	"sea": {
+		"closed": preload("res://books/materials/aqua.tres"),
+		"open": preload("res://books/materials/aqua_open.tres")
 	}
 }
 var _book_stack: Array[Dictionary] = []
