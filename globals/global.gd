@@ -45,8 +45,10 @@ var sfx_players: Array[SFXPlayer] = []
 var music_player: MusicPlayer = null
 var _music_tracks: Array[AudioStreamMP3] = [
 	preload("res://music/lofi.mp3"),
+	preload("res://music/Zelda Chill Lofi.mp3"),
+	preload("res://music/Zelda's Lofi Kingdom.mp3")
 ]
-var play_random_music: bool = false
+var play_random_music: bool = true
 
 
 func _ready() -> void:
@@ -54,7 +56,7 @@ func _ready() -> void:
 	play_music(2.0, play_random_music)
 
 
-func play_music(delay: float = 0.0, random_track: bool = false) -> void:
+func play_music(delay: float = 0.0, random_track: bool = true) -> void:
 	if music_player == null:
 		var new_player: MusicPlayer = MusicPlayer.new()
 		music_player = new_player
