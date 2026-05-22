@@ -39,6 +39,8 @@ func _ready() -> void:
 	_position_history.clear()
 	_position_history.append(get_current_target_camera_state())
 
+	open_pause_menu()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause") and not _escape_is_down:
@@ -326,6 +328,8 @@ func set_ui_visibility(ui_node: Control, should_be_visible: bool, fact_data: Dic
 	ui_node.visible = should_be_visible
 	if fact_data != {} and ui_node.has_method("setup"):
 		ui_node.setup(fact_data)
+	if ui_node is PauseMenu:
+		ui_node.connect("close_menu_pressed", close_pause_menu)
 	emit_signal("Show_UI", ui_node, should_be_visible)
 
 

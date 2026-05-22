@@ -30,7 +30,7 @@ columns = 13
 marker_container = NodePath("Markers")
 slot_spacing = 0.15
 camera_marker = NodePath("Marker3D")
-camera_fov = 60.0
+camera_fov = 65.0
 
 [node name="Bookcase" type="MeshInstance3D" parent="." unique_id=1603502362]
 transform = Transform3D(0.29999977, 0, 0, 0, 0.3, 0, 0, 0, 0.29999977, -0.26240557, 0.16723841, -0.12887058)

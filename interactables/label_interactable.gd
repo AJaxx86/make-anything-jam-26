@@ -9,6 +9,28 @@ var _original_text: String = ""
 var _edit_text: String = ""
 var _cursor_visible: bool = false
 var _cursor_timer: float = 0.0
+var _base_font_size: int = 0
+
+
+func _ready() -> void:
+	super._ready()
+	_base_font_size = label_3d.font_size if label_3d.font_size > 0 else Global.default_font_size
+	_connect_font_changed()
+	_apply_font(Global.current_font, Global.current_font_size)
+
+
+func _connect_font_changed() -> void:
+	if not Global.font_changed.is_connected(_on_global_font_changed):
+		Global.font_changed.connect(_on_global_font_changed)
+
+
+func _on_global_font_changed(font: FontFile, font_size: int) -> void:
+	_apply_font(font, font_size)
+
+
+func _apply_font(font: FontFile, font_size: int) -> void:
+	label_3d.font = font
+	label_3d.font_size = roundi(_base_font_size * float(font_size) / Global.default_font_size)
 
 
 func _process(delta: float) -> void:

@@ -41,3 +41,4 @@ SFX/Music from pixabay.com.
 - make selecting the books on the bookshelf easier
 - lower check SFX volume
 - pause the moment the game starts to show controls
+- make fact pieces larger

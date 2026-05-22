@@ -37,10 +37,9 @@ shape = SubResource("BoxShape3D_036b0")
 [node name="Marker3D" type="Marker3D" parent="." unique_id=658876624]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0.9642422, 2.4320922, 0.81300473)
 
-[node name="FactBook" type="Area3D" parent="." unique_id=793978612 node_paths=PackedStringArray("required_parent", "camera_marker")]
+[node name="FactBook" type="Area3D" parent="." unique_id=793978612 node_paths=PackedStringArray("camera_marker")]
 transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 1.5324568, 1.0487832, -0.5140119)
 script = ExtResource("1_jd0nb")
-required_parent = NodePath("..")
 camera_marker = NodePath("Marker3D")
 camera_fov = 40.0
 
@@ -54,7 +53,7 @@ material_override = SubResource("StandardMaterial3D_gn131")
 mesh = ExtResource("3_tvuia")
 
 [node name="Marker3D" type="Marker3D" parent="FactBook" unique_id=262398011]
-transform = Transform3D(0.9999146, 0.013089597, -1.04196515e-05, 0, 0.0007962744, 0.99999994, 0.013089627, -0.99991417, 0.0007962063, -0.6082758, 0.59684956, 0.213639)
+transform = Transform3D(0.99991465, 0.013089597, -1.0419666e-05, 0, 0.0007962744, 0.99999994, 0.013089612, -0.9999143, 0.0007962064, -0.19352408, 0.5479008, 0.19338298)
 
 [node name="BookStack" type="Node3D" parent="." unique_id=1531723213]
 transform = Transform3D(-0.8660253, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660253, 0.2908642, 0.98579574, -0.6526352)

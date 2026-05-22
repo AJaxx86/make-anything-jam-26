@@ -48,7 +48,7 @@ source_flow = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContai
 target_flow = NodePath("MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/SentenceArea/FactSentence")
 submit_button = NodePath("MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/CheckFact")
 all_facts_message = NodePath("MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/AllFactsMessage")
-facts_per_round = 3
+facts_per_round = 2
 check_correct = ExtResource("4_yh0kt")
 check_incorrect = ExtResource("5_3v0bg")
 check_incorrect_fart = ExtResource("6_43vm4")
@@ -73,7 +73,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1973356931]
@@ -96,6 +96,7 @@ drop_sfx = Array[AudioStreamMP3]([ExtResource("5_whxiu"), ExtResource("6_h2qjg")
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1650076695]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -148,7 +149,7 @@ script = ExtResource("20_1tkxp")
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=371462443]
 layout_mode = 2
 size_flags_vertical = 2
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 2.01
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
@@ -157,6 +158,25 @@ theme_override_constants/margin_bottom = 50
 [node name="CheckFact" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer" unique_id=287669276]
 layout_mode = 2
 text = "Check"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=873070521]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
+size_flags_stretch_ratio = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2" unique_id=1952943175]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer" unique_id=140507054]
+layout_mode = 2
+text = "Green = Right fact, right position
+Yellow = Right fact, wrong position
+Red = Wrong fact"
 
 [connection signal="item_dropped" from="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/FactParts" to="." method="_on_item_dropped"]
 [connection signal="item_dropped" from="MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/SentenceArea/FactSentence" to="." method="_on_item_dropped"]
