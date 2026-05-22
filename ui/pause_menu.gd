@@ -39,7 +39,7 @@ func _font_setup() -> void:
 
 	font_option_button.clear()
 	for font_name in Global.fonts.keys():
-		font_option_button.add_item(font_name)
+		font_option_button.add_item(font_name.capitalize())
 
 	var current_index: int = -1
 	for index in range(font_option_button.item_count):
@@ -55,7 +55,7 @@ func _font_setup() -> void:
 
 func _on_font_selection_item_selected(index: int) -> void:
 	var font_name: String = font_option_button.get_item_text(index)
-	Global.set_fonts(font_name)
+	Global.set_fonts(font_name.to_lower())
 
 
 func _on_global_font_changed(font: FontFile, font_size: int) -> void:

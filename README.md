@@ -1,5 +1,6 @@
 # TODO
 [ ] Add floating credits book behind the table
+[ ] Fix bug where fact pieces overlap with opendyslexic font
 
 # CONTROLS
 ESC - Tap to go back, hold to pause
@@ -13,7 +14,6 @@ LEFT CLICK - Interact
 - science (red)
 - space (black)
 - history (yellow)
-- sea plants (aqua green)
 - human (pink)
 
 Click the opened empty book, which opens the FactBuilder UI containing 7 random facts which are split up. The player then chooses words to put together the sentence. once correct, the book colour updates based on the category of fact, and the 2 pages fill with details (left side the fact sentence, right side more details) then the player puts books from the stack on the shelf. If there's time, the book cover has art based on the category too.
@@ -33,12 +33,8 @@ SFX/Music from pixabay.com.
 - "Lemons are not naturally occuring, but rather a manmade hybrid of wild fruits" | wild fruits is not specific enough, covers too many fruits
 
 # IMMEDIATE IMPROVEMENTS
-- put colour meanings in fact builder
 - add options for choosing topics/random, maybe label random as HARD
-- at least optional dyslexia font in pause menu, probably increase font size
-- add background for FactReader, increase font size
 - less jargon/more explanation for fact descriptions
 - make selecting the books on the bookshelf easier
 - lower check SFX volume
-- pause the moment the game starts to show controls
 - make fact pieces larger

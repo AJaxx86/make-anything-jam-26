@@ -5,18 +5,26 @@ signal removed_from_stack(fact_dict: Dictionary)
 signal font_changed(font: FontFile, font_size: int)
 
 var fonts: Dictionary = {
-	"default": {
+	"pixeloid": {
 		"file": preload("res://fonts/pixeloid-font/PixeloidSans-mLxMm.ttf"),
 		"size": 16
 	},
-	"dyslexia": {
+	"opendyslexic": {
 		"file": preload("res://fonts/OpenDyslexic/OpenDyslexic-Bold.otf"),
 		"size": 12
 	},
+	"helvetica": {
+		"file": preload("res://fonts/Helvetica/Helvetica.ttf"),
+		"size": 16
+	},
+	"arial": {
+		"file": preload("res://fonts/Arial/ARIAL.TTF"),
+		"size": 16
+	}
 }
 var current_font_name: String = "default"
-var default_font_size: int = maxi(1, int(fonts["default"]["size"]))
-var current_font: FontFile = fonts["default"]["file"]
+var default_font_size: int = maxi(1, int(fonts["pixeloid"]["size"]))
+var current_font: FontFile = fonts["pixeloid"]["file"]
 var current_font_size: int = default_font_size
 
 var _fact_json_path: String = "res://facts.json"
@@ -44,9 +52,14 @@ var _book_stack: Array[Dictionary] = []
 var sfx_players: Array[SFXPlayer] = []
 var music_player: MusicPlayer = null
 var _music_tracks: Array[AudioStreamMP3] = [
-	preload("res://music/lofi.mp3"),
+	preload("res://music/lofi_1.mp3"),
+	preload("res://music/lofi_2.mp3"),
+	preload("res://music/lofi_3.mp3"),
+	preload("res://music/lofi_4.mp3"),
+	preload("res://music/lofi_5.mp3"),
+	preload("res://music/lofi_6.mp3"),
 ]
-var play_random_music: bool = false
+var play_random_music: bool = true
 
 
 func _ready() -> void:
@@ -66,24 +79,25 @@ func play_music(delay: float = 0.0, random_track: bool = false) -> void:
 
 	music_player.stream = _music_tracks[0 if not random_track else randi_range(0, _music_tracks.size() - 1)]
 	music_player.start_playing(15.0, 15.0)
-	print_debug("Playing music track: " + _music_tracks[0].get_path())
+	print_debug("Playing music track: " + music_player.stream.get_path())
 
 
 func set_fonts(font_name: String) -> void:
-	if font_name not in fonts:
-		push_warning("Invalid font name: " + font_name)
+	var fixed_name: String = font_name.to_lower()
+	if fixed_name not in fonts:
+		push_warning("Invalid font name: " + fixed_name)
 		return
 
-	var font_data: Dictionary = fonts[font_name]
+	var font_data: Dictionary = fonts[fixed_name]
 	var font_file: FontFile = font_data.get("file")
 	var font_size: int = maxi(1, int(font_data.get("size", default_font_size)))
 	if font_file == null:
-		push_warning("Invalid font file for font name: " + font_name)
+		push_warning("Invalid font file for font name: " + fixed_name)
 		return
 
-	if font_name == current_font_name and font_file == current_font and font_size == current_font_size:
+	if fixed_name == current_font_name and font_file == current_font and font_size == current_font_size:
 		return
-	current_font_name = font_name
+	current_font_name = fixed_name
 	current_font = font_file
 	current_font_size = font_size
 	font_changed.emit(current_font, current_font_size)
