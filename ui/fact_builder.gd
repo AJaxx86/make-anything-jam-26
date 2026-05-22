@@ -3,7 +3,7 @@ extends Control
 @export var fact_piece_scene: PackedScene
 
 @export_group("Node References")
-@export var source_flow: FactContainer
+@export var source_flow: FreeFactArea
 @export var target_flow: FactSentenceContainer
 @export var submit_button: Button
 @export var all_facts_message: Label
@@ -140,9 +140,7 @@ func load_new_facts() -> void:
 	if not active_facts.is_empty():
 		return
 
-	for child in source_flow.get_children():
-		if child is FactPiece:
-			child.queue_free()
+	source_flow.clear_fact_pieces()
 	target_flow.clear_fact_pieces()
 
 	active_facts = Global.get_facts(facts_per_round, "random")
@@ -164,7 +162,7 @@ func load_new_facts() -> void:
 
 	for word in all_pieces:
 		var piece: FactPiece = fact_piece_scene.instantiate()
-		source_flow.add_child(piece)
+		source_flow.add_fact_piece(piece)
 		piece.setup(word)
 
 
@@ -189,12 +187,11 @@ func _on_submit_pressed() -> void:
 		var full_data = Global.get_fact_data(matched_fact["category"], matched_fact["fact"])
 		var false_words_to_remove = full_data.get("false_words", []).duplicate()
 
-		for child in source_flow.get_children():
-			if child is FactPiece:
-				var found_index = false_words_to_remove.find(child.text_value)
-				if found_index != -1:
-					false_words_to_remove.remove_at(found_index)
-					child.queue_free()
+		for piece in source_flow.get_fact_pieces():
+			var found_index = false_words_to_remove.find(piece.text_value)
+			if found_index != -1:
+				false_words_to_remove.remove_at(found_index)
+				piece.queue_free()
 
 		active_facts.erase(matched_fact)
 

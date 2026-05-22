@@ -56,6 +56,8 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 
 	var local_drop_pos: Vector2 = position + at_position
 	var parent_node: Node = get_parent()
+	if parent_node is FreeFactArea:
+		return (parent_node as FreeFactArea).can_drop_at_local(local_drop_pos)
 	if parent_node is FactContainer:
 		return true
 	if parent_node is FactSentenceContainer:
@@ -70,7 +72,9 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 	var local_drop_pos: Vector2 = position + at_position
 	var parent_node: Node = get_parent()
-	if parent_node is FactContainer:
+	if parent_node is FreeFactArea:
+		(parent_node as FreeFactArea).drop_piece_at_position(data as FactPiece, local_drop_pos)
+	elif parent_node is FactContainer:
 		(parent_node as FactContainer).drop_piece_at_position(data as FactPiece, local_drop_pos)
 	elif parent_node is FactSentenceContainer:
 		(parent_node as FactSentenceContainer).drop_piece_at_position(data as FactPiece, local_drop_pos)
