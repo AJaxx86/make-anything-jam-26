@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvhy6vr4gdxqy"
+path="res://.godot/imported/Zelda's Lofi Kingdom.mp3-89163ea5d6c64377749ffc9325114f44.mp3str"
+
+[deps]
+
+source_file="res://music/Zelda's Lofi Kingdom.mp3"
+dest_files=["res://.godot/imported/Zelda's Lofi Kingdom.mp3-89163ea5d6c64377749ffc9325114f44.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
