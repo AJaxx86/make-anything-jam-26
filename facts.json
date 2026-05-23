@@ -1,266 +1,266 @@
 [
   {
-	"Category": "space",
-	"Sentence": "The International Space Station is + the third brightest object in the night sky",
-	"Description": "Often, a good overhead pass of the ISS is the third brightest thing in the sky, right behind the Moon and Venus (which outshines it at dawn and dusk). But on nights when Venus has already set, a bright ISS pass is second only to the Moon! If you're lucky enough to be along its orbital path at twilight, you'll see a human-made star gliding across the sky.",
-	"False Facts": "the third biggest object in the night sky. + the fifth brightest object in the night sky."
+    "Category": "space",
+    "Sentence": "The International Space Station is + the third brightest object in the night sky",
+    "Description": "Often, a good overhead pass of the ISS is the third brightest thing in the sky, right behind the Moon and Venus (which outshines it at dawn and dusk). But on nights when Venus has already set, a bright ISS pass is second only to the Moon! If you're lucky enough to be along its orbital path at twilight, you'll see a human-made star gliding across the sky.",
+    "False Facts": "the third biggest object in the night sky. + the fifth brightest object in the night sky."
   },
   {
-	"Category": "space",
-	"Sentence": "On Mercury, + a solar day takes + two full orbits around the Sun",
-	"Description": "This might get a little confusing, but bear with me: a year on Mercury, which is how long it takes to complete one full orbit around the Sun, is 88 days. A \"sidereal\" day, which is the time it takes to do one 360° spin, is 58 and a half days. Now, when we say a day is twice as long as a year, we're actually talking about a \"solar day\" which is how long it takes to go from one sunrise to the next. After one full orbit around the Sun, because of how fast Mercury moves relative to it's spin, it's only just facing away from the sun now, meaning it takes two full years to see the sun in the same position in the sky!",
-	"False Facts": "a solar month + a solar year + four full orbits + half an orbit"
+    "Category": "space",
+    "Sentence": "On Mercury, + a solar day takes + two full orbits around the Sun",
+    "Description": "This might get a little confusing, but bear with me: a year on Mercury, which is how long it takes to complete one full orbit around the Sun, is 88 days. A \"sidereal\" day, which is the time it takes to do one 360° spin, is 58 and a half days. Now, when we say a day is twice as long as a year, we're actually talking about a \"solar day\" which is how long it takes to go from one sunrise to the next. After one full orbit around the Sun, because of how fast Mercury moves relative to it's spin, it's only just facing away from the sun now, meaning it takes two full years to see the sun in the same position in the sky!",
+    "False Facts": "a solar month + a solar year + four full orbits + half an orbit"
   },
   {
-	"Category": "history",
-	"Sentence": "Romans + taxed the collection of + human urine",
-	"Description": "The Romans invented plenty of things that were foundational to our society today, but as advanced as they were and how developed their hygiene was, they didn't have the same level of knowledge in chemistry as we do today. They discovered that urine breaks down into ammonia when it's left out, and ammonia is an effective, natural chemical cleaner because it can clean grease and remove stains, including the yellowing of teeth. Because of how effective it was (at the time, we have Fluoride now) and how popular it became, businesses would set up large vats (public toilets) for people to pee into and collect it. The Emperor Vespasian saw an opportunity to raise money by taxing the collection and sale of urine.",
-	"False Facts": "gave away free + arrested people in possession of + human feces + body hair + pets"
+    "Category": "history",
+    "Sentence": "Romans + taxed the collection of + human urine",
+    "Description": "The Romans invented plenty of things that were foundational to our society today, but as advanced as they were and how developed their hygiene was, they didn't have the same level of knowledge in chemistry as we do today. They discovered that urine breaks down into ammonia when it's left out, and ammonia is an effective, natural chemical cleaner because it can clean grease and remove stains, including the yellowing of teeth. Because of how effective it was (at the time, we have Fluoride now) and how popular it became, businesses would set up large vats (public toilets) for people to pee into and collect it. The Emperor Vespasian saw an opportunity to raise money by taxing the collection and sale of urine.",
+    "False Facts": "gave away free + arrested people in possession of + human feces + body hair + pets"
   },
   {
-	"Category": "history",
-	"Sentence": "The shortest war lasted + 38 minutes",
-	"Description": "On August 25th, 1896, the Sultan of Zanzibar, Hamid bin Thuwaini, died in a coup, possibly from his nephew poisoning him as an attempt to take over. At the time, Zanzibar was a \"British protectorate\", so they weren't too pleased when the Sultan died. When they found out about the coup, they gave the nephew an ultimatum: step down by August 27th, 9:00 AM, or face war. The nephew, Khalid bin Barghash, barricaded himself inside the royal palace with soldiers, waiting for the British to attack. Khalid underestimated British Royal Navy and within 5 minutes they had all their defences wiped out, the palace ablaze and flattened in an hour. By 9:38 AM, Khalid had fled to a foreign consulate and the British were, once again, in charge of the place.",
-	"False Facts": "4 days + 3 hours + 69 seconds"
+    "Category": "history",
+    "Sentence": "The shortest war lasted + 38 minutes",
+    "Description": "On August 25th, 1896, the Sultan of Zanzibar, Hamid bin Thuwaini, died in a coup, possibly from his nephew poisoning him as an attempt to take over. At the time, Zanzibar was a \"British protectorate\", so they weren't too pleased when the Sultan died. When they found out about the coup, they gave the nephew an ultimatum: step down by August 27th, 9:00 AM, or face war. The nephew, Khalid bin Barghash, barricaded himself inside the royal palace with soldiers, waiting for the British to attack. Khalid underestimated British Royal Navy and within 5 minutes they had all their defences wiped out, the palace ablaze and flattened in an hour. By 9:38 AM, Khalid had fled to a foreign consulate and the British were, once again, in charge of the place.",
+    "False Facts": "4 days + 3 hours + 69 seconds"
   },
   {
-	"Category": "animals",
-	"Sentence": "Crows remember + human faces for years",
-	"Description": "Corvids, the family of birds that include things like crows and ravens, are known for their extremely high intelligence. Not only can they remember human faces for long periods of time, they demonstrate cognition on the level of apes and human children. They can solve abstract problems, manufacture tools, and can both remember and communicate detailed information.",
-	"False Facts": "where they last pooped for 4 days + their children for only 6 months"
+    "Category": "animals",
+    "Sentence": "Crows remember + human faces for years",
+    "Description": "Corvids, the family of birds that include things like crows and ravens, are known for their extremely high intelligence. Not only can they remember human faces for long periods of time, they demonstrate cognition on the level of apes and human children. They can solve abstract problems, manufacture tools, and can both remember and communicate detailed information.",
+    "False Facts": "where they last pooped for 4 days + their children for only 6 months"
   },
   {
-	"Category": "history",
-	"Sentence": "Cleopatra lived closer to Apollo 11 than + the construction of the Great Pyramid of Gyza",
-	"Description": "This one's quite the doozy. The Great Pyramid of Giza was built in roughly 2560 BC (or BCE for you history nerds), while Cleopatra was born in 69 BC, meaning there's almost 2500 years between the pyramid and Cleopatra. Meanwhile, the Apollo 11 mission happened in 1969 AD, which means there's only 2000 years between Cleopatra and the mission. Another fun observation from this is how there's more time between Cleopatra and the Great Pyramid than us to the Romans, meaning by the time she was running Egypt their most famous landmark was already ancient history!",
-	"False Facts": "the founding of Rome + the invention of writing + my house"
+    "Category": "history",
+    "Sentence": "Cleopatra lived closer to Apollo 11 than + the construction of the Great Pyramid of Gyza",
+    "Description": "This one's quite the doozy. The Great Pyramid of Giza was built in roughly 2560 BC (or BCE for you history nerds), while Cleopatra was born in 69 BC, meaning there's almost 2500 years between the pyramid and Cleopatra. Meanwhile, the Apollo 11 mission happened in 1969 AD, which means there's only 2000 years between Cleopatra and the mission. Another fun observation from this is how there's more time between Cleopatra and the Great Pyramid than us to the Romans, meaning by the time she was running Egypt their most famous landmark was already ancient history!",
+    "False Facts": "the founding of Rome + the invention of writing + my house"
   },
   {
-	"Category": "plants",
-	"Sentence": "Hops and cannabis are + closely related, belonging to the same family of + Cannabaceae",
-	"Description": "About 25 million years ago, cannabis and hops diverged from a common ancestor. They still share some characteristics in common, such as having male and female plants. They both also produce strong aromatic terpenes, accounting for the strong odors produced by each.",
-	"False Facts": "the exact same, belonging to the same family of + cocoa"
+    "Category": "plants",
+    "Sentence": "Hops and cannabis are + closely related, belonging to the same family of + Cannabaceae",
+    "Description": "About 25 million years ago, cannabis and hops diverged from a common ancestor. They still share some characteristics in common, such as having male and female plants. They both also produce strong aromatic terpenes, accounting for the strong odors produced by each.",
+    "False Facts": "the exact same, belonging to the same family of + cocoa"
   },
   {
-	"Category": "plants",
-	"Sentence": "Sagebrush are known for having both + evergreen and deciduous leaves",
-	"Description": "Though each type of leaf serves distinct purposes, the sagebrush produces both types. The high deserts that the plant grows in have a climate that can experience dramatic changes, calling for vastly different survival mechanisms. The sagebrush is prepared for maximum food production when water is abundant, and conservation of resources when it isn't.",
-	"False Facts": "alive and dead leaves + green and purple leaves"
+    "Category": "plants",
+    "Sentence": "Sagebrush are known for having both + evergreen and deciduous leaves",
+    "Description": "Though each type of leaf serves distinct purposes, the sagebrush produces both types. The high deserts that the plant grows in have a climate that can experience dramatic changes, calling for vastly different survival mechanisms. The sagebrush is prepared for maximum food production when water is abundant, and conservation of resources when it isn't.",
+    "False Facts": "alive and dead leaves + green and purple leaves"
   },
   {
-	"Category": "plants",
-	"Sentence": "The leaves and branches of the creosote bush + stretch and lean southeast + in the morning, reaching for the first light of the day",
-	"Description": "The creosote has evolved a method of maximizing photosynthesis during the coolest part of the day. By opening its stomata and leaning toward first light of the day, it will take in the most carbon dioxide and light possible during cool hours. During the afternoon and evening hours, when heat is the worst and water loss would be highest, it restricts its exposure and food production.",
-	"False Facts": "stretch and lean northwards"
+    "Category": "plants",
+    "Sentence": "The leaves and branches of the creosote bush + stretch and lean southeast + in the morning, reaching for the first light of the day",
+    "Description": "The creosote has evolved a method of maximizing photosynthesis during the coolest part of the day. By opening its stomata and leaning toward first light of the day, it will take in the most carbon dioxide and light possible during cool hours. During the afternoon and evening hours, when heat is the worst and water loss would be highest, it restricts its exposure and food production.",
+    "False Facts": "stretch and lean northwards"
   },
   {
-	"Category": "plants",
-	"Sentence": "Trees can share + nutrients and communication + with mushrooms through + a network of deeply interwoven roots and mycelium",
-	"Description": "Often referred to as the \"Wood Wide Web\", the network of mycelium that connects trees together throughout forest allows complex exchanges between trees and the fungi. Not only can the fungi and trees pass nutrients around to each other, the trees can even send chemical and electrical signals to communicate with its neighbors, even warning them of danger like parasites or disease.",
-	"False Facts": "layers of moss coating their bark + 5G towers + information + DNA"
+    "Category": "plants",
+    "Sentence": "Trees can share + nutrients and communication + with mushrooms through + a network of deeply interwoven roots and mycelium",
+    "Description": "Often referred to as the \"Wood Wide Web\", the network of mycelium that connects trees together throughout forest allows complex exchanges between trees and the fungi. Not only can the fungi and trees pass nutrients around to each other, the trees can even send chemical and electrical signals to communicate with its neighbors, even warning them of danger like parasites or disease.",
+    "False Facts": "layers of moss coating their bark + 5G towers + information + DNA"
   },
   {
-	"Category": "plants",
-	"Sentence": "The largest flower in the world can bloom up + a meter wide and weigh as much as + 11 kilograms",
-	"Description": "The Rafflesia arnoldii is not only an enormous flower, but one that smells putrid as well. It relies on flies to polinate, and thus must attract them with an odor meant to mimic rotting flesh.",
-	"False Facts": "4 feet wide and weigh as much as + 3 meters wide and weigh as much as + 4 kilograms + 150 grams"
+    "Category": "plants",
+    "Sentence": "The largest flower in the world can bloom up to + a meter wide and weigh as much as + 11 kilograms",
+    "Description": "The Rafflesia arnoldii is not only an enormous flower, but one that smells putrid as well. It relies on flies to polinate, and thus must attract them with an odor meant to mimic rotting flesh.",
+    "False Facts": "4 feet wide and weigh as much as + 3 meters wide and weigh as much as + 4 kilograms + 150 grams"
   },
   {
-	"Category": "plants",
-	"Sentence": "Goldenrod produces phytotoxins that + inhibit tree seed growth, keeping + meadows of them free of trees",
-	"Description": "Goldenrod, depending on the density of a colony and other factors like location, can inhibit tree growth. When large numbers of them occur in a space without trees, they produce enough allelochemicals that are toxic certain seeds, keeping trees out of the neighborhood so the flowers can benefit from the sun.",
-	"False Facts": "increases seed growth, keeping + fungi away from them"
+    "Category": "plants",
+    "Sentence": "Goldenrod produces phytotoxins that + inhibit tree seed growth, keeping + meadows of them free of trees",
+    "Description": "Goldenrod, depending on the density of a colony and other factors like location, can inhibit tree growth. When large numbers of them occur in a space without trees, they produce enough allelochemicals that are toxic certain seeds, keeping trees out of the neighborhood so the flowers can benefit from the sun.",
+    "False Facts": "increases seed growth, keeping + fungi away from them"
   },
   {
-	"Category": "plants",
-	"Sentence": "Humans share roughly + 50% of their DNA with bananas",
-	"Description": "Although humans share 50% of their DNA with bananas, it doesn't make us half banana. Many of the similar genes are the basic building blocks of life. They are sometimes referred to as \"housekeeping genes\" and dictate fundamental process like energy production and cell division.",
-	"False Facts": "a third of their DNA with bananas + 66% of their DNA with bananas"
+    "Category": "plants",
+    "Sentence": "Humans share roughly + 50% of their DNA with bananas",
+    "Description": "Although humans share 50% of their DNA with bananas, it doesn't make us half banana. Many of the similar genes are the basic building blocks of life. They are sometimes referred to as \"housekeeping genes\" and dictate fundamental process like energy production and cell division.",
+    "False Facts": "a third of their DNA with bananas + 66% of their DNA with bananas"
   },
   {
-	"Category": "plants",
-	"Sentence": "Lemons are not + naturally occurring fruits",
-	"Description": "Lemons did not evolve in the wild. Life did not, in fact, give you lemons. While there are some variations of lemons in the wild today, the lemons you commonly use in recipes was actually a manmade creation from ancient times from Southeast Asia.",
-	"False Facts": "manmade fruits + edible"
+    "Category": "plants",
+    "Sentence": "Lemons are not + naturally occurring fruits",
+    "Description": "Lemons did not evolve in the wild. Life did not, in fact, give you lemons. While there are some variations of lemons in the wild today, the lemons you commonly use in recipes was actually a manmade creation from ancient times from Southeast Asia.",
+    "False Facts": "manmade fruits + edible"
   },
   {
-	"Category": "plants",
-	"Sentence": "Approximately 25% of Western pharmaceuticals come from + rainforest plants",
-	"Description": "Despite the impressive statistic of 25% of modern Western medicine being drerived from some form of rainforest plant, less than 5% of existing tropical species have actually been studied or tested for their medicinal properties.",
-	"False Facts": "aquatic plants + animal products"
+    "Category": "plants",
+    "Sentence": "Approximately 25% of Western pharmaceuticals come from + rainforest plants",
+    "Description": "Despite the impressive statistic of 25% of modern Western medicine being drerived from some form of rainforest plant, less than 5% of existing tropical species have actually been studied or tested for their medicinal properties.",
+    "False Facts": "aquatic plants + animal products"
   },
   {
-	"Category": "plants",
-	"Sentence": "Matured trees are made up of about + 99% dead matter",
-	"Description": "An extremely thin membrane of living tissue is kept safe inside the tree by a surrounding made up of dead cells. The overwhelming majority of the tree's mass are cells produced to fulfill specific functions in their dead state.",
-	"False Facts": "30% dead matter + 70% bark + 13% water"
+    "Category": "plants",
+    "Sentence": "Matured trees are made up of about + 99% dead matter",
+    "Description": "An extremely thin membrane of living tissue is kept safe inside the tree by a surrounding made up of dead cells. The overwhelming majority of the tree's mass are cells produced to fulfill specific functions in their dead state.",
+    "False Facts": "30% dead matter + 70% bark + 13% water"
   },
   {
-	"Category": "plants",
-	"Sentence": "Brussels sprouts, cauliflower, cabbage, kale, and brocolli are + all the same plant species",
-	"Description": "Brussels sprouts, cauliflower, cabbage, kale, and brocolli all come from the same wild mustard plant. Over multiple millenia, farmers selectively bread this plant to focus on a specific part of it, resulting in highly specialized versions we know today.",
-	"False Facts": "disgusting and shouldn't be eaten + all manmade + came from China"
+    "Category": "plants",
+    "Sentence": "Brussels sprouts, cauliflower, cabbage, kale, and brocolli are + all the same plant species",
+    "Description": "Brussels sprouts, cauliflower, cabbage, kale, and brocolli all come from the same wild mustard plant. Over multiple millenia, farmers selectively bread this plant to focus on a specific part of it, resulting in highly specialized versions we know today.",
+    "False Facts": "disgusting and shouldn't be eaten + all manmade + came from China"
   },
   {
-	"Category": "plants",
-	"Sentence": "Trees can move water + hundreds of meters through evapotranspiration",
-	"Description": "To move water across its vast body, reaching from soil to the highest branches and leaves and back again, trees have a continuous flowing and unbroken chain of water in side them. The process is entirely powered by ambient thermal energy and the natural behavior of water, expending no metabolic energy.",
-	"False Facts": "up to 25 meters through evapotranspiration + about 38 meters through evapotranspiration + if they feel like it"
+    "Category": "plants",
+    "Sentence": "Trees can move water + hundreds of meters through evapotranspiration",
+    "Description": "To move water across its vast body, reaching from soil to the highest branches and leaves and back again, trees have a continuous flowing and unbroken chain of water in side them. The process is entirely powered by ambient thermal energy and the natural behavior of water, expending no metabolic energy.",
+    "False Facts": "up to 25 meters through evapotranspiration + about 38 meters through evapotranspiration + if they feel like it"
   },
   {
-	"Category": "plants",
-	"Sentence": "About 90% of plant calories consumed by humans come from + 30 plants",
-	"Description": "Humans have consumed all kinds of plants throughout the ages, but modern diets overwhelmingly rely upon a handful of plants. Grains, vegetables, tubers and legumes are responsible for more than 60% of our daily energy in some form.",
-	"False Facts": "7 plants + 100 plants + primarily non-plants"
+    "Category": "plants",
+    "Sentence": "About 90% of plant calories consumed by humans come from + 30 plants",
+    "Description": "Humans have consumed all kinds of plants throughout the ages, but modern diets overwhelmingly rely upon a handful of plants. Grains, vegetables, tubers and legumes are responsible for more than 60% of our daily energy in some form.",
+    "False Facts": "7 plants + 100 plants + primarily non-plants"
   },
   {
-	"Category": "space",
-	"Sentence": "There are more trees on Earth than + stars in the Milky Way",
-	"Description": "There are significantly more trees on Earth than stars in the Milky Way. Astronomers have estimated that somewhere around several hundred billion stars exist in our galaxy. Earth, on the other hand, has as many as 3 trillion trees, a far greater number. For star in our galaxy, we have up to a dozen trees.",
-	"False Facts": "every person who ever lived + apples on the planet"
+    "Category": "space",
+    "Sentence": "There are more trees on Earth than + stars in the Milky Way",
+    "Description": "There are significantly more trees on Earth than stars in the Milky Way. Astronomers have estimated that somewhere around several hundred billion stars exist in our galaxy. Earth, on the other hand, has as many as 3 trillion trees, a far greater number. For star in our galaxy, we have up to a dozen trees.",
+    "False Facts": "every person who ever lived + apples on the planet"
   },
   {
-	"Category": "space",
-	"Sentence": "All of the other planets in the solar system + could fit between Earth and the moon",
-	"Description": "Since the orbit of the moon is eliptical, this fact is only true when the the Moon is at it furthest point from the Earth. This point is called its apogee.",
-	"False Facts": "Only half of the planets in the solar system"
+    "Category": "space",
+    "Sentence": "All of the other planets in the solar system + could fit between Earth and the moon",
+    "Description": "Since the orbit of the moon is eliptical, this fact is only true when the the Moon is at it furthest point from the Earth. This point is called its apogee.",
+    "False Facts": "Only half of the planets in the solar system"
   },
   {
-	"Category": "space",
-	"Sentence": "Proxima Centauri has a radius that is + 1.5 times Jupiter's radius",
-	"Description": "The red dwarf star Proxima Centauri is a very small star, only containing an eighth of the mass of our own sun. On the grand cosmic scale it's only slightly larger than our solar system's largest planet. It is far more dense, however, enough to sustain its nuclear fusion.",
-	"False Facts": "10 times Pluto's radius + as large as the Sun"
+    "Category": "space",
+    "Sentence": "Proxima Centauri has a radius that is + 1.5 times Jupiter's radius",
+    "Description": "The red dwarf star Proxima Centauri is a very small star, only containing an eighth of the mass of our own sun. On the grand cosmic scale it's only slightly larger than our solar system's largest planet. It is far more dense, however, enough to sustain its nuclear fusion.",
+    "False Facts": "10 times Pluto's radius + as large as the Sun"
   },
   {
-	"Category": "space",
-	"Sentence": "A black hole the size of + the solar system + would have density of + water.",
-	"Description": "As black holes become bigger, they become less dense. A black hole the size of a marble would be so dense that it would contain all the matter of Earth. On the other end of the spectrum, its theorized that a black hole the size of our observable universe would be about as dense as the observable universe currently is.",
-	"False Facts": "A star + lead"
+    "Category": "space",
+    "Sentence": "A black hole the size of + the solar system + would have density of + water.",
+    "Description": "As black holes become bigger, they become less dense. A black hole the size of a marble would be so dense that it would contain all the matter of Earth. On the other end of the spectrum, its theorized that a black hole the size of our observable universe would be about as dense as the observable universe currently is.",
+    "False Facts": "A star + lead"
   },
   {
-	"Category": "space",
-	"Sentence": "Objects in space can get so far away that they + start appearing larger",
-	"Description": "Angular diameter distance is a point at which something is so far away, it starts to appear larger when we see it. Light takes so long to reach us that we are essentially seeing it at a time when it was actually closer to us.",
-	"False Facts": "slowly become translucent + aren't visible"
+    "Category": "space",
+    "Sentence": "Objects in space can get so far away that they + start appearing larger",
+    "Description": "Angular diameter distance is a point at which something is so far away, it starts to appear larger when we see it. Light takes so long to reach us that we are essentially seeing it at a time when it was actually closer to us.",
+    "False Facts": "slowly become translucent + aren't visible"
   },
   {
-	"Category": "space",
-	"Sentence": "Clean metals of the same type will + instantly fuse together in space",
-	"Description": "On Earth, metal surfaces react with oxygen in the atmosphere to make microscopic layers that keep metal pieces from directly touching each other. In the vacuum of space, clean pieces of metal will have their atoms interacting directly. This results in the atoms seamlessly bonding together in what is known as \"cold welding\".",
-	"False Facts": "instantly repel in space + orbit each other in space"
+    "Category": "space",
+    "Sentence": "Clean metals of the same type will + instantly fuse together in space",
+    "Description": "On Earth, metal surfaces react with oxygen in the atmosphere to make microscopic layers that keep metal pieces from directly touching each other. In the vacuum of space, clean pieces of metal will have their atoms interacting directly. This results in the atoms seamlessly bonding together in what is known as \"cold welding\".",
+    "False Facts": "instantly repel in space + orbit each other in space"
   },
   {
-	"Category": "space",
-	"Sentence": "Per unit of volume, the sun produces less energy than + the human body",
-	"Description": "The sun produces less energy per cubic meter than a human body. It actually produceses significantly less energy in the same volume of space than a human body does. Its massive energy production is achieved through nuclear fusion over an enormous area.",
-	"False Facts": "a single blood cell + a cow fart"
+    "Category": "space",
+    "Sentence": "Per unit of volume, the sun produces less energy than + the human body",
+    "Description": "The sun produces less energy per cubic meter than a human body. It actually produceses significantly less energy in the same volume of space than a human body does. Its massive energy production is achieved through nuclear fusion over an enormous area.",
+    "False Facts": "a single blood cell + a cow fart"
   },
   {
-	"Category": "animals",
-	"Sentence": "Squid + can suffer brain damage from eating + something too big",
-	"Description": "Squids have a donut shaped brain that their esophagus passes through. If they consume something large enough, they run the risk of stretching out the esophagus and causing them brain damage. To keep this from happening they have a feeding strategy involving strong enzymes in their saliva and a sharp beak to break food down.",
-	"False Facts": "Dolphins + too much"
+    "Category": "animals",
+    "Sentence": "Squid + can suffer brain damage from eating + something too big",
+    "Description": "Squids have a donut shaped brain that their esophagus passes through. If they consume something large enough, they run the risk of stretching out the esophagus and causing them brain damage. To keep this from happening they have a feeding strategy involving strong enzymes in their saliva and a sharp beak to break food down.",
+    "False Facts": "Dolphins + too much"
   },
   {
-	"Category": "animals",
-	"Sentence": "Teeth + take up more space in a horse's skull than + its brain",
-	"Description": "Horses have teeth with massive roots, taking up large amounts of space in their skull. Those teeth are always growing to mitigate all the wear on them from the horse chewing tough plants. Their elongated snouts and large jaws mean even less room for their brain.",
-	"False Facts": "Eye sockets"
+    "Category": "animals",
+    "Sentence": "Teeth + take up more space in a horse's skull than + its brain",
+    "Description": "Horses have teeth with massive roots, taking up large amounts of space in their skull. Those teeth are always growing to mitigate all the wear on them from the horse chewing tough plants. Their elongated snouts and large jaws mean even less room for their brain.",
+    "False Facts": "Eye sockets"
   },
   {
-	"Category": "animals",
-	"Sentence": "Sharks + have existed longer than + trees",
-	"Description": "Based on the evidence we have, the first plants evolved into trees almost 400 million years ago. Fossil records show that sharks existed between 50 to 100 million years before that, making them older than trees. Sharks even predate the existence of Saturn's rings.",
-	"False Facts": "haven't existed as long as"
+    "Category": "animals",
+    "Sentence": "Sharks + have existed longer than + trees",
+    "Description": "Based on the evidence we have, the first plants evolved into trees almost 400 million years ago. Fossil records show that sharks existed between 50 to 100 million years before that, making them older than trees. Sharks even predate the existence of Saturn's rings.",
+    "False Facts": "haven't existed as long as"
   },
   {
-	"Category": "animals",
-	"Sentence": "The largest predator of + moose are + orcas",
-	"Description": "Orcas are opportunistic predators of moose along the coasts of Alaska and the Pacific Northwest. Moose often swim between close islands or dive to forage aquatic plants, making them vulnerable to attack.",
-	"False Facts": "bears"
+    "Category": "animals",
+    "Sentence": "The largest predator of + moose are + orcas",
+    "Description": "Orcas are opportunistic predators of moose along the coasts of Alaska and the Pacific Northwest. Moose often swim between close islands or dive to forage aquatic plants, making them vulnerable to attack.",
+    "False Facts": "bears"
   },
   {
-	"Category": "science",
-	"Sentence": "The smell from thioacetone-related chemicals was + so strong that + people smelled it from + 400 metres away within seconds.",
-	"Description": "In 1967, chemists at an Esso research station in England were trying to make thioacetone by cracking tiny amounts of trithioacetone. During an early experiment, a stopper popped out of a bottle of chemical residues and was quickly replaced, but colleagues in a building about 180 metres away soon complained of nausea and sickness. The lab workers did not believe they were responsible, since they were working in closed systems, so observers were placed around the laboratory at distances up to about 400 metres. When a single drop of related sulfur-containing residue was placed in a fume cupboard, the smell was detected downwind within seconds.",
-	"False Facts": "so pleasing that + animals came from + 190 metres away within seconds"
+    "Category": "science",
+    "Sentence": "The smell from thioacetone-related chemicals was + so strong that + people smelled it from + 400 metres away within seconds.",
+    "Description": "In 1967, chemists at an Esso research station in England were trying to make thioacetone by cracking tiny amounts of trithioacetone. During an early experiment, a stopper popped out of a bottle of chemical residues and was quickly replaced, but colleagues in a building about 180 metres away soon complained of nausea and sickness. The lab workers did not believe they were responsible, since they were working in closed systems, so observers were placed around the laboratory at distances up to about 400 metres. When a single drop of related sulfur-containing residue was placed in a fume cupboard, the smell was detected downwind within seconds.",
+    "False Facts": "so pleasing that + animals came from + 190 metres away within seconds"
   },
   {
-	"Category": "science",
-	"Sentence": "Gallium melts + in the palm of your hand",
-	"Description": "The melting point for gallium is at a mere 29.8° celcius, one of the lowest melting points of all the metals, and human skin usually sits around 32° to 35° celcius, meaning it can melt in your hand (assuming the environment or your hands aren't particularly cool). Even though gallium turns to liquid at such a low temperature, it starts to boil at a much higher temperature of over 2200°C, which is the highest range between melting and boiling of all the metals.",
-	"False Facts": "Lithium melts + Tin melts + at 4°C + at 15°C"
+    "Category": "science",
+    "Sentence": "Gallium melts + in the palm of your hand",
+    "Description": "The melting point for gallium is at a mere 29.8° celcius, one of the lowest melting points of all the metals, and human skin usually sits around 32° to 35° celcius, meaning it can melt in your hand (assuming the environment or your hands aren't particularly cool). Even though gallium turns to liquid at such a low temperature, it starts to boil at a much higher temperature of over 2200°C, which is the highest range between melting and boiling of all the metals.",
+    "False Facts": "Lithium melts + Tin melts + at 4°C + at 15°C"
   },
   {
-	"Category": "science",
-	"Sentence": "An ice cube takes up + 9% more volume + than the water used to make it",
-	"Description": "Water molecules are close to each other when it's liquid, but when water freezes its molecules rearrange into a hexagonal pattern, leaving larger gaps between them. This means that, even though ice isn't as dense as water, it takes up more space.",
-	"False Facts": "6% less volume + a boatload more volume"
+    "Category": "science",
+    "Sentence": "An ice cube takes up + 9% more volume + than the water used to make it",
+    "Description": "Water molecules are close to each other when it's liquid, but when water freezes its molecules rearrange into a hexagonal pattern, leaving larger gaps between them. This means that, even though ice isn't as dense as water, it takes up more space.",
+    "False Facts": "6% less volume + a boatload more volume"
   },
   {
-	"Category": "science",
-	"Sentence": "About 75% of + baryonic matter in the Universe is + hydrogen",
-	"Description": "Hydrogen is the most abundant baryonic matter in the known universe, making up 3/4. Of the remaining 25%, nearly all of it is helium. Less than 1% of the remaining matter the rest of the elements. Most of the matter in space doesn't exist in stars or on planets. Instead that matter is diffused across the vast spaces between galaxies known as the intergalactic medium",
-	"False Facts": "About half of + matter in the solar system"
+    "Category": "science",
+    "Sentence": "About 75% of + baryonic matter in the Universe is + hydrogen",
+    "Description": "Hydrogen is the most abundant baryonic matter in the known universe, making up 3/4. Of the remaining 25%, nearly all of it is helium. Less than 1% of the remaining matter the rest of the elements. Most of the matter in space doesn't exist in stars or on planets. Instead that matter is diffused across the vast spaces between galaxies known as the intergalactic medium",
+    "False Facts": "About half of + matter in the solar system"
   },
   {
-	"Category": "science",
-	"Sentence": "Coffee and + skunk spray + get their distinct smells from +the same class of compounds",
-	"Description": "Coffee and skunk spray get their aromas from a class of compounds known as thiols. Thiols are sulfur containing compounds that, in large amounts, can smell like burning rubber or rotting meat. When the amounts are small enough, like in coffee, they smell rich and savory.",
-	"False Facts": "hot apple cider"
+    "Category": "science",
+    "Sentence": "Coffee and + skunk spray + get their distinct smells from +the same class of compounds",
+    "Description": "Coffee and skunk spray get their aromas from a class of compounds known as thiols. Thiols are sulfur containing compounds that, in large amounts, can smell like burning rubber or rotting meat. When the amounts are small enough, like in coffee, they smell rich and savory.",
+    "False Facts": "hot apple cider"
   },
   {
-	"Category": "science",
-	"Sentence": "Sodium(an explosive solid) and + chlorine(a deadly gas) + combined form table salt",
-	"Description": "Sodium and chlorine are quite different in the way that they exist and behave, one being a deadly and corrosive gas while the other is an explosively volatile solid. The reasons for the dangerous nature of each are similar, sodium needing to shed an electron and chlorine needing to gain one. When combined, the exchange makes the much more stable compound of table salt.",
-	"False Facts": "Fluorine( a deadly gas)"
+    "Category": "science",
+    "Sentence": "Sodium(an explosive solid) and + chlorine(a deadly gas) + combined form table salt",
+    "Description": "Sodium and chlorine are quite different in the way that they exist and behave, one being a deadly and corrosive gas while the other is an explosively volatile solid. The reasons for the dangerous nature of each are similar, sodium needing to shed an electron and chlorine needing to gain one. When combined, the exchange makes the much more stable compound of table salt.",
+    "False Facts": "Fluorine( a deadly gas)"
   },
   {
-	"Category": "sea",
-	"Sentence": "The ocean covers + 71% + of the Earth's surface and holds + 95.6% + of its water",
-	"Description": "Almost all of the water on Earth is undrinkable saltwater, contained mostly in seas and oceans but also within sea ice. The remaining water, such as rivers, lakes, groundwater, the ice caps, and particles floating in the atmosphere, make up less than 5%.",
-	"False Facts": "67%"
+    "Category": "sea",
+    "Sentence": "The ocean covers + 71% + of the Earth's surface and holds + 95.6% + of its water",
+    "Description": "Almost all of the water on Earth is undrinkable saltwater, contained mostly in seas and oceans but also within sea ice. The remaining water, such as rivers, lakes, groundwater, the ice caps, and particles floating in the atmosphere, make up less than 5%.",
+    "False Facts": "67%"
   },
   {
-	"Category": "sea",
-	"Sentence": "A blue whale's tongue + can weigh as much as + an elephant",
-	"Description": "The blue whale is the largest living creature on Earth. The weight of its tongue is equivelant to an African elephant. Measuring nearly 6 meters long, this massive tongue has enough room for 50 people to stand on it at once.",
-	"False Facts": "hippopotamus"
+    "Category": "sea",
+    "Sentence": "A blue whale's tongue + can weigh as much as + an elephant",
+    "Description": "The blue whale is the largest living creature on Earth. The weight of its tongue is equivelant to an African elephant. Measuring nearly 6 meters long, this massive tongue has enough room for 50 people to stand on it at once.",
+    "False Facts": "hippopotamus"
   },
   {
-	"Category": "sea",
-	"Sentence": "A bite from a + blue ring octopus + has enough venom to kill 26 adult humans",
-	"Description": "Not only is the blue-ringed octopus difficult to spot due to being the size of a golf ball, but its bite is painless. Victims often do not realize they've been bitten, and paralysis sets in quickly. Immediate artificial breathing is the only way to survive, as their is no antidote and the body needs about a full day to metabolize the toxin.",
-	"False Facts": "blue spotted octopus"
+    "Category": "sea",
+    "Sentence": "A bite from a + blue ring octopus + has enough venom to kill 26 adult humans",
+    "Description": "Not only is the blue-ringed octopus difficult to spot due to being the size of a golf ball, but its bite is painless. Victims often do not realize they've been bitten, and paralysis sets in quickly. Immediate artificial breathing is the only way to survive, as their is no antidote and the body needs about a full day to metabolize the toxin.",
+    "False Facts": "blue spotted octopus"
   },
   {
-	"Category": "sea",
-	"Sentence": "All + clownfish are born + male, but are + able to change sex if circumstances require",
-	"Description": "Clownfish are what is known as a sequentialhermaphrodite. They are all born male possess both sets of reproductive organs. If the social environment undergoes a dramatic change, such as the death of the only female, the dominant male will experience a hormonal shift that will permenantly transform it into a female.",
-	"False Facts": "Some + female"
+    "Category": "sea",
+    "Sentence": "All + clownfish are born + male, but are + able to change sex if circumstances require",
+    "Description": "Clownfish are what is known as a sequentialhermaphrodite. They are all born male possess both sets of reproductive organs. If the social environment undergoes a dramatic change, such as the death of the only female, the dominant male will experience a hormonal shift that will permenantly transform it into a female.",
+    "False Facts": "Some + female"
   },
   {
-	"Category": "sea",
-	"Sentence": "The horn of a narwhal is actually a + giant tusk",
-	"Description": "Most narwhal horns are actually an overgrown spiral canine. In almost all cases, the left canine will grow into a spiral that pierces the upper lip. It is covered in nerve endings that help the narwhal discern characteristics of the surrounding water such as salinity, temperature and pressure.",
-	"False Facts": "fingernail"
+    "Category": "sea",
+    "Sentence": "The horn of a narwhal is actually a + giant tusk",
+    "Description": "Most narwhal horns are actually an overgrown spiral canine. In almost all cases, the left canine will grow into a spiral that pierces the upper lip. It is covered in nerve endings that help the narwhal discern characteristics of the surrounding water such as salinity, temperature and pressure.",
+    "False Facts": "fingernail"
   },
   {
-	"Category": "history",
-	"Sentence": "The US military has misplaced at least  6 + nuclear bombs",
-	"Description": "The United States military has awknowledged the loss of at least 6 nuclear weapons in accidents between 1950 and 1968. All were lost at sea except one, which sank into swampy terrain in North Carolina. The official code for an accident involving a nuclear weapon is \"Broken Arrow\".",
-	"False Facts": "battleships"
+    "Category": "history",
+    "Sentence": "The US military has misplaced at least  6 + nuclear bombs",
+    "Description": "The United States military has awknowledged the loss of at least 6 nuclear weapons in accidents between 1950 and 1968. All were lost at sea except one, which sank into swampy terrain in North Carolina. The official code for an accident involving a nuclear weapon is \"Broken Arrow\".",
+    "False Facts": "battleships"
   },
   {
-	"Category": "history",
-	"Sentence": "Andrew Jackson's + parrot was removed from his funeral for + swearing too much",
-	"Description": "Andrew Jackson's parrot, named Poll, had to be removed from the funeral service for the US president due to an endless deluge of profanity. The parrot, which he had initially purchased for his wife, was a companion to Jackson for 18 years.",
-	"False Facts": "Benjamin Franklin's + squaking too loudly"
+    "Category": "history",
+    "Sentence": "Andrew Jackson's + parrot was removed from his funeral for + swearing too much",
+    "Description": "Andrew Jackson's parrot, named Poll, had to be removed from the funeral service for the US president due to an endless deluge of profanity. The parrot, which he had initially purchased for his wife, was a companion to Jackson for 18 years.",
+    "False Facts": "Benjamin Franklin's + squaking too loudly"
   },
   {
-	"Category": "history",
-	"Sentence": "The Hongzhi Emperor of the Ming Dynasty + was the only monogamous emperor in + Chinese imperial history",
-	"Description": "The Hongzhi emperor, Zhu Youcheng, was the only monogamous emperor in the history of imperial China. Other emperors had harems of concubines, some as few asa few dozen, while others had well over 10,000. In extreme cases, concubines would go their entire lives wihtout ever meeting the emperor.",
-	"False Facts": "was the only female emperor"
+    "Category": "history",
+    "Sentence": "The Hongzhi Emperor of the Ming Dynasty + was the only monogamous emperor in + Chinese imperial history",
+    "Description": "The Hongzhi emperor, Zhu Youcheng, was the only monogamous emperor in the history of imperial China. Other emperors had harems of concubines, some as few asa few dozen, while others had well over 10,000. In extreme cases, concubines would go their entire lives wihtout ever meeting the emperor.",
+    "False Facts": "was the only female emperor"
   }
 ]
