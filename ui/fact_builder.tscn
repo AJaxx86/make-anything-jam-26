@@ -49,6 +49,7 @@ facts_per_round = 2
 check_correct = ExtResource("4_yh0kt")
 check_incorrect = ExtResource("5_3v0bg")
 check_incorrect_fart = ExtResource("6_43vm4")
+fart_chance = 5.0
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1157002671]
 layout_mode = 1
